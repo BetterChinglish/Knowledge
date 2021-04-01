@@ -2,6 +2,9 @@
 // 引入一个包
 const path = require('path');
 
+// 引入htmlwebpackplugin
+const htmlwebpackplugin = require('html-webpack-plugin');
+
 
 // webpack中配置信息都要写在这里module.exports
 module.exports = {
@@ -38,8 +41,16 @@ module.exports = {
                 exclude:/node_modules/
             }
         ]
-    }
+    },
 
+    plugins:[
+        new htmlwebpackplugin(
+            {
+                // title:"qsj's web"
+                template:"./template.html",
+            }
+        ),
+    ]
 
 }
 
