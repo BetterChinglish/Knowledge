@@ -6,3 +6,4 @@ function fn(a:number, b:number):number{
 
 
 console.log(fn(123,455));
+console.log("ahhhhhh");

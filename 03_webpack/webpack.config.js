@@ -5,6 +5,9 @@ const path = require('path');
 // 引入htmlwebpackplugin
 const htmlwebpackplugin = require('html-webpack-plugin');
 
+// 引入clean插件
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 
 // webpack中配置信息都要写在这里module.exports
 module.exports = {
@@ -44,13 +47,23 @@ module.exports = {
     },
 
     plugins:[
+        // 先清楚文件再生成文件
+        new CleanWebpackPlugin(),
+
+        // 使生成的js文件自动引入html文件中
         new htmlwebpackplugin(
             {
                 // title:"qsj's web"
                 template:"./template.html",
             }
         ),
-    ]
+
+    ],
+
+    // 设置引用模块(哪些文件可以作为模块被引用)
+    resolve:{
+        extensions:['.ts','.js']
+    }
 
 }
 
