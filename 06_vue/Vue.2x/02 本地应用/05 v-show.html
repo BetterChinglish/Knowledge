@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <!-- v-show
+        根据表达式的真假,切换元素的显示与隐藏
+        支持表达式
+        原理是切换图片的display
+    -->
+
+    <div id="app">
+
+        <img src="https://v3.cn.vuejs.org/logo.png" v-show="true">
+
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            
+        })
+    </script>
+</body>
+</html>

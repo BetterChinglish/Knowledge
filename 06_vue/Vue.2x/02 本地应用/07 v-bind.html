@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <!-- v-bind
+        设置元素的属性
+        v-bind:属性 = " "
+        简写为如下
+        :属性 = " "
+         
+    -->
+    
+    <div id="app">
+        <img  v-bind:src="vuePic" :title="vueTitle">
+        <br>
+        <img :src="vuePic">
+
+
+    </div>
+
+    <script>
+        var app = new Vue ({
+            el:"#app",
+            data:{
+                vuePic:"https://v3.cn.vuejs.org/logo.png",
+                vueTitle:"vue.js"
+            }
+        })
+    </script>
+</body>
+</html>

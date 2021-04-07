@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+    <!-- 为元素绑定事件 -->
+    <div id="app">
+
+        <!-- 
+            <input type="button" value="绑定" v-on:click="点击事件">
+            <input type="button" value="绑定" v-on:mouseenter="鼠标移入事件">
+            <input type="button" value="绑定" v-on:dblclick="双击事件"> 
+
+            提供了简写方法,即将v-on:替换为@符号
+            <input type="button" value="绑定" @dblclick="双击事件"> 
+
+            事件方法在v-on="此处"此处不需要写加上括号()
+
+            事件方法写在methods中
+        -->
+
+        <button @click="myFunction">myFunction</button>
+        <button @dblclick="myFunction">双击myFunction</button>
+        <p @click="changeFood">
+            {{ food }}
+        </p>
+        
+    </div>
+
+
+    <script>        var app = new Vue({ 
+            el:"#app",
+            data:{
+                food:"西兰花"
+            },
+            methods:{
+                // 方法名:function(){}
+                myFunction:function(){
+                    alert("我的函数")
+                },
+                changeFood:function(){
+                    this.food = this.food + "好吃的嘞"
+                }
+
+
+            }
+
+        })
+    </script>
+</body>
+</html>

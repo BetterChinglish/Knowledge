@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+    <!-- v-text绑定标签里的内容 -->
+    <div id="app">
+        <h2 v-text="message">
+            <!-- 这样使用会导致标签里无论有什么内容都会被替换掉 -->
+        </h2>
+
+        <!-- 
+            插值表达式,
+            替换括号里的部分内容
+            支持表达式
+        
+        -->
+        <h2>
+            深圳 {{ message1 + "!"}}
+        </h2>
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:"h2标签",
+                message1:"腾讯"
+            }
+        })
+    </script>
+</body>
+</html>

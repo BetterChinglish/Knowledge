@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+    </div>
+
+    <!-- <div class="app">
+
+    </div> -->
+
+    <script>
+
+        var app = new Vue({
+
+            // el挂载点,绑定的元素
+            el:"#app",
+            // el挂载点可以使用其他的选择器如class
+            // el:".class"
+            // el:"div"
+            // 建议使用div挂载
+
+            // el 挂载点可以挂在于普通标签上,不可以是body,html或者单标签
+
+
+            // data数据对象,要写的数据在这里赋值等
+            data:{
+                message:"hello vue!"
+            }
+        })
+
+
+    </script>
+</body>
+</html>

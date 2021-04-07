@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    
+    <!-- v-html
+        内容会被以html的形式渲染在屏幕上
+        如果设置的是普通文本,那么和v-text几乎一样
+    -->
+    <div id="app">
+        <p v-text="content1"></p>
+        <p v-html="content2"></p>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                content1:"baidu.com",
+                content2:"<a href='https://www.baidu.com'> 百度 </a>"
+            },
+        })
+    </script>
+</body>
+</html>
