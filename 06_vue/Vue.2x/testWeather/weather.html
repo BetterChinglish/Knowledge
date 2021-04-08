@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div id="app">
+        <input type="text" @keyup.enter="searchWeather" v-model="city">
+        <input type="button" value="查询" @click="searchWeather" >
+        <ul>
+            <li v-for="item in weatherList">
+                <p>天气:{{ item.type }}</p>
+                <p>日期: {{ item.date }} </p>
+                <p>最高温度: {{ item.high }} </p>
+                <p>最低温度: {{ item.low }} </p>
+            </li>
+        </ul>
+
+    </div>
+    
+
+    <script src="../vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
