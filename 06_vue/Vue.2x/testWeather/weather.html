@@ -5,11 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .myWeather {
+            border: 1px solid black;
+            height: 500px;
+            background-color: skyblue;
+        }
+
+    </style>
     
 </head>
 <body>
-    <div id="app">
-        <input type="text" @keyup.enter="searchWeather" v-model="city">
+    <div id="app" class="myWeather">
+        <input class="" type="text" @keyup.enter="searchWeather" v-model="city">
         <input type="button" value="查询" @click="searchWeather" >
         <ul>
             <li v-for="item in weatherList">

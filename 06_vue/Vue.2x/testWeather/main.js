@@ -15,7 +15,9 @@ var app = new Vue({
                 // console.log(response)
                 console.log(response.data.data.forecast)
                 that.weatherList = response.data.data.forecast
-            },function(err){})
+            },function(err){
+                console.log(err)
+            })
         }
     }
 })
