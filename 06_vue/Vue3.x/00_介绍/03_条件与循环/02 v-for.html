@@ -6,27 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/vue@next"></script>
-
 </head>
 <body>
+    <!-- v-for
+        可以绑定数组的数据来渲染一个项目列表    
     
+    -->
     <div id="app">
-        <p v-if="seen">this is a p</p>
+        <ol>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+
     </div>
 
+
     <script>
+
         const App = {
-            data() {
+            data(){
                 return {
-                    seen:false
+                    todos:[
+                        {text:"learn js"},
+                        {text:"learn vue"},
+                        {text:"learn vue3.x"}
+                    ]
                 }
             }
         }
 
-
         Vue.createApp(App).mount("#app");
+
     </script>
-
-
 </body>
 </html>

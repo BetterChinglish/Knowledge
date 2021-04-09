@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <!-- 
+        v-bind如果绑定的值null或undefined,
+        那么该attribute将不会被包含在渲染的元素上
+
+        如果对于布尔值,如下例子,
+        若isButtonDisabled为truthy则会被包含,
+        空字符串,也会被包含
+        对于其他错误的值,该attribute将被省略
+        <button v-bind:disabled="isButtonDisabled"> 按钮 </button>
+     -->
+    <div id="app">
+        <button v-bind:disabled="one">button</button>
+        <button v-bind:disabled="two">button</button>
+        <button v-bind:disabled="three">button</button>
+        <button v-bind:disabled="four">button</button>
+
+
+    </div>
+
+    <script>
+        const App = {
+            data() {
+                return {
+                    one:null,   // 假
+                    two:0,      // 假
+                    three:"",   // 假,但特殊情况,故被包含
+                    four:"something"    // 真,被包含
+                }
+            }
+        }
+        Vue.createApp(App).mount('#app');
+    </script>
+    
+</body>
+</html>

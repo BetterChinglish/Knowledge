@@ -9,22 +9,27 @@
 
 </head>
 <body>
-    
     <div id="app">
-        <p v-if="seen">this is a p</p>
+        <p>using mustaches: {{ rawHtml}} </p>
+        <p>using v-html directive <span v-html="rawHtml"></span> </p>
     </div>
+
+    <!-- 在站点上渲染非信任的html是十分危险的 -->
+
 
     <script>
         const App = {
-            data() {
-                return {
-                    seen:false
+            data(){
+                return{
+                    rawHtml:'<span style="color:red"> this are red words </span>'
                 }
             }
-        }
+        };
 
 
         Vue.createApp(App).mount("#app");
+
+        
     </script>
 
 
