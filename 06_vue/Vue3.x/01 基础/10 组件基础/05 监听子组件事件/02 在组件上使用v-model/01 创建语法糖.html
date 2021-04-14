@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+
+    <div id="app">
+        <custom-input v-model="searchText">
+            
+        </custom-input>
+
+        <p>
+            {{ searchText }}
+        </p>
+        
+
+    </div>
+
+    <script>
+        const App = Vue.createApp({
+            data() {
+                return {
+                    searchText:''
+                }
+            }
+        })
+
+        App.component('custom-input',{
+            props:['modelValue'],
+            template:`
+                <input
+                    :value="modelValue"
+                    @input= "$emit('update:modelValue',$event.target.value)"
+                >
+            `
+        })
+
+        App.mount('#app')
+
+    </script>
+    
+</body>
+</html>
