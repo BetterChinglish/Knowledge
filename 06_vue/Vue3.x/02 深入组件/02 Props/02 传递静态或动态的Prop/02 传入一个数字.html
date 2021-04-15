@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <!-- 传入数字时尽管 如 17 是静态的,
+            但我们仍需要使用v-bind来告诉Vue
+            这是一个js的表达式而不是一个字符串 -->
+        <blog-post :age="17"></blog-post>
+
+        <!-- 使用一个变量进行动态赋值 -->
+        <blog-post :age="post.age"> </blog-post>
+
+
+    </div>
+</body>
+</html>

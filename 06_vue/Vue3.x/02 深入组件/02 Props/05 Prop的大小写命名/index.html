@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prop 的大小写命名 (camelCase vs kebab-case)</title>
+</head>
+<body>
+    <!-- HTML 中的 attribute 名是大小写不敏感的，
+        所以浏览器会把所有大写字符解释为小写字符。
+        这意味着当你使用 DOM 中的模板时，
+        camelCase (驼峰命名法) 的 prop 名
+        需要使用其等价的 kebab-case (短横线分隔命名) 命名：
+
+        // javascript
+        const app = Vue.createApp({})
+
+        app.component('blog-post', {
+          // camelCase in JavaScript
+          props: ['postTitle'],
+          template: '<h3>{{ postTitl }}</h3>'
+        })
+        // kebab-case in html
+        <blog-post post-title="hello!"></blog-post> 
+        
+        重申一次，如果你使用字符串模板，那么这个限制就不存在了。
+    -->
+</body>
+</html>
