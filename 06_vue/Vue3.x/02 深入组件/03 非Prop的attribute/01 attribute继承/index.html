@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>attribute 继承</title>
+
+</head>
+<body>
+    
+    <!-- 
+    
+        <div id="app">
+
+        /* date-picker中通过data-status 定义date-picker的状态
+            他(data-status)将被用于根节点
+        */
+
+        <date-picker data-status="activated">
+        </date-picker>
+
+        /* 被渲染后为:*/
+        <div class="date-picker" data-status="activated">
+            <input type="datetime" />
+        </div>
+
+
+    </div>
+
+    <script>
+        const App = Vue.createApp({
+
+        })
+
+        App.component('date-picker',{
+            template:`
+                <div class="date">  // 这里div为根节点
+                    <input type="datetime" />
+                </div>
+
+            `
+        })
+        
+        App.mount('#app')
+
+
+    </script> 
+    
+    -->
+
+
+    <!-- 同意的规则适用于事件监听器 
+
+    <div id="app">
+       
+        <date-picker @change="submitChange">
+
+        </date-picker>
+    </div>
+
+    <script>
+        const App = Vue.createApp({
+
+        })
+
+        App.component('date-picker',{
+            created(){
+                console.log(this.$attrs)
+            },
+            template:`
+                <div class="date">  // 这里div为根节点
+                    <input type="datetime" />
+                </div>
+
+            `
+        })
+
+    </script> 
+    -->
+
+
+    <!-- 当一个html将change作用于date-picker的根元素时,这可能有帮助
+        如下组件:
+        app.component('date-picker',{
+            template:`
+                <select>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    // 这种根节点下子节点很多且重复使用根节点某样式时
+                    // 这种继承会很有效
+                </select>
+            
+            `
+        })
+    -->
+      
+
+
+
+</body>
+</html>
