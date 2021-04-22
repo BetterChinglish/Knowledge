@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>work 3</title>
+    <link rel="stylesheet" href="./css/00 reset.css">
+    <link rel="stylesheet" href="./css/01 main.css">
+    <link rel="stylesheet" href="./css/02 header.css">
+    <link rel="stylesheet" href="./css/03 body.css">
+    <link rel="stylesheet" href="./css/03-1 body/nav.css">
+    <link rel="stylesheet" href="./css/03-1 body/article.css">
+    <link rel="stylesheet" href="./css/03-1 body/aside.css">
+    <link rel="stylesheet" href="./css/04 footer.css">
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+   <div id="main">
+
+        <div id="header"> Head </div>
+
+        <div id="mbody">
+            <div id="nav">
+                <h1 id="bodyArticle">Nav</h1>
+                <a href="#" @click="changeLoremOne">link 1</a>
+                <div></div>
+
+                <a href="#" @click="changeLoremTwo">link 2</a>
+                <div></div>
+
+                <a href="#" @click="changeLoremThree">link 3</a>
+                <div></div>
+
+            </div>
+
+
+            <div id="article">
+                <div id="artBlock1">
+                    <div class="artHeader1">Article</div>
+                    <div class="artBody1">
+                        {{ loremOneNow }}
+                    </div>
+                    <div class="artFooter1">Footer</div>
+                </div>
+                <div id="artBlock2">
+                    <div class="artHeader2">Article</div>
+                    <div class="artBody2">
+                        {{ loremTwoNow }}
+                    </div>
+                    <div class="artFooter2">Footer</div>
+                </div>
+            </div>
+
+
+            <div id="aside">
+                <div id="top">Article</div>
+                <div id="content">
+                    some thing Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt voluptates quam illo reiciendis aperiam, ullam debitis perspiciatis fuga cupiditate. Est quas voluptatem numquam distinctio in cumque iure esse adipisci nostrum.
+                </div>
+            </div>
+
+        </div>
+
+        <div id="footer">Footer(如果无法显示请刷新界面,确保网络连接)</div>
+
+   </div>
+
+   <script src="./js/main.js"></script>
+  
+
+
+
+</body>
+</html>

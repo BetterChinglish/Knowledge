@@ -1,0 +1,24 @@
+#aside {
+    height: 100%;
+    width: 25%;
+    float: left;
+    color: white;
+}
+
+#top {
+    height: 60px;
+    width: 95%;
+    margin: auto;
+    line-height: 60px;
+    font-size: 40px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+#content {
+    width: 95%;
+    height: 70%;
+    margin: auto;
+    font-size: 25px;
+    font-style: italic;
+}

@@ -1,0 +1,12 @@
+body {
+    background-color: skyblue;
+}
+
+
+#main {
+    width: 1600px;
+    height: 900px;
+    background-color: black;
+    border: 0.25em solid white;
+    margin: auto;
+}

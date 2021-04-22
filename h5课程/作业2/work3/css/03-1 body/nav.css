@@ -1,0 +1,36 @@
+#nav {
+    width: 25%;
+    height: 100%;
+    text-align: center;
+    font-size: 30px;
+    float: left;
+}
+
+#bodyArticle {
+    color: white;
+    font-size: 40px;
+}
+
+#nav a {
+    height: 50px;
+    display: block;
+    text-align: left;
+    margin-left: 80px;
+    font-size: 0.75em;
+    line-height: 50px;
+    color: #f47d31;
+    text-decoration: none;
+
+}
+
+#nav a:hover {
+    color: skyblue;
+}
+
+#nav div {
+    height: 5px;
+    width: 75%;
+    background-color: white;
+    margin: auto;
+    padding: 0;
+}
