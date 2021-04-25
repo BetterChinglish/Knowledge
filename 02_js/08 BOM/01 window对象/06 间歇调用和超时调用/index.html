@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 超时调用
+            使用window对象的setTimeout()方法
+            接受俩参数:要执行的代码和以毫秒表示的时间
+            (在执行代码前等待时间)
+            第一个参数可以是包含js代码的字符串
+            (类似于eval()函数中的字符串)
+            也可以是个函数
+        如下例:
+            // 字符串传递 不建议
+            setTimeout("alert('hello world')", 1000)
+            
+            // 函数传递  建议
+            setTimeout(function(){
+                alert('hello world');
+            },1000)
+
+        js是单线程的解释器,一定时间内只能执行一次代码
+        为了控制要执行的代码,就有一个js任务队列
+        这些任务会按照将他们加入队列的顺序执行
+        setTimeout()的第二个参数高数js再过多长时间把当前任务添加到队列中
+        如果队列是空的那么会立即执行
+        如果不是空的就要等前面的代码执行完,新加入的才会执行
+        这可能导致我们过了第二个参数指定的时间代码可能还未执行
+        原因就是队列前面还有其他的代码未执行完
+
+        ID
+        调用setTimeout()之后,该方法会返回一个数值ID,表示超时调用
+        这个超时调用ID是计划执行代码的唯一标识符,可以通过它来取消超时调用
+        要取消尚未执行的超时调用计划,可以调用clearTimeout()方法
+        并将相应的超时调用ID作为参数传递给他
+        如下例:
+        // 设置超时调用
+        var timeoutId = setTimeout(function(){
+            alert("hello world!");
+        }, 1000)
+        // 取消上面的超时调用
+        clearTimeout(timeoutId);
+
+        只要在指定的时间尚未过去之前调用clearTimeout()
+        就可以完全取消超时调用
+        结果就跟什么都没有发生一样
+
+        超时调用的代码都是在全局作用域下执行的
+        因此函数中this的值在非严格模式下指向window对象
+        严格模式下是underfined
+    -->
+
+
+    <!-- 间歇调用
+    
+        与超时调用类似
+        不过会按照指定的时间间隔重复执行代码
+        直至间歇调用被取消或者页面被卸载
+
+        设置间歇调用的方法是setInterval()
+        接受的参数与setTimeout()相同
+        要执行的代码(字符串或函数)和每次执行之前要等待的毫秒数
+        例:
+        // 使用字符串
+        setInterval("alert('hello world')",1000)
+
+        // 使用函数
+        setInterval(function(){
+            alert('hello world!')
+        }, 1000)
+
+
+        调用setInterval()方法也会返回一个间歇调用ID
+        该ID可用于在将来某个时刻取消掉间歇调用
+
+        要取消尚未执行的间歇调用
+        可以使用clearInterval()方法并传入相应的间歇调用ID
+        
+
+        取消间歇调用的重要性远远高于取消超时调用
+        因为如果不加干涉,间歇调用会一直执行到页面卸载
+
+        如下例子:
+        var num = 0;
+
+        var intervalId = setInterval(function() {
+            console.log(num++)
+        },1000)
+        
+        setTimeout(function(){
+            clearInterval(intervalId)
+        },5000)
+        
+        // setTimeout()也可以用下面的代码代替
+        if(num==4){
+            clearInterval(intervalId)
+        }
+    
+        最好不要使用间歇调用
+        一般认为,使用超时调用来模拟间歇调用是一种最佳模式
+        在开发环境下，很少使用真正的间歇调用，
+        原因是后一个间歇调用可能会在前一个间歇调用结束之前启动。
+        而像前面示例中那样使用超时调用，则完全可以避免这一点。
+        所以，最好不要使用间歇调用。
+    -->
+
+
+    <script>
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--  
+        使用location对象可以通过很多方式来改变浏览器的位置
+
+        首先,最常用的是使用assign()方法
+        并为其传入一个url
+        如下:
+        location.assign("https://www.baidu.com");
+        这样可以立即打开新url并在浏览器历史记录重生成一条记录
+        
+        如果将location.href活泼window.location设置为一个url值
+        也可以是以该值调用assign()方法
+        如下:
+        window.location="https://www.baidu.com"
+        location.href="https://www.baidu.com"
+
+        最常用的方式是设置location.href\
+
+        另外,修改location对象的其他属性也可以改变当前加载的页面
+        如下例子:
+        
+        // 假设初始url为:http://wrox.com/WileyCDA/
+        // 现在要修改为:http://www.wrox.com/WileyCDA/#section1
+        location.hash="#section1";
+
+        // 将url改为http://www.wrox.com/WileyCDA/?q=javascript
+        location.search="?q=javascript";
+
+        // 将url改为http://www.yahoo.com/WileyCDA
+        location.hostname='www.yahoo.com';
+
+        // 将url改为http://www.yahoo.com/mydir
+        location.pathname='mydir';
+
+        // 将url改为http://www.yahoo.com:8080/WileyCDA/
+        location.port=8080;
+
+
+        以上方法修改url都会产生一条历史记录
+        点击浏览器的返回可以返回之前的界面
+
+        如果不需要产生这些历史记录(也就无法返回)
+        可以使用replace
+        如下:
+        location.replace("url-1")
+        当页面重载到url-1上后,你无法返回到原先的url上
+
+        重载:
+        reload()
+        将页面重新加载当前界面
+
+        如果不传递任何参数,页面将以最有效的方法重新加载
+        (浏览器缓存)
+        如果要强制从服务器重载,则需要传入参数true
+
+        location.reload();      // 重载,可能从浏览器缓存中加载
+        location.reload(true)   // 重载,从服务器重新加载
+
+        reload()之后的代码可能不会执行
+        最后reload()放到最后一行
+
+
+    -->
+</body>
+</html>

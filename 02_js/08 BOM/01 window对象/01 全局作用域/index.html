@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // window对象同时扮演ECMAScript中Global对象的角色
+        // 因此所有在全局作用域中声明的变量、函数都会变成window对象的属性和方法
+        // var age = 19;
+        // function sayAge() {
+        //     console.log(this.age);
+        // }
+
+        // console.log(window.age);      // 19
+        // sayAge();               // 19
+        // window.sayAge();        // 19
+
+        // 全局变量不可以使用delete删除
+        // 而直接再window对象上定义的属性可以
+        // console.log(delete age);            // fales
+        // console.log(delete window.age)      // false
+        // window.color="green";
+        // console.log(delete window.color);   // true
+
+        // 使用var添加的window属性默认[[Configutable]]为false,无法被删除
+        // IE8及更早版本在遇到使用delete删除window属性的语句时，
+        // 不管该属性最初是如何创建的，都会抛出错误，以示警告。
+        
+        // IE9及更高版本不会抛出错误。
+
+        // 尝试访问未声明的变量会抛出错误，
+        // 但是通过查询window对象，可以知道某个可能未声明的变量是否存在。例如：
+        // var newValue = oldValue;    // 报错,oldValue未定义
+        var newValue = window.oldValue; //- 不报错,相当于一次属性查询
+        // newValue的值是underfined
+        console.log(newValue)
+
+        // Windows Mobile平台的IE浏览器不允许通过window.property=value之类的形式，
+        // 直接在window对象上创建新的属性或方法。
+        // 可是，在全局作用域中声明的所有变量和函数，照样会变成window对象的成员。
+
+        window.oldValue = 1;
+        console.log(oldValue)
+        // 使用ie打开发现报错
+    </script>
+</body>
+</html>

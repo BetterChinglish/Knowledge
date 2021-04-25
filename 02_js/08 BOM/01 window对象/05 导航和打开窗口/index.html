@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 使用window.open()方法既可以导航到一个特定的URL，
+        也可以打开一个新的浏览器窗口 
+
+        接受四个参数:
+            要加载的URL,
+            窗口目标
+            一个特性字符串
+            一个表示新页面是否取代浏览器历史记录中当前加载页面的布尔值
+        
+        通常只传递第一个参数
+        最后一个参数只在不打开新窗口的情况下使用
+
+        如果传递了第二个参数,
+        且该参数是已有窗口或框架的名称
+        那么就好在此窗口或框架中加载第一个参数指定的url
+        如下例:
+    -->
+
+
+    <script>
+
+
+        // 如果有一个名叫"topFrame"的窗口或者框架，就会在该窗口或框架加载这个URL；
+        // 否则，就会创建一个新窗口并将其命名为"topFrame"
+        window.open("https://www.baidu.com", "topFrame")
+
+        // 此外，第二个参数也可以是下列任何一个特殊的窗口名称：_
+        // self、_parent、_top或_blank。
+
+
+    </script>
+
+    <!-- 1. 弹出窗口
+        
+        如果给window.open()传递的第二个参数并不是一个已经存在的窗口或框架
+        那么该方法会根据在第三个参数位置上闯入的字符串创建一个新窗口或新标签页
+
+        如果没有传入第三个参数,那么就会打开一个带有全部默认设置
+        (工具栏\地址栏\状态栏等)
+        的新浏览器窗口
+        (或者打开一个新标签页---根据浏览器设置)
+
+        在不打开新窗口的情况下会忽略第三个参数
+
+        第三个参数是一个逗号分隔的设置字符串
+        表示新窗口都显示哪些特性
+
+        fullscreen
+        值: yes 或 no
+        表示浏览器窗口是否最大化.仅限IE
+
+        height
+        值: 数值
+        表示新窗口的高度,不能小于100
+
+        left
+        值: 数值
+        表示新窗口的左坐标,不能是负值
+
+        location
+        yes 或 no
+        表示是否在浏览器窗口中显示地址栏,不同浏览器默认值不同,
+        如果设置为no,地址栏可能被隐藏,也可能被禁用(取决于浏览器)
+
+        menubar
+        yes 或 no
+        是否在浏览器窗口之显示菜单栏,默认no
+
+        resizable
+        yes 或 no
+        是否可以通过拖动浏览器的边框改变其大小,默认no
+
+        scrollbare
+        yes 或 no
+        表示如果内容在视口中显示不下,是否允许滚动,默认no
+
+        status
+        yes 或 no
+        表示是否在浏览器窗口中显示状态栏,默认no
+
+        toolbar
+        yes 或 no
+        是否显示工具栏,默认no
+        
+        top
+        数值
+        表示新窗口的上坐标,不能是负值
+
+        width
+        数值
+        表示新窗口的高度,不能小于100
+
+        在使用中,值使用=表示
+        例:
+        window.open(
+            "https://www.baidu.com", 
+            "topWindow", 
+            "height=400, width=400, top=10,left=10,resizable=yes"
+        );
+
+        window.open() 返回一个指向新窗口的引用
+        引用的对象与其他window对象大致相似,但我们可以对其进行更多控制
+        例如
+        有些浏览器在默认情况下可能不允许我们针对主浏览器窗口进行调整大小或移动位置
+        但却允许我们针对通过window.open()创建的窗口调整大小或移动位置
+        通过这个返回的对象,
+        可以像操作其他窗口一样操作新打开的窗口
+        如下:
+         
+        var wroxWin = window.open(
+            "https://www.baidu.com",
+            "worxWindow",
+            "height=400, width=400, top=10, left=10, resizable=yes");
+
+        // 调整大小
+        wroxWin.resizeTo(500, 500);
+
+        // 移动位置
+        wroxWin.moveTo(100, 100);
+
+        使用close()方法还可以关闭新打开的窗口
+        wroxWin.close();
+        不过这个方法仅仅适用于通过window.open()打开的弹出窗口
+        对于浏览器的主窗口,如果没有得到用户的允许是不能关闭的
+        不过弹出窗口可以调用top.close()在不经用户允许的情况下关闭自己
+
+        弹出窗口关闭后,窗口的引用仍然还在
+        但除了像下面这样检测其closed属性外,已经没有用处了
+        wroxWin.close();
+        alert(wroxWin.closed);  // true
+
+        新建的window对象有个opener属性
+        其中保存着打开它的原始窗口对象
+        这个属性只在弹出窗口的最外层window对象中有定义
+        而且指向调用window.open()的窗口或框架
+        如:
+        var wroxWin = window.open(
+            "https://www.baidu.com",
+            "worxWindow",
+            "height=400, width=400, top=10, left=10, resizable=yes");
+        alert(wroxWin.openner==window);     // true
+
+
+        有些浏览器（如IE8和Chrome）会在独立的进程中运行每个标签页。
+        当一个标签页打开另一个标签页时，
+        如果两个window对象之间需要彼此通信，
+        那么新标签页就不能运行在独立的进程中。
+        在Chrome中，将新创建的标签页的opener属性设置为null，
+        即表示在单独的进程中运行新标签页，如下所示。
+        var wroxWin = window.open(
+            "https://www.baidu.com",
+            "worxWindow",
+            "height=400, width=400, top=10, left=10, resizable=yes");
+        wroxWin.opener=null;
+
+        将opener属性设置为null就是告诉浏览器
+        新创建的标签页不需要与打开它的标签页通信，
+        因此可以在独立的进程中运行。
+        标签页之间的联系一旦切断，将没有办法恢复。
+    -->
+
+
+    <!-- 2. 安全限制
+        为了解决弹窗泛滥的情况而更改的设置
+        各个浏览器不同
+    
+    
+    
+    
+    -->
+
+
+    <!-- 3. 弹出窗口屏蔽程序
+        
+        大多数浏览器都内置有弹出窗口屏蔽程序
+        没有内置的浏览器也可以安装相关功能的插件
+        可以将绝大多数弹出窗口屏蔽掉
+
+        如果是浏览器内置的屏蔽程序阻止的弹出窗口，
+        那么window.open()很可能会返回null。
+        此时，只要检测这个返回的值就可以确定弹出窗口是否被屏蔽了，
+        如下面的例子所示
+        var wroxWin = window.open(
+            "https://www.baidu.com",
+            "worxWindow",
+            "height=400, width=400, top=10, left=10, resizable=yes");
+
+        if(wroxWin == null) {
+            alert('the popup was blocked!')
+        }
+
+
+        如果是浏览器扩展或其他程序阻止的弹出窗口，
+        那么window.open()通常会抛出一个错误。
+        因此，要想准确地检测出弹出窗口是否被屏蔽，
+        必须在检测返回值的同时，
+        将对window.open()的调用封装在一个try-catch块中，
+        如下所示。
+
+        var blocked = false;
+
+        try {
+            var wroxWin = window.open('url', '_blank');
+            if(wroxwin==null) {
+                blocked = true
+            }
+        } catch(ex) {
+            blocked = true
+        }
+        
+        if(blocked) {
+            alert('the popup was blocked!')
+        }
+        
+        在任何情况下，
+        以上代码都可以检测出调用window.open()打开的弹出窗口是不是被屏蔽了。
+        但要注意的是，检测弹出窗口是否被屏蔽只是一方面，
+        它并不会阻止浏览器显示与被屏蔽的弹出窗口有关的消息。
+    
+    -->
+
+
+</body>
+</html>

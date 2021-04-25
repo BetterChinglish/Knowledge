@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        // 使用screenLeft和screenTop来确认串口相对于屏幕左边和上面的位置
+        // IE, Safari, Opera, Chrome
+
+        // 或使用screenX与screenY
+        // Firefox, Safari, Chrome
+        // Opera虽然也支持screenX与screenY
+        // 但是并不与screenLeft和screenTop相对应
+
+        var leftPosition = (typeof window.screenLeft=='number')? window.screenLeft:window.scrollX
+        var rightPositon = (typeof window.screenTop == 'number') ? window.screenTop : window.screenY
+        
+        console.log(leftPosition, rightPositon)
+
+
+        // 移动窗口使用moveBy(移动多少)和moveTo(移动到)
+
+    </script>
+
+
+</body>
+</html>

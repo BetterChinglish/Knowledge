@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        IE9+、Firefox、Safari、Opera和Chrome均为此提供了4个属性：
+        innerWidth、innerHeight、outerWidth和outerHeight
+    -->
+
+    <!-- 在IE9+、Safari和Firefox中，
+        outerWidth和outerHeight返回浏览器窗口本身的尺寸
+        （无论是从最外层的window对象还是从某个框架访问） 
+    -->
+
+    <!-- 在Opera中，
+        这两个属性的值表示页面视图容器[插图]的大小。
+        而innerWidth和innerHeight则表示该容器中页面视图区的大小
+        （减去边框宽度） 
+    -->
+
+
+    <!-- 在Chrome中，
+        outerWidth、outerHeight与innerWidth、innerHeight返回相同的值，
+        即视口（viewport）大小而非浏览器窗口大小。 
+    -->
+
+
+    <!-- 在IE、Firefox、Safari、Opera和Chrome中，
+        document.documentElement.clientWidth
+        和
+        document.documentElement.clientHeight
+        中保存了页面视口的信息 -->
+
+    <!-- 在IE6中，这些属性必须在标准模式下才有效；
+        如果是混杂模式，就必须通过
+        document.body.clientWidth
+        和
+        document.body.clientHeight
+        取得相同信息 -->
+
+    <!-- 而对于混杂模式下的Chrome，
+        则无论通过
+        document.documentEle-ment
+        还是
+        document.body中的clientWidth和clientHeight属性，
+        都可以取得视口的大小。 -->
+    <script>
+        var pageWidth = window.innerWidth, 
+        pageHeight = window.innerHeight;
+    
+        if(typeof pageWidth!='number'){
+            // 检验是否为标准模式
+            if(document.compatMode == 'CSS1Compat'){
+                pageWidth = document.documentElement.clientWidth;
+                pageHeight = document.documentElement.clientHeight;
+            }else {
+                pageHeight = document.body.clientHeight;
+                pageWidth = document.body.clientWidth;
+            }
+        }
+
+    console.log(pageWidth, pageHeight)
+    </script>
+
+
+    <!-- 另外，
+    使用resizeTo()和resizeBy()方法可以调整浏览器窗口的大小。
+    这两个方法都接收两个参数，
+    其中resizeTo()接收浏览器窗口的新宽度和新高度，
+    而resizeBy()接收新窗口与原窗口的宽度和高度之差。
+    来看下面的例子 -->
+
+    <script>
+        // 100 x 100
+        window.resizeTo(100, 100);
+
+
+        // 200 x 150
+        window.resizeBy(100, 50);
+
+        // 300 x 300
+        window.resizeTo(300, 300)
+
+
+
+    </script>
+
+    <!-- 需要注意的是，
+        这两个方法与移动窗口位置的方法类似，
+        也有可能被浏览器禁用；
+        而且，在Opera和IE7（及更高版本）中默认就是禁用的。
+        另外，这两个方法同样不适用于框架，而只能对最外层的window对象使用。 -->
+
+</body>
+</html>

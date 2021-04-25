@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        浏览器通过alert(),confirm(), prompt()方法
+        可以调用系统对话框向用户显示消息
+
+        系统对话框与浏览器中显示的网页没有关系,也不包含html
+        也不由css决定外观
+        他们的外观由操作系统及(或)浏览器设置决定
+
+        通过这几个方法打开的对话框都是同步和模态的
+        也就是说,显示这些对话框的时候代码会停止执行,
+        而关掉这些对话框后代码又会恢复执行
+
+        最属性的对话框就是alert()了
+        其接受一个字符串并显示给用户
+        还包含一个确定按钮
+        用户只能在看完消息后关闭对话框
+
+        第二种对话框是调用confirm()方法生成的
+        其除了一个确认按钮外还有一个取消按钮
+        两个按钮可以让用户决定是否执行给定的操作
+        可以检查confirm()方法返回的布尔值
+        true代表点击了ok,false则代表点击了cancel
+        如下例
+        if(confirm("are you sure?")) {
+            alert("i'm so happy you're sure!")
+        }else {
+            alert("i'm sorry to hear you're not sure.")
+        }
+
+        最后一种对话框有prompt()方法生成
+        这是一个提示框
+        用于显示用户输入的一些文本
+        除了ok与cancel按钮外,还有一个文本输入域
+        供用户在其中输入内容
+
+        prompt()方法接受两个参数
+            要显示给用户的文本提示
+            文本输入域的默认值(可以为空字符串)
+        例:
+        prompt("what's your name?",'default name')
+
+        如果用户点击了ok按钮,则prompt()返回文本输入域的值
+        如果用户点击了cancel或没有单击ok而通过其他方式关闭了对话框
+        则返回null
+        如下例:
+        var result=prompt("what's u name?",'');
+
+        if(result!=null){
+            alert("hello "+ result)
+        }
+
+
+
+
+        两个可以使用js打开的对话框
+        查找 和 打印
+        
+        这两个对话框都是异步显示的
+        能够将控制权立即交还给脚本
+
+        这两个对话框与用户通过浏览器菜单的 查找 和 打印 命令打开的对话框相同
+        如下例:
+        // 显示 打印 对话框
+        // window.print();
+
+        // 显示 查找 对话框
+        window.find();
+
+
+
+        两个方法同样不会就用户在对话框中的操作给出任何信息，
+        因此它们的用处有限
+
+        由于这两个对话框是异步显示的,
+        chrome的对话框计数器不会将他们计算在内
+        他们也就不受用户禁用后续对话框显示的影响
+
+
+    -->
+
+
+    <script>
+
+       
+        
+
+
+
+    </script>
+</body>
+</html>
