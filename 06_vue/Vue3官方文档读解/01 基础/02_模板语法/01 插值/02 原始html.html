@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<body>
+    <div id="app">
+        <p>using mustaches: {{ rawHtml}} </p>
+        <p>using v-html directive <span v-html="rawHtml"></span> </p>
+    </div>
+
+    <!-- 在站点上渲染非信任的html是十分危险的 -->
+
+
+    <script>
+        const App = {
+            data(){
+                return{
+                    rawHtml:'<span style="color:red"> this are red words </span>'
+                }
+            }
+        };
+
+
+        Vue.createApp(App).mount("#app");
+
+        
+    </script>
+
+
+</body>
+</html>

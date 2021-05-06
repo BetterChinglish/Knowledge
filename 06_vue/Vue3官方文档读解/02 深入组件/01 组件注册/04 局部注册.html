@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        全局注册虽然可以在哪都使用
+        但是有些地方没有用到,却仍然需要构建他
+        这造成了资源的浪费
+        所以为了优化,你需要用到局部注册的组件
+    -->
+
+    <script>
+
+        const ComponentA = {
+            // 
+        }
+        const ComponentB = {
+            // 
+        }
+        const ComponentC = {
+            // 
+        }
+
+        const App = Vue.createApp({
+            components:{
+                'component-a':ComponentA,
+                'component-b':ComponentB,
+                'component-c':ComponentC,
+
+            }
+        })
+        // 注意,如上局部注册的组件在其子组件中不可用。
+        // 如果你希望你的ComponentD在ComponentE中可以使用,则如下
+        const ComponentD = {
+            // ...
+        }
+        const ComponentE = {
+            components:{
+                'component-d':ComponentD
+            },
+
+            // ..
+        }
+
+
+    </script>
+
+    
+    
+
+</body>
+</html>

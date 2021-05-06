@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model参数</title>
+
+
+</head>
+<body>
+    <!-- 
+        默认情况下，
+        组件上的 v-model 使用 modelValue 
+        作为 prop 和 update:modelValue 作为事件。
+        我们可以通过向 v-model 传递参数来修改这些名称
+
+
+    -->
+    <my-component v-model:foo="bar"></my-component>
+
+    
+    <script>
+        const App = Vue.createApp({})
+
+        App.component('my-component',{
+            props:{
+                foo:String
+            },
+
+            template:`
+                <input
+                    type="text"
+                    :value="foo"
+                    @input="$emit('update:foo', $event.target.value)" />
+            `
+        })
+
+    </script>
+    
+</body>
+</html>

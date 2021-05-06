@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多个v-model绑定</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app">
+        <p>first name: {{ firstName }} </p>
+        <p>last name: {{ lastName }} </p>
+
+
+        <user-name v-model:first-name="firstName" v-model:last-name="lastName"></user-name>
+    </div>
+
+    <script>
+        const App = Vue.createApp({
+            data() {
+                return {
+                    firstName:"firstName",
+                    lastName:"lastName"
+                }
+            }
+        })
+
+        App.component('user-name',{
+            props:{
+                firstName:String,
+                lastName:String
+            },
+
+            template:`
+                <input
+                    type="text"
+                    :value="firstName"
+                    @input="$emit('update:firstName', $event.target.value)"
+                >
+
+                <input
+                    type="text"
+                    :value="lastName"
+                    @input="$emit('update:lastName',$event.target.value)" 
+                >
+            `
+        })
+
+        App.mount('#app')
+
+
+
+    </script>
+    
+</body>
+</html>

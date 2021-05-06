@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插槽内容</title>
+</head>
+<body>
+    <!-- 
+        Vue 实现了一套内容分发的 API，
+        这套 API 的设计灵感源自 Web Components 规范草案
+        将 <slot> 元素作为承载分发内容的出口。
+    -->
+
+
+        <!-- 字符串
+            
+        它允许你像这样合成组件：
+            <todo-button>
+                Add todo
+            </todo-button>
+        然后在 <todo-button> 的模板中，你可能有：
+            /* todo-button 组件模板 */
+            <button class="btn-primary">
+                <slot></slot>
+            </button>
+        当组件渲染的时候，<slot></slot> 将会被替换为“Add Todo”。
+            /* 渲染 HTML */
+            <button class="btn-primary">
+                Add todo
+            </button>   
+
+        -->
+
+        <!-- 插槽还可以包含任何模板代码，包括 HTML：
+        
+        <todo-button>
+          /* 添加一个Font Awesome 图标 */
+          <i class="fas fa-plus"></i>
+          Add todo
+        </todo-button>
+        
+        
+        -->
+
+
+        <!-- 或其他组件
+
+        <todo-button>
+            /* 添加一个图标的组件 */
+            <font-awesome-icon name="plus"></font-awesome-icon>
+            Add todo
+        </todo-button>        
+        
+        -->
+
+        <!-- 
+            如果 <todo-button> 的 template 中没有包含一个 <slot> 元素，
+            则该组件起始标签和结束标签之间的任何内容都会被抛弃
+
+            /* todo-button 组件模板*/
+            <button class="btn-primary">
+                Create a new item
+            </button>
+
+            <todo-button>
+                /* 以下文本不会渲染 */
+                Add todo
+            </todo-button>
+        
+        -->
+
+</body>
+</html>

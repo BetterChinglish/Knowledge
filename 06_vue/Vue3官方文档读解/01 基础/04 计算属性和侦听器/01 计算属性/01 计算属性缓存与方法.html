@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 计算属性缓存vs方法
+        上节提到,使用methods也可以达到类似效果
+        那么这二者有什么区别呢?
+
+        区别在于,计算属性是基于他们的反应依赖关系缓存的,
+        计算属性只在相关响应式依赖发生改变时才会重新求值
+        这意味着只要上节中的author.books没有发生改变,
+        多次访问 publishedBooksMessage,计算属性会立即返回之前的计算结果
+        而不像方法一样每次都需要重新执行函数
+
+        使用计算属性意味着下面的计算属性将不再更新,
+        因为 Date.now()不是响应式依赖:
+        computed:{
+            now() {
+                return Date.now();
+            }
+        }
+        相比之下,每当触发重新渲染时,调用方法将总会再次执行函数
+
+        这种缓存机制在处理大开销时提供了帮助
+        因为你可能有很多的计算,可能不可避免地多次使用同一个东西
+
+        如果你不希望有缓存,请使用 method 来代替
+
+        
+    -->
+</body>
+</html>

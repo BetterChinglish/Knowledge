@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Data Property
+        组件的 data 选项是一个函数。
+        Vue 在创建新组件实例的过程中调用此函数。
+
+        它应该返回一个对象，
+        然后 Vue 会通过响应性系统将其包裹起来，
+        并以 $data 的形式存储在组件实例中。
+
+        为方便起见，该对象的任何顶级 property 也直接通过组件实例暴露出来：
+
+     -->
+
+     <div id="app">
+
+
+     </div>
+
+
+     <script>
+        const App = Vue.createApp({
+            data() {
+                return {
+                    count:4
+                }
+            }
+        })
+
+        const vm = App.mount('#app');
+
+        console.log(vm.$data.count);    // 4
+        console.log(vm.count);          // 4
+
+        // 修改vm.count的值也会更新vm.$data.count
+        vm.coutn = 5;
+        console.log(vm.$data.count);    // 5
+
+        // 反之亦然
+        vm.$data.count = 6;
+        console.log(vm.count);          // 6
+
+     </script>
+
+     <!-- 
+        这些实例 property 仅在实例首次创建时被添加，
+        所以你需要确保它们都在 data 函数返回的对象中。
+        必要时，
+        要对尚未提供所需值的 property 使用 null、undefined 或其他占位的值。
+
+        如果要直接将不包含在data中的新property添加到组件实例,这是允许的
+        但是,
+        由于该property不在背后的响应式 $data 对象内,
+        所以,
+        vue的响应性系统不会自动跟踪他
+
+        Vue使用 $ 前缀通过组件实例暴露自己内置的 API,
+        它还为内部的property保留 _ 前缀
+        我们应该避免使用这两个字符开头的顶级 data property名称
+      -->
+</body>
+</html>

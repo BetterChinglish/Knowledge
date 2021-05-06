@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .demo {
+            font-family: sans-serif;
+            border: 1px solid #eee;
+            border-radius: 2px;
+            padding: 20px 30px;
+            margin-top: 1em;
+            margin-bottom: 40px;
+            user-select: none;
+            overflow-x: auto;
+}
+    </style>
+</head>
+<body>
+     <!-- 除了文本插值,还可以绑定元素的attribute -->
+     <div id="bind-attribute" class="demo">
+        <span v-bind:title="message">
+            鼠标悬停几秒查看此处动态绑定的提示信息!
+        </span>
+
+    </div>
+
+    <script>
+        const AttributeBindingApp = {
+            data() {
+                return {
+                    message:'you loaded this page on ' + new Date().toLocaleString()
+
+                }
+            }
+        }
+
+        Vue.createApp(AttributeBindingApp).mount('#bind-attribute')
+    </script>
+</body>
+</html>

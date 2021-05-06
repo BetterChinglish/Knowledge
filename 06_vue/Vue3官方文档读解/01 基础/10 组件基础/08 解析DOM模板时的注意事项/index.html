@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+
+    <!-- 
+        一些html元素对内部可以出现的标签有严格限制
+        如  ul ol table等
+
+        这导致我们使用一下又约束条件的元素时在其内添加我们的组件会出现问题
+        如:
+        <table> 
+            <component-name></component-name>
+        </table>
+
+        可以使用v-is
+        <table> 
+            <tr v-is="'component-name'"></tr>
+        </table>
+
+        注意 v-is 的值是js文本字符串v-is=" ' ' "
+     -->
+
+    <!-- 
+        //  在JavaScript中的驼峰
+        app.component('blog-post', {
+        props: ['postTitle'],
+        template: `
+        <h3>{{ postTitle }}</h3>
+        `
+        })
+
+        在HTML则是横线字符分割 
+        <blog-post post-title="hello!"></blog-post>
+    -->
+
+    <div id="app">
+        
+
+    </div>
+
+
+    <script>
+
+        // const App = Vue.createApp({
+        //     data() {
+        //         return {
+
+        //         }
+        //     }
+        // })
+
+
+
+
+    </script>
+</body>
+</html>

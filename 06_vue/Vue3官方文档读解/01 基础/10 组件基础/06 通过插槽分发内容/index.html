@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 和html元素一样,我们经常需要给一个组件传递内容,可以使用slot -->
+        <alert-box>
+            something bad happend
+        </alert-box>
+    </div>
+
+    <script>
+        const App = Vue.createApp({
+            data() {
+                return {}
+                
+            }
+        })
+
+        App.component('alert-box',{
+            template:`
+                <div>
+                    <strong> error </strong>
+                    <slot> </slot>
+                </div>
+            `
+        })
+
+        App.mount('#app')
+
+    </script>
+
+</body>
+</html>
