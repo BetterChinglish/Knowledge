@@ -1,7 +1,7 @@
 {
-  "name": "webpack5",
+  "name": "15webpack",
   "version": "1.0.0",
-  "description": "webpack5 的安装和体验",
+  "description": "webpack demo",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "webpack": "^5.36.2",
-    "webpack-cli": "^4.6.0"
+    "html-webpack-plugin": "^5.3.1"
   }
 }
