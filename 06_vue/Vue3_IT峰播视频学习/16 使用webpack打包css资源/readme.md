@@ -1,24 +1,24 @@
 # 介绍两个loader
-    ## css-loader
-        将css文件插入到js文件中
+## css-loader
+    将css文件插入到js文件中
         作用是处理css中@import和url这样的外部资源
 
-    ## style-loader
-        将打包好的js文件中的css放入html中去
-        会在head中插入一个style标签,并把样式写入这个标签的innerHTML中
+## style-loader
+    将打包好的js文件中的css放入html中去
+    会在head中插入一个style标签,并把样式写入这个标签的innerHTML中
     
-    ## 如何使用插件
-        module:[
-            rules:[{
-                // 对哪些文件使用loader
-                test:/匹配规则/,
+## 如何使用插件
+    module:[
+        rules:[{
+            // 对哪些文件使用loader
+            test:/匹配规则/,
 
-                // 对文件使用哪些loader
-                use:['','',....要使用的loader]
+            // 对文件使用哪些loader
+            use:['','',....要使用的loader]
 
-                // 注意loader顺序, 从后往前执行,这里css-loader要写在后面
-            }]
-        ]
+            // 注意loader顺序, 从后往前执行,这里css-loader要写在后面
+        }]
+    ]
 
 # 初始化项目
     npm init
