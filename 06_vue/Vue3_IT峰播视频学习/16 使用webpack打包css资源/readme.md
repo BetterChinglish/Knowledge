@@ -42,3 +42,9 @@
 # 运行webpack
     终端输入命令
         webpack[回车]
+
+# 浏览器打开打包好的html文件
+    打开控制台
+    点击console,发现输出之前写的东西,js打包引入成功
+    点击elements
+    打开head标签,发现其中有style子标签,css打包引入成功
