@@ -98,16 +98,92 @@
 
 
 # 数组新增的高级方法
+三个方法:
+1. filter()
+2. map()
+3. reduce()
+他们都会接收一个函数,然后数组有多长,就执行多少次函数
+相当于循环这个数组并每次对数组元素使用这个函数
+## filter() 过滤
+ 
+```JavaScript
+    // 接受一个函数,函数有一个参数,此参数代表循环这个数组时的每个元素
+    let myArray=[1,2,3,4,5,6,7,8,9];
+
+    // filter() 过滤
+    let array1 = myArray.filter(function(n){
+        return n>5; // n相当于循环了这个数组, 如果n大于5则返回,否则忽略
+    })
+    console.log(array1) // 6,7,8,9
+```
 
 
+
+
+## map()
+```JavaScript
+    // 接受一个函数,同样的也有一个参数,相当于对数组元素每个都应用这个函数的规则
+
+    // map() 映射
+    let array2 = array1.map(function(n){
+        return 2*n;     // 相当于对每个元素*2然后合在一起返回一个数组
+    })
+    console.log(array2)     // 12, 14, 16, 18
+
+```
+
+## reduce()
+```JavaScript
+// 接受两个参数,
+// 第一个参数为函数,函数有两个参数(s,n),第一个参数代表起始值,第二个参数代表循环数组的每个元素
+// 第二个参数指定第一个函数参数的第一个参数的起始值s
+// s指上一次的返回值
+// n每次代表这次循环的数组的值
+
+// 汇总
+let sum = 0;
+sum = array2.reduce(function(s,n){
+    return s+n;
+},0)    // 起始值为0,也就是s=0
+
+// 第一次执行, s=0, n为数组第一个值12, 返回0+12,
+// 第二次执行, s为上次的返回值,也就是0+12=12, n为数组第二个值14, 返回12+14
+// 第三次执行, s为12+14=26, n为数组第三个值16, 返回26+16
+// ...以此类推
+console.log(sum)
+
+```
     
 
 
-    
+# 字符串新增方法与模板字符串
 
+## 字符串新增方法
 
+### startswith(string)
+String.startswith(string)
+判断String是否以string开头
+返回true或false
+```JavaScript
+let url='www.baidu.com';
+if(url.startsWith('https')){
+    console.log(url)
+}else{
+    console.log('不是以https开头的url')
+}
+```
 
+### endswith(string)
+String.endswith(string)
+判断String是否以string结尾
 
+```JavaScript
+if(url.endsWith('.com')){
+    console.log(url)
+    }else{
+        console.log('不是以.com结尾的url')
+    }
+```
 
 
 
