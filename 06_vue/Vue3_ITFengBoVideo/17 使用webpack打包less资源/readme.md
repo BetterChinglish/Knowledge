@@ -188,3 +188,35 @@
     等应用上架时使用
     这里先注释掉:
         new OptimizeCssAssetsWebpackPlugin()
+
+# 21 打包图片资源
+
+## 下载插件
+    npm i url-loader file-loader -D
+
+## 
+
+
+# 22 打包其他资源字体图标
+
+## 使用iconfont
+    1. 打开iconfon.cn网页,使用GitHub登录
+    2. 创建图标项目
+    3. 将需要的图标加入购物车
+    4. 将购物车的内容分别放入想要放入的目录
+    5. 在项目中生成代码
+    6. 在style标签里(css中)引入刚刚生成的代码
+    7. 设置样式
+    8. 5~7可以在iconfont项目中查看帮助,有三种使用方法
+
+
+
+# 23 使用eslint对js代码进行检查
+
+
+
+
+
+
+
+
