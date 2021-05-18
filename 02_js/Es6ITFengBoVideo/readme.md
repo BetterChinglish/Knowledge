@@ -154,7 +154,7 @@ console.log(sum)
 
 ```
     
-
+# Map 与 Set 数据结构
 
 # 字符串新增方法与模板字符串
 
@@ -185,5 +185,179 @@ if(url.endsWith('.com')){
     }
 ```
 
+## 模板字符串
+即字符串的增强版
+
+1. 可以在其中随意书写, 所写即所得,不像普通的字符串一样换行需要特殊符号,换行书写需要多加引号
+```JavaScript
+let str = `
+    first
+    second
+    third
+    something 
+    anything 
+`
+```
+
+2. 可以在字符串中引入其他变量,而不必像普通字符串一样写为 string + 变量 + string
+```javascript
+let name = 'zhangsan';
+let age = 10;
+let normalStr = name+ ' is ' + age + ' years old';
+let templateStr = `${name} is ${age} years old`
+
+```
 
 
+# 解构赋值
+
+1. 对于普通数组
+```javascript
+
+let arr = [1,2,3];
+
+// 如果要把这个数组的三个值分别给三个变量:
+{
+    let a = arr[0];
+    let b = arr[1];
+    let c = arr[2];
+}
+// 这样很麻烦
+
+// 新增简单方法:
+{
+    let [a, b, c] = [1, 2 ,3];
+}
+// 或写成:
+{
+    let [a, b, c] = arr;
+}
+```
+
+2. 对于对象
+```JavaScript
+let person = {
+    name:'zhangsan',
+    age:10,
+    gender:'male'
+}
+{
+    let {name, age, gender} = person;
+    console.log(name, age, gender)
+    // 输出 zhangsan 10 male
+}
+```
+
+3. 如果是对象的话,左边的变量名称必须和右边的名字相同,否则失败,仍为undefined
+```JavaScript
+{
+    let {anotherName, age, gender} = {name:'zhangsan', age:10, gender:'male'};
+    console.log(anotherName, age, gender)
+    // undefined 10, male
+}
+```
+
+4. 普通值左边的值可以少于右边的值,会按顺序赋值
+```JavaScript
+let arr = [1,2,3];
+{
+    let [a, b] = arr;
+    console.log(a,b);   // 1 2
+}
+```
+
+5. 对象左值也可以少于右边的,且顺序可以改变,因为对象按键名来赋值
+```JavaScript
+let person = {
+    name:'zhangsan',
+    age:10,
+    gender:'boy'
+}
+{
+    let {gender, age} = person;
+    console.log(gender, age)    // boy 10
+}
+```
+
+6. 复合赋值
+```JavaScript
+let arr = [{name:'zhangsan', age:10}, [1,2,3], 'hello', 9 ];
+{
+    let [a,b,c,d] = arr;
+    console.log(a);
+    console.log(b,c,d);
+}
+```
+
+7. 分解赋值
+```javascript
+let arr = [{name:'zhangsan', age:10}, [1,2,3], 'hello', 9 ];
+{
+    let[{name,age},[a,b,c],d,e] = arr;
+    console.log(name,age);  // zhangsan 10
+    console.log(a,b,c);     // 1 2 3 
+    console.log(d,e);       // hello 9
+
+}
+```
+
+8. 声明与赋值不可分开
+```JavaScript
+let [a,b];  // 报错 let [a,b] = arr;
+
+```
+
+# 三点拓展运算符
+## 拓展数组
+1. 将array1数组放入myArray最前端, 将array2数组放入myArray最后端
+
+```JavaScript
+let array1 = [1,2,3];
+let array2 = [7,8,9];
+let myArray = [...array1, 4, 5, 6, ...array2] ;
+console.log(myArray)    // 1, 2, 3, 4, 5, 6, 7, 8, 9
+```
+
+2. 数组各元素作为参数时,可以使用三点拓展运算符对数组进行解构传入
+```JavaScript
+function myFunction(a, b, c) {
+    console.log(a,b,c);     
+    return a+b+c;
+}
+let arr = [1,2,3];
+console.log(myFunction(...arr));    
+// 1 2 3 
+// 6 
+```
+
+3. 利用三点拓展运算符将参数列表转化为一个数组
+通过2中我们知道,传入实参时使用三点运算符,会把数组各个元素转化为单独的变量
+那如果形参使用三点运算符,实参传入单独的变量,那么在函数中是不是就成了一个数组呢?
+```JavaScript
+function myFunction(...arr) {
+    for(let i = 0; i <arr.length; i++)
+    {
+        console.log(arr[i]);
+    }
+    console.log(arr);
+}
+myFunction(3,12,45,123);
+// 3
+// 12
+// 45
+// 123
+// 3 12 45 123
+// 由此可见,猜测正确
+```
+
+4. 参数中部分使用三点拓展运算符
+```JavaScript
+function myFunction(a,b, ...arr){
+    console.log(arr);
+}
+
+myFunction(1,2,3,4,5,6,7);  // 3 4 5 6 7
+
+// 1 2 被赋值给了a, b, 剩下的生成了数组arr
+
+```

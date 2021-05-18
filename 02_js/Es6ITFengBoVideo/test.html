@@ -8,18 +8,134 @@
 </head>
 <body>
     <script>
-        const fun = id=>{
+        /*数组新方法
+        let myArray=[1,2,3,4,5,6,7,8,9];
+
+        // 过滤
+        let array1 = myArray.filter(function(n){
+            return n>5;
+        })
+        console.log(array1)
+
+        // 映射
+        let array2 = array1.map(function(n){
+            return 2*n;
+        })
+        console.log(array2)
+
+        // 汇总
+        let sum = 0;
+        sum = array2.reduce(function(s,n){
+            return s+n;
+        },0)
+        console.log(sum)
+
+        */
+
+        /*
+        let url='www.baidu.com';
+        if(url.startsWith('www')){
+            console.log(url.startsWith('www'))
             
-            return ({id:id, name:'张三'})
-        
+        }else{
+            console.log(url.startsWith('https'))
+
+            console.log('不是以https开头的url')
+
         }
 
-        // const fun = id=>{({id:id, name:'张三'})}
+        if(url.endsWith('.com')){
+            console.log(url)
+        }else{
+            console.log('不是以.com结尾的url')
+        }
+        */
 
-        console.log(fun(10).name)
+        // 模板字符串
+        /*let name = 'zhangsan';
+        let age = 10;
+        let normalStr = name+ ' is ' + age + ' years old';
+        let templateStr = `${name} is ${age} years old`;
+        console.log(normalStr)
+        console.log(templateStr)*/
+
+        /*解构赋值
+        let person = {
+            name:'zhangsan',
+            age:10,
+            gender:'male'
+        }
+
+        
+        let {name, age, gender} = person;
+        
+        console.log(name, age, gender)*/
+
+        // let arr = [1,2,3];
+        // {
+        //     let [a,b] = arr;
+        //     console.log(a,b)    //1 2
+        // }
+
+        // let person = {
+        //     name:'zhangsan',
+        //     age:10,
+        //     gender:'boy'
+        // }
+        // {
+        //     let {gender, age} = person;
+        //     console.log(gender, age)
+        // }
 
 
+        // let arr = [{name:'zhangsan', age:10}, [123], 'hello', 9 ];
+        // {
+        //     let [a,b,c,d] = arr;
+        //     console.log(a)
+        //     console.log(b,c,d)
+        // }
 
+
+        // let arr = [{name:'zhangsan', age:10}, [1,2,3], 'hello', 9 ];
+        // {
+        //     let[{name,age},[a,b,c],d,e] = arr;
+        //     console.log(name,age);
+        //     console.log(a,b,c);
+        //     console.log(d,e);
+
+        // }
+
+        // 三点拓展运算符
+        /*let array1 = [1,2,3];
+        let array2 = [7,8,9];
+        let myArray = [...array1, 4, 5, 6, ...array2] ;
+        console.log(myArray)*/
+
+        /*
+        function myFunction(a, b, c) {
+            console.log(a,b,c);     
+            return a+b+c;
+        }
+        let arr = [1,2,3];
+        console.log(myFunction(...arr))*/
+
+        /*
+        function myFunction(...arr) {
+            for(let i = 0; i <arr.length; i++)
+            {
+                console.log(arr[i]);
+            }
+            console.log(arr);
+        }
+
+        myFunction(3,12,45,123)*/
+
+function myFunction(a,b, ...arr){
+    console.log(arr);
+}
+
+myFunction(1,2,3,4,5,6,7);  // 3 4 5 6 7
+        
     </script>
 </body>
 </html>
