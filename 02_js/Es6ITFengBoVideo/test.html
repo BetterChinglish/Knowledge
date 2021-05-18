@@ -8,15 +8,17 @@
 </head>
 <body>
     <script>
-
-        const obj={
-            name:'qsj',
-            age=18
+        const fun = id=>{
+            
+            return ({id:id, name:'张三'})
+        
         }
 
-        obj={}
+        // const fun = id=>{({id:id, name:'张三'})}
 
-        
+        console.log(fun(10).name)
+
+
 
     </script>
 </body>
