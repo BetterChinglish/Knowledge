@@ -130,12 +130,102 @@
 
         myFunction(3,12,45,123)*/
 
-function myFunction(a,b, ...arr){
-    console.log(arr);
-}
-
-myFunction(1,2,3,4,5,6,7);  // 3 4 5 6 7
+        /*
+        function myFunction(a,b, ...arr){
+            console.log(arr);
+        }
         
+        myFunction(1,2,3,4,5,6,7);  // 3 4 5 6 7*/
+        
+
+        // 新增类的概念
+        // 使用class创建类
+        // 类似于其他语言的语法
+        // constructor为构造函数
+
+        // class Person {
+        //     constructor(name, age, gender){
+        //         this.name = name;
+        //         this.age = age;
+        //         this.gender = gender;
+        //     }
+
+        //     // 类中的方法不需要添加function关键词
+        //     say() {
+        //         console.log(this.name+' '+this.age+' '+this.gender);
+        //     }
+
+        // }
+
+        // class Students extends Person {
+        //     // 所有父类属性和父类方法都会被继承过来
+        //     constructor(name, age, gender, id){
+        //         super(name,age,gender);
+        //         this.id = id;
+        //     }
+
+        //     say(){
+        //     // 如果不写任何内容,也会覆盖掉继承过来的父类的say()方法
+        //     console.log(this.name, this.age, this.gender, this.id);
+        //     }
+           
+        // }
+
+        // student1 = new Students('lisi', 19, 'male', '8003119')
+        // student1.say();
+
+        // person1 = new Person('zhangsan', 18, "male")
+        // person1.say();
+
+        // student1 = new Students('lisi', 19, 'male', '8003119501')
+        // console.log(student1);
+        // // console.log(student1.name)
+        // student1.say();
+        // student1.age = 20;
+        // student1.say();
+
+        
+        
+        // 一般写法
+        // let obj = {
+        //     name:'zhangsan',
+        //     age:14,
+        //     gender:'male'
+        // }
+        // name = 'lisi';
+        // age = 14;
+        // sex = 'male';
+        // let obj = {
+        //     name,
+        //     age,
+        //     gender:sex
+        // }
+        // console.log(obj)
+
+        // name = 'zhangsan';
+        // age = 15;
+        // let obj = {
+        //     name,
+        //     age
+        // }
+    
+        // let str = JSON.stringify(obj);
+        // console.log(str.name)   // undefined
+        // console.log(str)    // {"name":"zhangsan","age":15}
+
+        name = 'zhangsan';
+age = 15;
+let obj = {
+    name,
+    age
+}
+let str = JSON.stringify(obj);
+console.log(str.name)   // undefined
+console.log(str)    // {"name":"zhangsan","age":15}
+
+let obj2 = JSON.parse('{"name":"lisi","age":19}')
+console.log(obj2.name, obj2.age)
+
     </script>
 </body>
 </html>
