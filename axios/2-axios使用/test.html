@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div>
+        <!-- <button id="mybtn">点击抽奖</button> -->
+    </div>
+
+    <script>
+        // function rand(m, n) {
+        //     return Math.ceil(Math.random()*(n-m+1) + m-1);
+        // }
+
+        // const btn = document.getElementById('mybtn')
+        // btn.onclick = function() {
+        //     const p = new Promise((resolve, reject) => {
+        //         let n = rand(1,100);
+        //         if(n<30){
+        //             resolve(n);
+        //         }else{
+        //             reject(n);
+        //         }            
+        //     })
+
+        //     p.then((n)=>{
+        //         console.log('中奖了!'+ n)
+        //     },(n)=>{
+        //         console.log('差一点就中奖了!!!' + n)
+        //     })
+        // }
+
+        // let p1 = Promise.reject('p1 is rejected')
+
+        // let p = new Promise((resolve, reject) => {
+        //   resolve('p is success')
+        // })
+        // let p2 = Promise.reject(p)  
+
+        // console.log(p1)     // rejected 'p1 is rejected'
+        // console.log(p2)     // rejected Promise(p)
+
+        // let p1 = Promise.resolve('ok p1')
+        // let p2 = Promise.resolve('ok p2')
+        // let p3 = Promise.resolve('ok p3')
+        // let p4 = Promise.reject('false p4')
+
+        // let result1 = Promise.all([p1, p2, p3])
+        // let result2 = Promise.all([p1, p2, p4])
+
+        // console.log(result1)    // resolved Array(3)['ok p1', 'ok p2', 'ok p3']
+        // console.log(result2)    // rejected false p4
+
+        // let p1 = Promise.resolve('ok p1')
+        // let p2 = Promise.resolve('ok p2')
+        // let p3 = Promise.resolve('ok p3')
+        
+        // let result1 = Promise.race([p1, p2, p3])
+        // console.log(result1)     // resolved 'ok p1'
+
+        // let p4 = new Promise((resolve, reject)=>{
+        //     setTimeout(() => {
+        //         resolve()
+        //     }, 1000);
+        // })
+
+        // let result2 = Promise.race([p4, p1, p2, p3])
+        // console.log(result2)    // resolvedd 'ok p1'
+
+        // let p = new Promise((resolve, reject) => {
+        //     throw 'something wrong'
+        // })
+
+        // console.log(p)  // rejected 'something wrong'
+
+        
+        // let p1 = new Promise((resolve, reject) => {
+
+        // })
+        // // 不执行
+        // p1.then(value => {
+        //     console.log(value + '1')
+        // })
+        // p1.then(value => {
+        //     console.log(value + '2')
+        // })
+
+
+        // let p2 = new Promise((resolve, reject) => {
+        //     resolve()
+        // })
+        // // 都执行
+        // p2.then(value => {
+        //     console.log(value + '1')
+        // })
+        // p2.then(value => {
+        //     console.log(value + '2')
+        // })
+
+        // let p3 = new Promise((resolve, reject) => {
+        //     resolve()
+        // })
+        // // 执行
+        // p3.then(value => {
+        //     console.log(value + '1')
+        // })
+        // // 不执行
+        // p3.then(null, value => {
+        //     console.log(value + '2')
+        // })
+
+
+        // let p = new Promise((resolve, reject) => {
+
+        //     resolve('ok')
+        // })
+
+        // let result = p.then(value=>{
+        //     console.log(value)
+        // }, reason=>{})
+
+        // console.log(result)
+        // console.log(p)
+
+        let p = new Promise((resolve, reject) => {
+            setTimeout(()=>{
+                resolve('ok');
+            },2000)
+        });
+
+        p.then(value=>{
+            console.log(value)
+        })
+        p.catch(reason=>{
+            console.log(reason)
+        })
+
+        // p.then(value=>{
+        //     console.log(111)
+        // }).then(value=>{
+        //     console.log(222)
+        // }).then(value=>{
+        //     console.log(333)
+        // }).catch(reason=>{
+        //     console.log(reason)
+        // })
+
+    </script>
+
+
+</body>
+</html>

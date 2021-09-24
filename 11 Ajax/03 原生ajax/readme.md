@@ -69,7 +69,7 @@ Date.now()返回现在的时间
 在server.js文件中, 将send内容放入setTimeOut中, 延迟5秒再响应
 然后网页请求页面代码加入如下
 ```JavaScript
-xhr.timeout = 2000  设置如果2s没有收到响应报文则认为超时, 发生超时事件
+xhr.timeout = 2000  // 设置如果2s没有收到响应报文则认为超时, 发生超时事件
 xhr.ontimeout = function() {
     // 超时回调 
 }
@@ -87,6 +87,8 @@ xhr.onerror = function() {
 
 ### abort()
 xhr.abort()
+服务器设置延迟响应    ontimeout()
+点击发送请求,由于服务器延迟返回数据,那么:
 当请求后还未返回响应体时, 调用此函数以取消请求
 
 ## 重复请求问题

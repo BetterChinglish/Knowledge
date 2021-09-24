@@ -1,6 +1,6 @@
 ## 发送get与post请求
 ```javascript
-$.get或post('url', {参数}, function(data){
+$.get/post('url', {参数}, function(data){
     // data为响应体
     // ...
 }, 'json' )

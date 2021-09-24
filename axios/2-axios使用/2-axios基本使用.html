@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+
+</head>
+<body>
+    <div>
+        <h2>axios的基本使用</h2>
+        <button>GET</button>
+        <button>POST</button>
+        <button>PUT</button>
+        <button>DELETE</button>
+    </div>
+    
+    <script>
+
+        // get button
+        const btns = document.querySelectorAll('button');
+
+        // 读取一篇文章
+        // first button
+        btns[0].onclick = function(){
+            
+            // return a Promise object
+            axios({
+                // require type
+                method:"GET",
+
+                // url
+                url:'http://localhost:3000/posts/1'
+            }).then(response=>{
+                console.log(response);
+            })
+        }
+
+        // 添加一篇文章
+        btns[1].onclick = function(){
+            
+            // return a Promise object
+            axios({
+                // require type
+                method:"POST",
+
+                // url
+                url:'http://localhost:3000/posts',
+
+                data:{
+                    "title":"this is my title1",
+                    "author":"zhang three"
+                }
+            }).then(response=>{
+                console.log(response);
+            })
+        }
+
+        // 修改文章
+        btns[2].onclick = function(){
+            
+            // return a Promise object
+            axios({
+                // require type
+                method:"PUT",
+
+                // url
+                url:'http://localhost:3000/posts/2',
+
+                data:{
+                    "title":"this is my title1",
+                    "author":"li four"
+                }
+            }).then(response=>{
+                console.log(response);
+            })
+        }
+
+
+        // 删除文章
+        btns[3].onclick = function(){
+            
+            // return a Promise object
+            axios({
+                // require type
+                method:"DELETE",
+
+                // url
+                url:'http://localhost:3000/posts/2'
+            }).then(response=>{
+                console.log(response);
+            })
+        }
+    </script>
+
+</body>
+</html>
