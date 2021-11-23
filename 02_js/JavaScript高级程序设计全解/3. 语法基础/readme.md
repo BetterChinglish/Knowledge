@@ -717,3 +717,313 @@ if(!message) {
 ### 3.4.4 Boolean 类型
 
 
+Boolean有两个字面值:
+* true
+* false
+
+这两个值不同于数值,
+即true不等于1, false不等于0
+
+区分大小写, True不是布尔值
+
+---
+
+
+其他类型的值有相应布尔值的等价形式
+
+使用Boolean()转型函数将其他类型的值转化为布尔值
+
+```JavaScript
+let message = "hi";
+console.log(Boolean(message));  // true
+```
+Boolean()转型函数可以在任意类型的数据上调用，而且始终返回一个布尔值
+
+
+---
+
+转换规则:
+1. Boolean
+
+    1. true转换为true
+    2. false转换为false
+
+2. String
+
+    1. 非空字符串转换为true
+    2. "" 空字符串转化为 false
+
+3. Number
+   1. 非0数值(包括无穷值)
+   2. 0, NaN转换为false
+
+4. Object
+   1. 任意对象转换为true
+   2. null转换为false
+
+5. Undefined
+   1. N/A(不存在)转换为true
+   2. undefined转换为false
+
+
+上述提到的N/A我也不知道是干啥的, 可能是未声明的意思吧, 但是Undefined类型就只有undefined一个值, 那不就转不成true了
+
+if等流控制语句会自动执行其他类型值到布尔值的转换
+```JavaScript
+let message = 'hi';
+if(message) {
+    // something
+}
+```
+
+---
+
+
+<br>
+
+
+
+### 3.4.5 Number类型
+
+
+Number类型使用IEEE 754格式表示整数与浮点值
+
+
+#### 八,十,十六 进制数
+最基本的数值字面量格式是十进制整数, 直接写出来就行
+```JavaScript
+let myNumber = 100;     // 整数
+```
+
+---
+
+
+整数也可以用八进制或者十六进制字面量表示
+
+八进制以0开头, 然后接八进制数
+
+如果接的是无效的八进制数, 那么将自动忽略前面的0, 当作十进制处理
+```JavaScript
+let octalNum1 = 010 // 十进制的8
+let octalNum2 = 08  // 无效的八进制数, 当作十进制的8处理
+```
+
+<br>
+
+---
+
+<br>
+
+十六进制以0x为前缀, 后接16进制数(字母部分大小写均可)
+```JavaScript
+let hexNum1 = 0x2a;     // 十进制42
+let hexNum2 = 0x1f;     // 十进制31
+```
+
+<br>
+
+---
+<br>
+
+
+使用八进制和十六进制格式创建的数值在所以数学操作中都被视为十进制数
+
+由于JavaScript保存数值的方式, 实际中可能存在+0与-0, 
+他们在所以的情况下都被认为是相等的
+
+
+#### 浮点值
+
+带有小数点,  如果小数点前面为0, 可以省略(不推荐)
+
+小数点后面必须至少有一个数字
+```JavaScript
+let floatNum1 = 10.1;
+let floatNum2 = .2;     // 0.2, 不推荐这样写
+```
+
+---
+
+存储浮点值的内存空间是存储整数值的两倍, 所以ECMAScript总是设法把值转化为整数
+
+所以当小数点后面没用数字或者数字(全)为0的情况下, 数值就会变成整数
+```JavaScript
+let num1 = 1.0; // 当作整数1处理
+let num2 = 2.;  // 小数点后面没用数字, 当作整数2处理
+```
+
+---
+
+使用**科学计数法**表示非常大或者非常小的数值
+```JavaScript
+let floatNum = 3.1234e5;    // 相当于 3.1234 * 10^5 = 312340
+```
+同理可以表示非常小的数字
+
+---
+
+
+精确度问题:
+虽然浮点值的精确度高达17位小数, 但是在计算中远不及整数精确
+
+如0.1+0.2得到的不是0.3, 而是0.30000000000000004
+
+这是由于二进制数计算产生的误差, 有兴趣可以去了解一下
+
+这种情况要特别注意:
+```JavaScript
+let a = 0.1;
+let b = 0.2;
+
+if(a+b == 0.3){
+    // something
+}
+// 无法得到你的目的
+```
+ 
+这是由于js使用了IEEE 754数值, 其他语言也有这个问题
+
+
+#### 值的范围
+
+能表示的
+
+最大值:
+Number.MAX_VALUE
+
+最小值:
+Number.MIN_VALUE
+
+---
+
+无法表示的值会使用:
++Infinity
+或
+-Infinity
+来表示
+
+使用: 
+
+Number.NEGATIVE_INFINITY
+
+Number.POSITIVE_INFINITY
+
+可以获取正、负Infinity
+
+---
+
+判断是否能表示:
+
+使用isFinite()函数
+
+```JavaScript
+let num = Number.MAX_VALUE * 2;
+console.log(isFinite(num));     // false
+```
+
+---
+
+#### NaN
+
+意思为非数值(not a number)
+
+表示返回数值的操作失败了而非抛出错误
+
+js中 
+
+0 除以 非0 : 0
+
+非0 除以 0 : (+-)无穷
+
+0/0 : NaN
+
+
+---
+
+
+NaN的独特属性;
+
+1. 任何涉及NaN的操作都会返回NaN(如NaN * 100)
+2. NaN不等于任何值, 包括NaN(即NaN不等于NaN)
+
+```JavaScript
+console.log(NaN == NaN);    // false
+```
+
+由于无法使用上述代码判断一个变量是不是NaN, 
+
+所以ECMAScript提供了判断函数: isNaN()
+```JavaScript
+console.log(isNaN(0/0));            // true, 0/0得到NaN
+console.log(isNaN(Infinity));       // fales, Infinity被看作为数值 
+console.log(isNaN(10));             // false, 10当然是数值
+```
+
+
+4. 数值转换
+
+有三个函数可以将非数值转换为数值：
+
+Number()
+
+parseInt()
+
+parseFloat()
+
+    Number():
+
+        1. 布尔值: true:1, false:0
+        2. 数值: 直接返回
+        3. null: 0
+        4. undefined: NaN
+
+
+        5. 字符串:
+          * 如果包含数值字符, 连同+-符合转化为一个十进制数(忽略最前面的0, 如'010'转换为10)
+          * 如果包含有效的浮点值格式的字符串, 转换为相应的浮点值(同样忽略最前面的0)
+          * 如果字符串包含十六进制格式的数值字符, 则转化为十六进制对应十进制的整数值
+          * 空字符串: 0
+          * 除上述外: NaN
+
+
+        6. 对象: 调用valueOf(), 然后按照上述规则, 如果转换结果为NaN, 调用toString(), 按照字符串规则转换
+
+可以自己在控制台试试
+
+---
+
+Number()较为复杂, 可以使用parseInt()
+
+    parseInt()
+        从第一个非空格字符开始
+
+        如果第一个有效字符不是数值字符,加号或减号, 直接返回NaN
+        
+        空字符串返回NaN
+        
+        如果第一个有效字符(非空格)开始如果是+-/数值, 则继续依次检查知道结束或者碰到非数值字符
+        
+        只用于整数, 小数点不包括, '22.5'会被转化为22
+        
+        能够识别八进制与十六进制, 并转化为十进制整数
+            (如果字符串以"0x"开头，就会被解释为十六进制整数。
+            如果字符串以"0"开头，且紧跟着数值字符，
+            在非严格模式下会被某些实现解释为八进制整数)
+        
+        可以传入第二个参数指定进制数
+            (传入16时使用十六进制, 字符串中的0x可以省略)
+            不传第二个参数则让parseInt()自己觉得如何解析
+            为避免解析出错, 建议始终传入第二个参数 
+    例如:
+        console.log(parseInt('a', 16));     // 10
+
+可以控制台试试
+
+---
+
+
+
+
+
+
+
