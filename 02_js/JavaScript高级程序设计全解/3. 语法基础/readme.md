@@ -1022,8 +1022,184 @@ Number()较为复杂, 可以使用parseInt()
 ---
 
 
+parseFloat()类似于parseInt(), 
+
+都是从位置0开始检测每个字符
+
+解析到字符串末尾或者解析到一个无效的浮点数值字符为止
+
+第二个小数点无效
+
+parseFloat()始终忽略开头的0
+
+只解析十进制格式数据, **十六进制值始终返回0**, 不能指定进制数
+
+如果字符串表示整数（没有小数点或者小数点后面只有一个零），则parseFloat()返回整数。
+
+### 3.4.6 String类型
 
 
+使用'', "", ``
+
+不可混着用: '",'`,"`
+
+---
 
 
+**字符字面量**:
+
+如\n, \t, \b等
+
+需要注意的是:
+
+\xnn    以十六进制编码nn表示的字符, n是十六进制数字0~F, 如\x10, 其中10为16进制数, 也就是16(十进制数), 即查找编码表中第16个代表的是什么字符
+
+\unnnn  以十六进制编码nnnn表示的unicode字符
+
+转义序列长度可能很长如: \unnnn一共六个字符, 但是其只表示一个字符, 所以实际上\unnnn本身的六位长度并不代表实际变量的长度, 实际上只算一个字符
+
+使用length属性获取字符串长度:
+```js
+let str = "hello, world!";
+console.log(str.length);    // 13
+```
+
+---
+
+**字符串的特点**
+
+一旦创建, 不可更改
+
+```js
+// 1
+let str = "hello, world";   
+
+// 2
+str = "hi";
+```
+
+上述代码片段中1处的"hello, world"是无法更改的
+
+你更改的其实是str的引用, 
+
+如2处, 其实是重新找块内存存储了"hi"然后再将str指向它, 
+
+而非将原本的"hello, world"更改为了"hi", 然后再销毁"hello, world"
+
+
+---
+
+**转换为字符串**
+
+1. toString()方法
+
+返回当前值的字符串等价物
+
+null和undefined没有toString()方法
+
+字符串的toString()方法返回自身的一个副本
+
+对数值使用时可以加入参数, 即以什么进制来解析这个数值然后再转换为字符串
+```js
+let num = 10;
+console.log(num.toString());    // "10"
+console.log(num.toString(2));   // "1010"
+console.log(num.toString(8));   // "12"
+console.log(num.toString(16));  // "a"
+```
+
+可以在控制台自己试试其他类型的值的转换
+
+2. String()
+
+如果值有toString()方法, 则调用该方法
+
+如果是null, 返回"null"
+
+如果是undefined, 返回"undefined"
+
+3. 用加号操作符给一个值加上一个空字符串""
+   
+加号操作符本章后面会介绍
+
+
+---
+
+**模板字面量**
+
+以``括起来
+
+保留其中的换行符
+```js
+let str = `hello!
+world!`;
+
+console.log(str);
+// hello!
+// world!
+```
+
+在定义模板时特别有用
+```js
+let myHtml = `
+<div>
+    <p>
+        something here
+    </p>
+</div>
+`
+```
+
+---
+
+**字符串插值**
+
+模板字符串支持字符串插值
+
+任何表达式都可以用于插值
+```js
+let num1 = 10;
+let num2 = 10;
+let str = `the number is ${num1 * num2}`;
+console.log(str);
+// the number is 100
+```
+
+可以调用函数与方法
+```js
+function add(a, b){
+    return a+b;
+}
+
+let num1 = 10;
+let num2 = 100;
+
+let str = `%{num1} + ${num2} = ${add(num1, num2)}`;
+console.log(str);
+
+// "10 + 100 = 110"
+```
+
+将表达式转换为字符串时会调用toString()
+```js
+let obj = {
+    toString: ()=>"this is toString"
+}
+
+console.log(`${obj}`);
+// this is toString
+```
+
+注意, 这里调用的toString()应该是由js引擎重写了的, 其实前面讲到的String()的定义更符合这里的toString(), 但这里调用的确实是toString(), 不过应该是重写了的, 而且你无法更改
+```js
+console.log(`${null}`); // "null"
+// 前面讲到了null和undefined没有toString(), 但是这里却能够输出"null", 所以这里的toString()应该是属于``模板字面量这类的 
+// 任何`这里有任意内容`应该都是这类的继承
+// 我反正探究了很久这个问题, 但是无奈于知识的浅薄以及信息的匮乏, 只能解释到这里, 有研究v8引擎或者其他什么引擎的大佬了解的可以科普下
+// 听说js高级程序设计很np, 不知道后面会不会涉及,但估计也没有源码级别的逐句分析
+```
+
+---
+
+**模板字面量标签函数**
 
