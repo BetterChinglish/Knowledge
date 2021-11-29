@@ -1203,3 +1203,129 @@ console.log(`${null}`); // "null"
 
 **模板字面量标签函数**
 
+function func_name(){}调用时使用func_name(), 
+
+模板字面量标签函数则是使用func_name``
+
+也就是模板字面量代替了函数参数传入
+
+如下例:
+```js
+
+// 模板字面量标签函数
+
+let a = 1;
+let b = 2;
+function simpleTag(strings, aValue, bValue, sumValue){
+    console.log(strings);
+    console.log(aValue);
+    console.log(bValue);
+    console.log(sumValue);
+
+    return 'simpleTag function runs over';
+}
+let returnValue = simpleTag`${a} + ${b} = ${a+b}`;
+// '', ' + ', ' = ', ''
+// 1
+// 2
+// 3
+
+console.log(returnValue);
+// simpleTag function runs over
+```
+由上例可见, 第一个参数代表的是传入模板字符串的非插值变量
+
+这里的`${a} + ${b} = ${a+b}`为 '', ' + ', ' = ', ''
+
+主要也就是+与=, 剩下的参数分别按顺序代表插值, 也就是第二个参数代表第一个插值, 第三个参数代表第二个插值, 以此类推
+
+表达式参数是可变的, 通常把他们放入一个数组中
+
+```js
+let a = 2; 
+let b = 3;
+function simpleTag(strings, ...expressions){
+    console.log(strings);
+
+    for(const expression of expressions){
+        console.log(expression);
+    }
+    return 'simpleTag function runs over successfully'
+}
+
+let returnValue = simpleTag`${a} + ${b} = ${a+b}`;
+// '', ' + ', ' = ', ''
+// 2
+// 3
+// 5
+console.log(returnValue);
+// simpleTag function runs over successfully
+```
+
+三点运算符详见es6
+
+上面第一个例子提到过: 
+```
+由上例可见, 第一个参数代表的是传入模板字符串的非插值变量
+
+这里的`${a} + ${b} = ${a+b}`为 '', ' + ', ' = ', ''
+
+主要也就是+与=, 剩下的参数分别按顺序代表插值, 也就是第二个参数代表第一个插值, 第三个参数代表第二个插值, 以此类推
+```
+
+因此，如果你想把这些字符串和对表达式求值的结果拼接起来作为默认返回的字符串，可以这样做:
+
+```js
+let a = 10;
+let b = 100;
+function TagFunc(strings, ...expressions){
+    return strings[0] + expressions.map((e,i)=>`${e}${strings[i+1]}`).join(' ')
+}
+
+let returnValue = TagFunc`${a} + ${b} = ${a+b}`;
+console.log(returnValue);
+// 10 +  100 =  110
+```
+
+---
+
+
+
+**原始字符串**
+
+使用模板字面量也可以直接获取原始的模板字面量内容（如换行符或Unicode字符），而不是被转换后的字符表示
+
+使用String.raw**标签函数**
+```js
+console.log(`\u00A9`);  // ©
+console.log(String.raw`\u00A9`);    // \u00A9
+
+// 可以转换换行符
+console.log(String.raw`hello \n world`);    // hello \n world
+// 对实际的换行符没用, 因为实际的换行符不会被转换为转义序列的形式
+console.log(String.raw`hello
+world`);
+// hello
+// world
+```
+
+标签函数的第一个参数(字符串数组), 其有一个.raw数学, 可以获得每个字符串的原始内容
+
+```js
+function TagFunc(strings) {
+    console.log('显示原始字符串:');
+    for(const str of strings.raw){
+        console.log(str);
+    }
+}
+
+TagFunc`\u00A9${'hi'}\n`
+// 显示原始字符串:
+// test.html:104 \u00A9
+// test.html:104 \n
+
+```
+
+### 3.4.7 Symbol
+
+
