@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // let date1 = new Date(2001, 1, 14);      // 调用Date.UTC(), 1 其实代表的是二月
+        // console.log(date1.toLocaleString());    // 2001/2/14 上午12:00:00
+        // console.log(date1.toString());          // Wed Feb 14 2001 00:00:00 GMT+0800 (中国标准时间)
+
+        let date1 = new Date(2001, 2, 14);
+        let date2 = new Date(2002, 12, 27);
+
+        console.log(date1 > date2); // false
+        console.log(date1 < date2); // true
+
+    </script>
+</body>
+</html>
