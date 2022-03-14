@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // js字符串由16位码元组成
+
+        // 每16位码元对应一个字符
+
+        // length属性其实是统计由多少16位码元
+        // 这里的16位码元相当于1字节, 这个字节不是指计算机存储单元, 而是字符单元
+        // 计算机存储单元应该是8位1字节,即 1 byte = 8 bits
+
+        let str1 = 'abc';
+        console.log(str1.length);   // 3
+
+
+        // charAt()方法
+        // 返回索引位置的字符
+        console.log(str1.charAt(2));    // c
+
+        // js使用混合编码策略
+        // UCS-2
+        // UTF-16
+
+        // 对于可以采用16位编码的字符, 这两种编码其实是一样的
+        // U+0000~U+FFFF(2^16)
+
+        // charCodeAt(): 返回索引位置的码元值
+        console.log(str1.charCodeAt(2)); // 99
+        console.log(str1.charCodeAt(0)); // 97
+
+        // fromCharCode(num1, num2, ... ), 指定码元(nums), 返回字符
+        console.log(String.fromCharCode(97, 98, 99))
+        console.log(String.fromCharCode(0x61, 0x62, 0x63))
+
+
+        // 16位只能表示2^16=65536个字符, 成为BMP(基本多语言平面)
+        // 未来拓展以表示更多的字符, 再使用一个16位, 选择一个 增补平面
+        // 也就是说前面说的abc什么的都是BMP上的, 也就是一个16位码元表示一个字符
+
+        // 现在再加一个16位, 
+        // 打个比方说就是刚才的是默认地球人, 0001代表一个人, 0002代表一个人, 
+        // 现在呢还有很多星球上有人, 现在0001:0001代表星球a上的0001号人
+        // 这样就有了更多的选择
+        // 这样如0001:0001的策略称为代理对
+
+        let str2 = 'abc😊';
+        for(let i = 0; i < str2.length; i++){
+            console.log(str2.charAt(i) + "位置上的码元值是: " + str2.charCodeAt(i))
+        }
+        // a位置上的码元值是: 97
+        // b位置上的码元值是: 98
+        // c位置上的码元值是: 99
+        // �位置上的码元值是: 55357
+        // �位置上的码元值是: 56842
+
+        // 输出码元值后我们可以使用fromCharCode()写出刚刚的字符串
+        console.log(String.fromCharCode(97, 98, 99, 55357, 56842)); //abc😊
+
+        // 由于两个字节的字符应该被看作1个代理对, 对应一个字符
+        // 但js的这些方法与length属性仍将16位码元看作一个字符
+        // 为了方便又有了码点
+        
+        // 码点是(Unicode)字符的完整标识符
+        // 之前讲的码元是实际存储时二进制的值
+
+        // 使用codePointAt()返回索引位置的码点
+        console.log(str2.codePointAt(3));   // 128522
+
+        // fromCodePoint()类似于fromCharCode(), 不过参数应该传入码点的值
+        console.log(String.fromCodePoint(128522));  // 😊
+
+
+        // 如果传入的码元的索引不是代理对的开头, 就会报错
+        let str3 = '😊';
+        console.log(str3.codePointAt(1));   // 56842
+        // 这里想检测的是😊的码点, 但是传入了错误的索引, 导致输出的码点其实并不是😊的
+        console.log(String.fromCodePoint(56842));   // �
+        // 这个错误注意字符串的码元数与字符串的字符数长度(不是length)的区别
+        // '😊'的码元数是2, 而字符数长度为1(不是字符串长度所以不上length, length前面说过了其实是码元数)
+
+        // 
+        console.log([...str3]);
+    </script>
+</body>
+</html>

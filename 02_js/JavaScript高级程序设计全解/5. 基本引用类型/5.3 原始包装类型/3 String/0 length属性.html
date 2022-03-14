@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // String对象都有length属性
+        let str = 'hello world!';
+        console.log(str.length);
+        // 返回字符串的长度 123
+
+        // 双字节字符按但自己算
+        // 笑脸字符是双字节字符
+        let doubleBytes = String.fromCharCode(55357, 56842);
+        console.log("doubleBytes' length is: " + doubleBytes.length);
+        console.log('doubleBytes is: ' + doubleBytes);
+    </script>
+</body>
+</html>

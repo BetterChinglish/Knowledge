@@ -19,7 +19,7 @@
     
     <script>
 
-        // get button
+        // get buttons
         const btns = document.querySelectorAll('button');
 
         // 读取一篇文章
@@ -32,9 +32,13 @@
                 method:"GET",
 
                 // url
-                url:'http://localhost:3000/posts/1'
+                url:'http://localhost:3000/posts/2'
             }).then(response=>{
-                console.log(response);
+                let data = response.data;
+                let myAuthor = data.author;
+                let myId = data.id;
+                let myTitle = data.title;
+                console.log('Id:'+ myId +'\nAuthor is: ' + myAuthor + '\nTitle is: ' + myTitle)
             })
         }
 
@@ -50,8 +54,8 @@
                 url:'http://localhost:3000/posts',
 
                 data:{
-                    "title":"this is my title1",
-                    "author":"zhang three"
+                    "title":"hello world",
+                    "author":"cpp"
                 }
             }).then(response=>{
                 console.log(response);
