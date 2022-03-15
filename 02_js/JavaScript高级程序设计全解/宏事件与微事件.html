@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // Promise为微事件, setTimeOut是宏事件, 宏事件执行前需要清空微事件
+
+        let p1 = new Promise().resolve().then(res=>{
+            console.log(1);
+            setTimeout(()=>{
+                console.log(2);
+            },0)
+        })
+
+        setTimeout(()=>{
+            console.log(3);
+            let p2 = new Promise().resolve().then(res=>{
+                console.log(4)
+            })
+        }, 0)
+
+        console.log(5)
+
+
+    </script>
+</body>
+</html>
