@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 数组中每个槽位可以存储任意类型的数据 
+
+        // ECMAScript数组也是动态大小的，会随着数据添加而自动增长。
+
+        // 使用Array构造函数创建数组
+        let arr1 = new Array();
+
+        // 使用Array构造函数创建数组并传入参数, 参数为一个数字时, 表示初始数组长度
+        let arr2 = new Array(10);   // arr2是一个初始长度为10的数组
+
+        // 直接给Array的构造函数传入要保存的元素
+        let arr3 = new Array('zhangsan', 'lisi', 'wanger', 'mazi');     // arr3是一个长度为4的数组
+
+        // 只给Array构造函数一个参数, 如果这个参数是数字, 则表示设置数组的初始长度, 
+        // 如果是其他类型的, 则会创建一个只包含该特定值的数组
+
+        // let arr2 = new Array(10);   // arr2是一个初始长度为10的数组
+        let arr4 = new Array(true);
+        console.log(arr2);  // Array(10)
+        console.log(arr4.pop);
+
+        // 使用Array构造函数时可以省略new操作符
+        let arr5 = Array(2);    // 创建一个包含两个元素的数组
+        let arr6 = Array('red', 'green', 'blue');   // 创建一个包含三个元素的数组，这三个元素都是字符串，分别为red， green， blue
+
+
+        // 使用数组字面量创建数组
+        let arr7 = ['a','b','c'];
+        let arr8 = [];  // 创建一个空数组
+
+        let arr9 = [1,2,];  // 长度为2， 元素分别为数字 1， 2
+        console.log(arr9);  // (2) [1,2]
+
+
+        // 使用es6新增的方法创建数组(静态方法)
+        // from() 和 of()
+
+        // from()用于将类数组结构转换为数组实例，
+        // 而of()用于将一组参数转换为数组实例。
+
+        // from()
+        // Array.from()的第一个参数是一个类数组对象，
+        // 即任何可迭代的结构，或者有一个length属性和可索引元素的结构
+
+            // 字符串
+            console.log(Array.from('hello world!'));    // (12) ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', '!']
+
+            // Set或Map对象
+            const mySet1 = new Set().add(1)
+                                    .add(2)
+                                    .add(3)
+                                    .add(4);
+
+            const myMap1 = new Map().set(1,2)
+                                    .set(3,4);
+            console.log(mySet1, myMap1);        // Set(4) {1, 2, 3, 4} Map(2) {1 => 2, 3 => 4}
+            console.log(Array.from(mySet1));    // [1,2,3,4]
+            console.log(Array.from(myMap1));    // [[1,2],[3,4]]
+
+            // 对现有数组进行浅拷贝
+            const a1 = [1,2,3];
+            const a2 = Array.from(a1);
+            console.log('a1: ' + a1 + '\na2: ' + a2);
+            // a1: 1,2,3
+            // a2: 1,2,3
+            console.log('a1===a2? : ' + a1===a2);       // false    
+
+            // 可以使用任何可迭代对象
+            const iter = {
+                *[Symbol.iterator]() {
+                    yield 1;
+                    yield 2;
+                    yield 3;
+                    yield 4;
+                }
+            };
+            console.log(Array.from(iter));  // [1,2,3,4]
+
+            // arguments对象可以呗轻松地转换为数组
+            // arguments即参数的集合
+            function getArgsArray() {
+                return Array.from(arguments);
+            }
+            console.log(getArgsArray(1,3,5,7)); // [1,3,5,7]
+
+
+            // from()也可以转换带有必要属性的自定义对象
+            const arrayLikeObject = {
+                0:1,
+                1:2,
+                2:3,
+                3:4,
+                length: 4
+            };
+            console.log(Array.from(arrayLikeObject));   // [1,2,3,4]
+
+
+            // Array.from()接受第二个可选的映射函数参数
+            const fromArr1 = [1,2,3,4];
+            const fromArr2 = Array.from(fromArr1, x=>x**2);
+            console.log(fromArr2);  // [1,4,9,16]
+            // Array.from()接受第三个可选参数, 用于指定映射中this的值
+            const fromArr3 = Array.from(fromArr1, function(x) {return x**this.exponent}, {exponent:5});
+            console.log(fromArr3);
+        
+
+        // Array.of()可以把一组参数转换为数组
+            console.log(Array.of(1,3,5));   // [1, 3, 5]
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

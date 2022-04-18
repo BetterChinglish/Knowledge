@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mydiv {
+            background-color: skyblue;
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" placeholder="input here">
+    <script>
+
+        let inputButton = document.querySelector('input');
+
+        inputButton.addEventListener('input', antiShake(demo, 500));
+
+        function antiShake(fn, waitTime) {
+            let timeOut = null;
+            return () => {
+                if(timeOut) clearTimeout(timeOut)
+                timeOut = setTimeout(fn, waitTime);
+            }
+        }
+
+        function demo() {
+            console.log('inquired once');
+        }
+
+        
+        // 节流
+        // 可能连续提交很多次表单等，这时为了防止提交过多，需要减少提交次数
+
+        let mydiv = document.querySelector('.mydiv');
+        mydiv.addEventListener('touchmove',save(demo, 1000));
+
+        function save(event, time) {
+            let timer = null;
+            return () => {
+                if(!timer) {
+                    timer = setTimeout(() => {
+                        event();
+                        timer = null;
+
+                    }, time);
+                }
+            }
+        }
+       
+    </script> 
+</body>
+</html>

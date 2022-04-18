@@ -1,3 +1,4 @@
+[toc]
 
 # 第三章 语言基础
 
@@ -1328,6 +1329,212 @@ TagFunc`\u00A9${'hi'}\n`
 ```
 
 ### 3.4.7 Symbol类型
+符号是原始值，且符号实例是唯一、不可变的。
+
+符号的用途是确保对象属性使用唯一标识符，不会发生属性冲突的危险。
+
+---
+
+#### **1 符号的基本用法**
+
+使用Symbol()函数初始化
+```JavaScript
+let sym = Symbol();
+```
+
+符号本身是原始类型, 使用typeof操作符对符号返回symbol
+```JavaScript
+
+let sym = Symbol();
+console.log(typeof sym);    // symbol
+
+```
+
+调用Symbol()函数时，也可以传入一个字符串参数作为*对符号的描述*（description）
+将来可以通过这个字符串来调试代码。
+但是，这个字符串参数与符号定义或标识完全无关：
+```JavaScript
+    let mySym1 = Symbol();
+    let mySym2 = Symbol();
+    let hisSym1 = Symbol('His');
+    let hisSym2 = Symbol('His');
+
+    console.log(mySym1 == mySym2);      // false
+    console.log(hisSym1 == hisSym2);    // false    
+```
+
+符号没有字面量语法
+
+只要用Symbol()创建实例就能保证该实例不同于其他实例
+则用作对象的新属性时不会覆盖已有的对象属性, 无论是符号属性还是字符串/数字属性
+```JavaScript
+let mySym1 = Symbol();
+let mySym2 = Symbol();
+console.log(mySym1 == mySym2);      // false
+console.log(mySym1 === mySym2);     // false   
+
+```
+
+Symbol()函数不能于new关键字一起作为构造函数
+(而 String, Boolean, Object等都可以)
+这是为了避免创建符号包装对象
+```JavaScript
+let myBoolean = new Boolean();
+console.log(myBoolean);     // Boolean {false}
+
+let myString = new String();
+console.log(myString);      // String {''}
+
+let mySymbol = new Symbol();    // TypeError: Symbol is not a constructor
+console.log(mySymbol);      
+
+```
+
+如果要使用符号包装对象，借用Object()函数
+```JavaScript
+let mySymbol = Symbol();
+let myObjectSymbol = Object(mySymbol);
+console.log(typeof myObjectSymbol);     // object
+
+```
+
+
+#### **2 使用全局符号注册表**
+
+要创建跨文件可用的symbols，
+甚至跨域(每个都有它自己的全局作用域), 使用这个方法Symbol.for() 
+
+然后使用Symbol.keyFor()从全局symbol的注册处设置和取得symbols
+
+这相当于有一个全局的符号表, 使用Symbol.for()传入字符串,然后在这个表中寻找是否有该字符串的符号,如果有则使用该符号, 没有则创建.
+使用Symbol.keyFor()传入一个符号, 确定全局符号表是否有该符号, 有该符号这返回其解释字符串, 否则返回undefined
+```JavaScript
+let globalSymbol = Symbol.for('thisIsGlobalSymbol');
+console.log(typeof globalSymbol);   // symbol
+
+console.log(Symbol.keyFor(globalSymbol));   // thisIsGlobalSymbol
+
+let normalSymbol = Symbol('this is normal symbol');
+console.log(Symbol.keyFor(normalSymbol));   // undefined
+console.log(Symbol.keyFor(normalSymbol) === undefined );   // true
+console.log(Symbol.keyFor(normalSymbol) === 'undefined' );   // false
+
+let normalUndefinedSymbol = Symbol.for('undefined');
+console.log(Symbol.keyFor(normalUndefinedSymbol));      // undefined
+console.log(Symbol.keyFor(normalUndefinedSymbol) === undefined);      // false
+console.log(Symbol.keyFor(normalUndefinedSymbol) === 'undefined');      // true
+
+```
+
+即便使用相同的字符串描述, 全局注册表中定义的符号和使用Symbol()定义的符号也不相同
+```JavaScript
+let globalSymbol = Symbol.for('something');
+let normalSymbol1 = Symbol('something');
+let normalSymbol2 = Symbol('something');
+
+console.log(globalSymbol === normalSymbol1);    // false
+console.log(normalSymbol1 === normalSymbol2);   // false
+
+```
+
+全局注册表中的符号必须使用字符串形式的键(可能是键值对形式，键是字符串，值是symbol符号)， 作为参数传给Symbol.for()的任何值都会被转换为字符串
+同时, 注册表中的键也会被用作符号描述
+```JavaScript
+let emptyGlobalSymbol = Symbol.for();
+console.log(emptyGlobalSymbol);     // Symbol(undefined)
+```
+
+注意Symbol.keyFor()需要的参数是一个符号, 如果不是符号则抛出TypeError
+```JavaScript
+Symbol.keyFor(1);       // TypeError: 1 is not a symbol
+```
+
+
+#### **3 使用符号作为属性**
+
+凡是可以使用字符串或者数值作为属性的地方, 都可以使用符号
+
+```JavaScript
+let mySymbol1 = Symbol('one');
+let myObj = {
+    [mySymbol1]: 'hello'
+}
+
+console.log(myObj);     // {Symbol(one): 'hello'}
+
+let mySymbol2 = Symbol('two');
+myObj[mySymbol2] = 'world';
+
+console.log(myObj);     // {Symbol(one): 'hello', Symbol(two): 'world'}
+```
+
+使用Object.defineProperty() 或 Object.defineProperties()
+
+```JavaScript
+let myObj = {};
+let mySymbol1 = Symbol('defineProperty');
+let mySymbol2 = Symbol('defineProperties 1');
+let mySymbol3 = Symbol('defineProperties 2');
+
+// 传入值时必须使用value为键，所传值作为值， 放入对象
+Object.defineProperty(myObj, mySymbol1, {value: 'defineProperty value'});
+console.log(myObj);
+// {Symbol(defineProperty): 'defineProperty value'}
+
+Object.defineProperties(myObj, {
+    [mySymbol2]: {value: 'mySymbol2 defineProperties1 value'},
+    [mySymbol3]: {value: 'mySymbol3 defineProperties2 value'}
+})
+console.log(myObj);
+// {
+// Symbol(defineProperty): 'defineProperty value', 
+// Symbol(defineProperties 1): 'mySymbol2 defineProperties1 value', 
+// Symbol(defineProperties 2): 'mySymbol3 defineProperties2 value'
+```
+Object.getOwnPropertyNames()返回对象实例的常规属性数组，
+Object.getOwnProperty-Symbols()返回对象实例的符号属性数组。
+这两个方法的返回值彼此互斥。
+
+Object.getOwnProperty-Descriptors()会返回同时包含常规和符号属性描述符的对象。
+Reflect.ownKeys()会返回两种类型的键
+
+```JavaScript
+let s1 = Symbol('s1');
+let s2 = Symbol('s2');
+
+let obj = {
+    [s1]: 'this is s1',
+    [s2]: 'this is s2',
+    name: 'zhangsan',
+    age: 18
+}
+
+console.log(Object.getOwnPropertyNames(obj));
+// (2) ['name', 'age']
+
+console.log(Object.getOwnPropertySymbols(obj));
+// (2) [Symbol(s1), Symbol(s2)]
+
+console.log(Object.getOwnPropertyDescriptors(obj));
+// {name: {…}, age: {…}, Symbol(s1): {…}, Symbol(s2): {…}}
+
+console.log(Reflect.ownKeys(obj));
+// (4) ['name', 'age', Symbol(s1), Symbol(s2)]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

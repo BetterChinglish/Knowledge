@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 显示创建Object实例：
+
+        // 方法 1
+        let person1 = new Object();
+        person1.name = 'zhangsan';
+        person1.age = 18;
+
+        // 方法 2  （对象字面量表示法）
+            let person2 = {     //  赋值语句后面期待返回值的上下文，此处是表达式上下文
+            name: 'lisi',
+            age: 17
+        }
+        
+        // name 后有逗号， age后没有
+        // 在最后一个属性后面加上逗号在非常老的浏览器中会导致报错，但所有现代浏览器都支持这种写法
+
+        // 如if语句， { 表示一个语句块的开始， 处于语句上下文的后面if() {}
+
+        // 对象字面量表示法中， 属性名可以是字符串或数值：
+        let person3 = {
+            'name': 'wanger',
+            'age': '18',
+            5: true     // 数值会自动转换为字符串
+        }
+
+
+        // 可以用对象字面量表示法来定义一个只有默认属性和方法的对象，只要使用一对大括号，中间留空就行了
+        let person4 = {};   // 表示person4 为对象， 在使用对象字面量表示法定义对象时，并不会实际调用Object构造函数
+        person4.name = 'mazi';
+        person4.age = 18;
+
+        // 开发者更倾向于使用对象字面量表示法。
+        // 因为对象字面量代码更少，看起来也更有封装所有相关数据的感觉。
+
+        // 对象字面量已经成为给函数传递大量可选参数的主要方式
+        function test1(args) {
+
+            let output = '';
+
+            if(typeof args.name ==  'string') {
+                output += 'Name: ' + args.name + '\n';
+
+            }
+
+            if(typeof args.age == 'number') {
+                output += 'Age: ' + args.age + '\n';
+
+            }
+
+            console.log(output);
+        }
+
+        test1({
+            name: 'qsj',
+            age: 17
+        });
+
+        test1({
+            name: '普信女'
+        });
+
+        // 使用数组形式访问对象属性时要使用对象属性名的字符串形式
+        console.log(person2['name']);   // 'lisi'
+        console.log(person2[name]);     // undefined
+        // 或者使用 . 运算符
+        console.log(person2.name);      // 'lisi'
+        // let person2 = {     //  赋值语句后面期待返回值的上下文，此处是表达式上下文
+        //     name: 'lisi',
+        //     age: 17
+        // }
+
+        // console.log('person3.5: ' + person3.5);      
+        // console.log('person3.5: ' + person3.'5'); // 报错, 无法使用点运算符访问属性名为数字的属性
+        // 使用[]进行访问则没问题:
+        console.log( 'person3[\'5\']: ' + person3['5']);
+        console.log('person3[5]: ' +  person3[5]);
+
+        // 同样的, 如果属性名包含一些导致报错的符号时也无法通过点运算符进行访问, 如属性名包含空格
+        let person5 = {
+            'first name': 'Bob',
+            'last name': 'Green'
+        }
+        // console.log('person5.first name: ' + person5.first name)     // 有空格显然无法这样访问
+        console.log('person5[\'first name\']: ' + person5['first name']);  
+
+
+
+        // 用中括号的主要优势就是可以通过变量访问属性
+        let propertyName = 'name';
+        console.log(person2[propertyName]);     // 'lisi'
+
+        // 第八章将更深入讲解Object类型
+
+        for(const property in person5) {
+            console.log(property + ': ' + person5[property]);
+
+        }
+
+
+    </script>
+</body>
+</html>

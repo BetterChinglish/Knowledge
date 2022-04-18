@@ -110,6 +110,116 @@
         // // test.html:104 \u00A9
         // // test.html:104 \n
 
+        // let mySym1 = Symbol();
+        // let mySym2 = Symbol();
+        // let hisSym1 = Symbol('His');
+        // let hisSym2 = Symbol('His');
+
+        // console.log(mySym1 == mySym2);      // false
+        // console.log(hisSym1 == hisSym2);    // false    
+
+        // let mySym1 = Symbol();
+        // let mySym2 = Symbol();
+        // console.log(mySym1 == mySym2);      // false
+        // console.log(mySym1 === mySym2);     // false   
+        
+        // let myBoolean = new Boolean();
+        // console.log(myBoolean);     // Boolean {false}
+
+        // let myString = new String();
+        // console.log(myString);      // String {''}
+
+        // let mySymbol = new Symbol();
+        // console.log(mySymbol);      // TypeError: Symbol is not a constructor
+
+        // let mySymbol = Symbol();
+        // let myObjectSymbol = Object(mySymbol);
+        // console.log(typeof myObjectSymbol);     // object
+
+        // let globalSymbol = Symbol.for('thisIsGlobalSymbol');
+        // console.log(typeof globalSymbol);   // symbol
+
+        // console.log(Symbol.keyFor(globalSymbol));   // thisIsGlobalSymbol
+
+        // let normalSymbol = Symbol('this is normal symbol');
+        // console.log(Symbol.keyFor(normalSymbol));   // undefined
+        // console.log(Symbol.keyFor(normalSymbol) === undefined );   // true
+        // console.log(Symbol.keyFor(normalSymbol) === 'undefined' );   // false
+
+        // let normalUndefinedSymbol = Symbol.for('undefined');
+        // console.log(Symbol.keyFor(normalUndefinedSymbol));      // undefined
+        // console.log(Symbol.keyFor(normalUndefinedSymbol) === undefined);      // false
+        // console.log(Symbol.keyFor(normalUndefinedSymbol) === 'undefined');      // true
+
+
+// let globalSymbol = Symbol.for('something');
+// let normalSymbol1 = Symbol('something');
+// let normalSymbol2 = Symbol('something');
+
+// console.log(globalSymbol === normalSymbol1);    // false
+// console.log(normalSymbol1 === normalSymbol2);   // false  
+
+// Symbol.keyFor(1);       // TypeError: 1 is not a symbol
+
+// let mySymbol1 = Symbol('one');
+// let myObj = {
+//     [mySymbol1]: 'hello'
+// }
+
+// console.log(myObj);     // {Symbol(one): 'hello'}
+
+// let mySymbol2 = Symbol('two');
+// myObj[mySymbol2] = 'world';
+
+// console.log(myObj);     // {Symbol(one): 'hello', Symbol(two): 'world'}
+
+// let myObj = {};
+// let mySymbol1 = Symbol('defineProperty');
+// let mySymbol2 = Symbol('defineProperties 1');
+// let mySymbol3 = Symbol('defineProperties 2');
+
+
+// Object.defineProperty(myObj, mySymbol1, {value: 'defineProperty value'});
+// console.log(myObj);
+// // {Symbol(defineProperty): 'defineProperty value'}
+
+// Object.defineProperties(myObj, {
+//     [mySymbol2]: {value: 'mySymbol2 defineProperties1 value'},
+//     [mySymbol3]: {value: 'mySymbol3 defineProperties2 value'}
+// })
+// console.log(myObj);
+// // {
+// // Symbol(defineProperty): 'defineProperty value', 
+// // Symbol(defineProperties 1): 'mySymbol2 defineProperties1 value', 
+// // Symbol(defineProperties 2): 'mySymbol3 defineProperties2 value'
+// }
+
+// let s1 = Symbol('s1');
+// let s2 = Symbol('s2');
+
+// let obj = {
+//     [s1]: 'this is s1',
+//     [s2]: 'this is s2',
+//     name: 'zhangsan',
+//     age: 18
+// }
+
+// console.log(Object.getOwnPropertyNames(obj));
+// // (2) ['name', 'age']
+
+// console.log(Object.getOwnPropertySymbols(obj));
+// // (2) [Symbol(s1), Symbol(s2)]
+
+// console.log(Object.getOwnPropertyDescriptors(obj));
+// // {name: {…}, age: {…}, Symbol(s1): {…}, Symbol(s2): {…}}
+
+// console.log(Reflect.ownKeys(obj));
+// // (4) ['name', 'age', Symbol(s1), Symbol(s2)]
+
+
+
+
+
 
         
 
