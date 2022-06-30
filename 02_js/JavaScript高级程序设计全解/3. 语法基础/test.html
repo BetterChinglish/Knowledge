@@ -216,12 +216,130 @@
 // console.log(Reflect.ownKeys(obj));
 // // (4) ['name', 'age', Symbol(s1), Symbol(s2)]
 
+// let myObj = new Object();
+
+// // ECMAScript只要求在给构造函数提供参数时使用括号
+// // 所以不提供参数时不使用括号也是没有问题的， 但不推荐
+// let otherObj = new Object;
+
+// console.log(myObj);     // {}
+// console.log(otherObj);  // {}
+
+
+// let myObj = new Object();
+// myObj.name = 'zhangsan';
+// console.log(myObj.hasOwnProperty('name'));
+
+// let myObj = new Object();
+// myObj.arr = [1,2,3,4];
+// console.log(myObj.propertyIsEnumerable('arr'));     // true
+
+// let age = 17;
+// console.log(age++);     // 17
+// console.log(age);       // 18
+
+/*
+let s1 = '1';
+let s2 = 'something';
+
+let b1 = false;
+let b2 = true;
+
+let f1 = 1.1;
+
+let o1 = {
+    valueOf() {
+        return 1;
+    }
+};
+
+
+console.log(++s1);      // 2 
+console.log(++s2);      // NaN
+console.log(++b1);      // 1
+console.log(++b2);      // 2 
+console.log(--f1);      // 0.10000000000000009  二进制表示浮点数不精准
+console.log(++o1);      // 2
+*/
+
+// let a = {
+//     age: 9
+
+// }
+
+// let b = {
+//     age: 9
+// }
+
+// console.log(a===b);
+
+
+// let o = {
+//     name: 'zhangsan',
+//     age: 17
+// }
+
+// for(const k in o) {
+//     console.log(k);
+// }
+
+// let arr = [2,3,4,5];
+// for(const i of arr) {
+//     console.log(i);
+// }
+
+
+// let a = new Number(2);
+// console.log(a instanceof Number)
+
+/*
+console.log( [0,0,1,0,0].join('') )             // 00100
+console.log( typeof [0,0,1,0,0].join('') )      // string
+
+console.log( [0,0,1,0,0].join('') + 1 )             // 001001
+console.log( typeof ([0,0,1,0,0].join('') + 1) )    // string
+ 
+console.log( parseInt( [0,0,1,0,0].join('') + 1 ) )         // 1001
+console.log( typeof parseInt([0,0,1,0,0].join('') + 1) )    // number
+
+
+*/
+
+/*
+let F = function() {
+    // 这相当于是F的构造函数
+
+    // 只是在构造函数中写上了let num = 1；实际是只是对象的构造函数中的一个局部变量， 构造函数执行完就被销毁了， num1并没有什么用处
+    let num1 = 1;
+
+    // 构造函数中使用this指向的是调用该构造函数的对象， 也就是下面的f，f.num2 = 2, 则在对象f创建了一个变量num2
+    this.num2 = 2;
+}
+let f = new F();
+
+console.log(f);
+*/
+
+
+function F(age){
+    return new Number(30);
+}
+
+console.log(new F(3));
 
 
 
 
 
-        
+
+
+
+
+
+
+
+
+
 
     </script>
 

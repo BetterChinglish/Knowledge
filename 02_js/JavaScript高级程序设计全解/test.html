@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let person = {};
+        // let count = 0;
+
+        // Object.defineProperties(person,{
+        //     name:{
+        //         value: '张三',
+        //         writable: true
+        //     },
+
+        //     age: {
+        //         value: 0,
+        //         configurable: true,
+        //         writable: true,
+        //         enumerable: true
+
+        //     },
+
+        //     id: {
+        //         value: count,
+        //         configurable:false,
+        //         writable:false,
+        //         enumerable:true
+               
+        //     },
+        //     getInformation: {
+        //         get:function(){
+        //             return "id: "+ this.id+ "\nname: " + this.name+"\nage: "+this.age;
+        //         }
+        //     }
+        // })
+
+        // console.log(Object.getOwnPropertyDescriptors(person));
+
+        // let person = {};
+
+        // let k = Symbol('k')
+
+        // Object.defineProperties(person,{
+        //     name:{
+        //         value:"zhangsan",
+        //         enumerable:true,
+        //         configurable:true,
+        //         writable:true
+        //     },
+        //     age:{
+        //         value: 19,
+        //         enumerable:true,
+        //         configurable:true,
+        //         writable:true
+        //     },
+        //     id: {
+        //         value:1,
+        //         enumerable:false,
+        //         configurable: true,
+        //         writable: false
+        //     },
+        //     [k]:{
+        //         value: "k's value",
+        //         enumerable:false,
+        //         configurable: true,
+        //         writable: false
+        //     }
+        // })
+
+        // // getOwnPropertyNames列举所有属性
+        // console.log(Object.getOwnPropertyNames(person));
+        // // keys列举可枚举属性
+        // console.log(Object.keys(person));
+        // // in仍能检测不可枚举属性
+        // console.log('id' in person);
+
+        // // 只返回sybol的key
+        // console.log(Object.getOwnPropertySymbols(person))
+
+
+        // function Person(){}
+        // console.dir(Person);
+        // let person = new Person();
+        // console.log(person.__proto__);
+        // console.log(person.__proto__===Person.prototype);
+
+        // function Person() {
+        //     this.name = 'zhangsan';
+        // }
+
+        // function Human() {
+        //     this.name = 'ren'
+        // }
+
+
+        // Human.prototype.returnThis = function() {
+        //     return this.name;
+        // }
+        // Person.prototype = new Human();
+
+        // // Person.prototype.returnThis = function() {
+        // //     return this;
+        // // }
+        // let person = new Person();
+
+        // console.log(person.__proto__.returnThis())
+        // // console.log(person.__proto__.returnThis())
+        // // console.log(person.__proto__.__proto__.returnThis())
+
+        // function Human() {
+        //     this.num = [1,2,3];
+        // }
+        // function Person() {
+        //    Human.call(this);
+        // }
+
+        // let person1 = new Person();
+        // // let person2 = new Person();
+        // // person2.__proto__ = new Human();
+
+        // // person1.num.push(3);
+        // // console.log(person1.num);
+        // // console.log(person2.num);
+        // console.log(person1);
+
+        // function Father(name) {
+        //     this.name = name;
+        // }
+
+        // function Son() {
+        //     Father.call(this, 'zhangsan');
+        // }
+
+        // let s1 = new Son();
+        // console.log(s1);
+
+        // function Person(){
+
+        // }
+
+        // console.dir(Person);
+        // console.dir(Person.prototype);
+
+        // class Person {
+        //     constructor() {
+
+        //     }
+        // }
+
+        // console.dir(Person);
+        // console.dir(Person.prototype);
+        // console.log(Person.prototype.constructor==Person)
+
+
+        class Human{
+            
+        };
+
+
+        class Person{
+            constructor() {
+                this.a = 1;
+            }
+            
+        }
+        let p = new Person();
+        console.log(p.__proto__.constructor == Person);
+        console.log(Person)
+
+    </script>
+</body>
+</html>

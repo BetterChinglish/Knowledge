@@ -1524,6 +1524,99 @@ console.log(Reflect.ownKeys(obj));
 
 
 
+#### **4 常用内置符号**
+ECMAScript 6也引入了一批常用内置符号（well-knownsymbol），用于暴露语言内部行为，开发者可以直接访问、重写或模拟这些行为。这些内置符号都以Symbol工厂函数字符串属性的形式存在。
+
+这些内置符号最重要的用途之一是重新定义它们，从而改变原生结构的行为。比如，我们知道for-of循环会在相关对象上使用Symbol.iterator属性，那么就可以通过在自定义对象上重新定义Symbol.iterator的值，来改变for-of在迭代该对象时的行为。
+
+这些内置符号也没有什么特别之处，它们就是全局函数Symbol的普通字符串属性，指向一个符号的实例。所有内置符号属性都是不可写、不可枚举、不可配置的。
+
+注意 在提到ECMAScript规范时，经常会引用符号在规范中的名称，前缀为@@。比如，@@iterator指的就是Symbol.iterator。
+
+#### 5 更多
+以后回头来学， 一些Symbol对象的属性或者方法
+
+暂时难以理解
+
+
+
+### 3.4.8 Object类型
+ECMAScript中的对象其实就是一组数据和功能的集合
+
+对象通过new操作符后跟对象类型的名称来创建
+可以通过创建Object类型的实例来创建自己的对象，然后再给对象添加属性和方法：
+
+```JavaScript
+let myObj = new Object();
+
+// ECMAScript只要求在给构造函数提供参数时使用括号
+// 所以不提供参数时不使用括号也是没有问题的， 但不推荐
+let otherObj = new Object;
+
+console.log(myObj);     // {}
+console.log(otherObj);  // {}
+```
+
+
+
+Object的实例本身并不是很有用，但理解与它相关的概念非常重要。
+ECMAScript中的Object也是派生其他对象的基类
+Object类型的所有属性和方法在派生的对象上同样存在。
+
+---
+每个Object实例都有如下属性和方法
+
+**1 constructor：**
+    
+    用于创建当前对象的函数。
+    在前面的例子中，这个属性的值就是Object()函数。
+
+**2 hasOwnProperty（propertyName）：**
+
+    用于判断当前对象实例（不是原型）上是否存在给定的属性。
+    要检查的属性名必须是字符串（如o.hasOwnProperty("name")）或符号。
+```JavaScript
+let myObj = new Object();
+myObj.name = 'zhangsan';
+console.log(myObj.hasOwnProperty('name'));  // true
+
+```
+
+**3 isPrototypeOf（object）：**
+
+    用于判断当前对象是否为另一个对象的原型。（第8章将详细介绍原型。）
+
+**4 propertyIsEnumerable(propertyName)：**
+    
+    用于判断给定的属性是否可以使用（本章稍后讨论的）for-in语句枚举。
+    与hasOwnProperty()一样，属性名必须是字符串。
+```JavaScript
+let myObj = new Object();
+myObj.arr = [1,2,3,4];
+console.log(myObj.propertyIsEnumerable('arr'));     // true
+```
+
+**5 toLocaleString()：**
+    
+    返回对象的字符串表示，该字符串反映对象所在的本地化执行环境。
+
+**6 toString()：**
+    
+    返回对象的字符串表示。
+
+**7 valueOf()：**
+    
+    返回对象对应的字符串、数值或布尔值表示。
+    通常与toString()的返回值相同。
+
+
+因为在ECMAScript中Object是所有对象的基类，所以任何对象都有这些属性和方法。
+
+第8章将介绍对象间的继承机制。
+
+    注意 严格来讲，ECMA-262中对象的行为不一定适合JavaScript中的其他对象。
+    比如浏览器环境中的BOM和DOM对象，都是由宿主环境定义和提供的宿主对象。
+    而宿主对象不受ECMA-262约束，所以它们可能会也可能不会继承Object。
 
 
 
@@ -1531,12 +1624,91 @@ console.log(Reflect.ownKeys(obj));
 
 
 
+## 3.5 操作符
+
+即
+数学操作符（如加、减）,
+位操作符,
+关系操作符,
+相等操作符,
+等
+
+    它们可用于各种值，包括字符串、数值、布尔值，甚至还有对象
+
+    在应用给对象时，操作符通常会调用
+    valueOf()
+    和/或
+    toString()方法
+    来取得可以计算的值。
+
+### 3.5.1 一元操作符
+
+即只操作一个值的操作符叫 **一元操作符**
+是ECMAScript中最简单的操作符
+
+1. 递增/递减操作符
+
+照搬自C语言
+
+分前后缀
+
+前缀:
+```js
+let age = 17;
+console.log(++age);     // 18
+```
+
+后缀:
+```js
+let age = 17;
+console.log(age++);     // 17
+console.log(age);       // 18
+```
+
+上述是前后缀自加符, 自减符同理
+
+但是在js中, 自加与自减可以用于任何值, 如字符串,浮点值,布尔值乃至对象都可以
+递增与递减操作符遵循如下规则
+
+    1 字符串
+        如果是有效的数值形式，则转换为数值再应用改变。变量类型从字符串变成数值
+        如果不是有效的数值形式，则将变量的值设置为NaN。变量类型从字符串变成数值。
+
+    2 布尔值
+        如果是false，则转换为0再应用改变。变量类型从布尔值变成数值。
+        如果是true，则转换为1再应用改变。变量类型从布尔值变成数值
+
+    3 浮点值
+        加1或减1
+
+    4 对象
+        调用其（第5章会详细介绍的）valueOf()方法取得可以操作的值。对得到的值应用上述规则。
+        如果是NaN，则调用toString()并再次应用其他规则。变量类型从对象变成数值
+
+演示如下:
+```JavaScript
+let s1 = '1';
+let s2 = 'something';
+
+let b1 = false;
+let b2 = true;
+
+let f1 = 1.1;
+
+let o1 = {
+    valueOf() {
+        return 1;
+    }
+};
 
 
+console.log(++s1);      // 2 
+console.log(++s2);      // NaN
+console.log(++b1);      // 1
+console.log(++b2);      // 2 
+console.log(--f1);      // 0.10000000000000009  二进制表示浮点数不精准
+console.log(++o1);      // 2
+```
 
 
-
-
-
-
-
+2. 一元 +/-
