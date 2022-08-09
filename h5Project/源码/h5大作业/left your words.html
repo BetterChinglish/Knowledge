@@ -1,0 +1,79 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<title>留言列表</title>  
+
+
+<style>  
+    .keleyitable {  
+        width: 800px;  
+    }  
+  
+    .keleyitable table, td, th {  
+        border: 1px solid green;margin-top:10px;  
+    }  
+
+    .klytd {
+        width:100px;text-align:right  
+    }  
+
+    .hvttd {  
+        width:500px
+    }
+</style>  
+
+<script src="https://unpkg.com/vue@next"></script>
+  
+</head>  
+
+
+<body>  
+
+
+<div id="app" style="margin:0px auto;" class="keleyitable"><h2>留言列表</h2>  
+
+
+<table v-for='item in items'>  
+<tr><td class="klytd">留言时间：</td><td class="hvttd"> {{ item.time }} </td></tr>  
+<tr><td class="klytd">留言人：</td><td class ="hvttd"> {{ item.name }} </td></tr>   
+<tr><td class="klytd">标题：</td><td class ="hvttd"> {{ item.title }} </td></tr>  
+<tr><td class="klytd">内容：</td><td class ="hvttd"> {{ item.content }} </td></tr>  
+<tr><td class="klytd">回复：</td><td class="hvttd"> {{item.answer }} </a></td></tr>  
+</table>  
+  
+
+  
+</div>  
+  
+<div style="width:800px;margin:10px auto;font-family:Arial, Helvetica, sans-serif;text-align:center;">
+    Answer Board &copy; 2021.6.20
+</div>  
+
+
+<script>
+
+    const App = {
+        data() {
+            return {
+                name:'',
+                content:'',
+                items:[
+                    {time:'2021.6.19', name:'张三', title:'小区停水', content:'什么时候恢复用水', answer:'2021.6.21 下午三点恢复'},
+                    {time:'2021.6.18', name:'张一', title:'小区停电', content:'什么时候恢复用电', answer:'2021.6.25 凌晨五点恢复'},
+                    {time:'2021.6.19', name:'刘雪峰', title:'党为什么那么好', content:'为什么共产党那么好', answer:'共产党是人民的代表, 为人民服务, 对待人民如同对待自己的亲人, 当然好'},
+                    {time:'2021.6.19', name:'张三', title:'小区停水', content:'什么时候恢复用水', answer:'2021.6.21 下午三点恢复'},
+                    {time:'2021.6.19', name:'张三', title:'小区停水', content:'什么时候恢复用水', answer:'2021.6.21 下午三点恢复'},
+                    {time:'2021.6.19', name:'张三', title:'小区停水', content:'什么时候恢复用水', answer:'2021.6.21 下午三点恢复'},
+                    {time:'2021.6.19', name:'张三', title:'小区停水', content:'什么时候恢复用水', answer:'2021.6.21 下午三点恢复'},
+                    {time:'2021.6.19', name:'张三', title:'小区停水', content:'什么时候恢复用水', answer:'2021.6.21 下午三点恢复'},
+
+                ]
+            }
+        }
+    }
+
+    Vue.createApp(App).mount('#app')
+
+</script>
+</body>  
+</html>  

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function myKMP(parentString, kidString, nextArray){
+
+            let i = 0, j = 0;
+
+            while(i < parentString.length && j < kidString.length){
+                if(j==-1 || parentString[i]==kidString[j]){
+                    i++;
+                    j++;
+                }
+                else{
+                    j = nextArray[j];
+                    
+
+                }
+            }
+
+            if(j=kidString.length){
+                return i - j;
+            }
+            else{
+                return 0
+            }
+        }
+
+        let nextArray = [-1,0,0,0,1];
+        let num = myKMP("ababasdllajlwdpoajsdcaabcacbab", "abcac", nextArray);
+       
+        console.log(num);
+
+    </script>
+</body>
+</html>

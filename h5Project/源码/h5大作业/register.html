@@ -1,0 +1,173 @@
+<html>
+<head>
+<title>注册界面</title>
+<style>
+    div{
+        width: 600px;
+        height: 70px;
+        margin: 0 auto;
+
+    }
+    .message{
+        display:inline-block;
+        font-size:12px;
+        color:blue;
+        background-color:url(imags/2.jpg) no-repeat left center;
+        padding-left: 20px;
+    }
+    .wrong{
+        color:red;
+        background-color: url(imags/3.png);
+    }
+    .right
+    {
+        color:green;
+        background-color: url(imags/3.png);
+    }
+    
+    .namee, .ipt {
+        margin-left: 31px;
+    }
+
+    body {
+        background: url(./red.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        padding-top: 20%;
+        padding-left: 25%;
+        
+    }
+
+    
+    
+</style>
+</head>
+
+<body class="whole">
+<div id="all">
+     <div id="name">
+         <label>姓名:</label>
+         <input type="text"  class="namee" color="#999">
+         <p class="message" id="message_name">请输入您的昵称</p>
+     </div>
+     <div id="key">
+        <label>密码:</label>
+        <input type="password" name="password" class="ipt" maxlength="10"/>
+        <p class="message" id="message_key">密码的长度应该为6-10</p>
+     </div>
+     <div id="rekey">
+        <label>确认密码:</label>
+        <input type="password" name="re_password" class="re_ipt" maxlength="10"/>
+        <p class="message"id="message_rekey">请保证输入与上面一致</p>
+     </div>
+     <div >
+        <input type="submit" class="commit" value="提交"/>
+        <input type="reset" class="reset"value="重置"/>
+     </div>
+     <div>
+         <p  id="success_fail"></p>
+     </div>
+
+    
+</div>
+<script>
+//名字处
+var text=document.querySelector('.namee');
+var message_name=document.getElementById('message_name');
+
+       //失去焦点事件
+       text.onblur= function()
+       {
+           if(this.value=='')
+           {
+            
+            message_name.className='message wrong';
+            message_name.innerHTML='请输入您的名字';
+            this.style.color='yellow';
+            return false;
+           }
+           else{
+            message_name.className='message right';
+            message_name.innerHTML='right';
+            this.style.color='#333';
+            return true;
+           }
+       }
+
+
+
+    //密码处s
+var key=document.querySelector('.ipt');
+var message=document.getElementById('message_key');
+//失去焦点
+key.onblur=function(){
+     if(this.value.length<6||this.value.length>10)
+   {
+       console.log('错误');
+       message.className='message wrong';
+       message.innerHTML='要求6-10位';
+     return false;
+   }
+   else{
+      message.className='message right';
+      message.innerHTML='right';
+      return true;
+   }
+}
+
+
+//确认密码处
+var re_key=document.querySelector('.re_ipt');
+var message_rekey=document.getElementById('message_rekey');
+re_key.onblur=function(){
+    if(this.value.length<6||this.value.length>10)
+   {
+       console.log('错误');
+       message_rekey.className='message wrong';
+       message_rekey.innerHTML='要求6-10位,且上下密码要一致';
+    return false;
+   }
+  else if(this.value==key.value)
+   {
+       message_rekey.className='message right';
+       message_rekey.innerHTML='right';
+       return true;
+   }
+  else{
+    console.log('错误');
+       message_rekey.className='message wrong';
+       message_rekey.innerHTML='上下密码不一致';
+       return false;
+  }
+
+}
+//提交处
+var btn=document.querySelector('.commit');
+var success_fail=document.getElementById('success_fail');
+btn.onclick=function(){
+  if(text.onblur()==false||key.onblur()==false||re_key.onblur()==false)
+  {
+     success_fail.className='message wrong';
+     success_fail.innerHTML='提交有误';
+  }
+  else{
+    success_fail.className='message right';
+     success_fail.innerHTML='提交成功';
+  }
+}
+
+//重置处
+var btn1=document.querySelector('.reset');
+btn1.onclick=function(){
+    text.value='';message_name.innerHTML='请输入您的名字'; message_name.className='message';
+    key.value='';message.innerHTML='要求6-10位'; message.className='message';
+    re_key.value='';message_rekey.innerHTML='请保证输入与上面一致';  message_rekey.className='message';
+    success_fail.innerHTML='';success_fail.className='message ';
+}
+
+
+</script>
+ 
+</body>
+</html>
+
