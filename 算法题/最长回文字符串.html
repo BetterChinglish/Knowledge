@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/**
+ * @param {string} s
+ * @return {string}
+ */
+
+ var longestPalindrome = function(s) {
+    if(s.length<3){
+        if(s.length==1){
+            return s;
+        }else
+
+        if(s.length == 2 ) {
+            if(s[0]==s[1]){
+                return s;
+            }
+            else{
+                return s[0];
+            }
+        }
+    }
+    
+    // 字符串长度大于等于3时, 起初默认最长回文字符串为s[0], 长度为1
+    let longest = {
+        maxLen: 1,
+        left: 0
+    }
+
+
+    for(let i = 0; i < s.length; i++){
+        
+        // 偶数情况
+        if(s[i]==s[i+1]){
+            let low=i-1, high=i+2;
+            while(true){
+
+                if(low<0||high>=s.length){
+                    low++;
+                    high--;
+                    console.log("偶数情况, 超出边界, 退出循环")
+                    break;
+                }
+
+                if(s[low]==s[high]){
+                    low--;
+                    high++;
+                    console.log("偶数情况, 左右字符相等, low左移, high右移")
+
+                }else{
+                    low++;
+                    high--;
+                    break;
+                }
+            }
+
+            if(high-low+1 > longest.maxLen){
+                longest.maxLen = high-low+1;
+                longest.left = low;
+            }
+        }
+
+        // 奇数>=3的情况
+        let left = i-1;
+        let right = i+1;
+        while(true){
+            if(left<0||right>=s.length){
+                left++;
+                right--;
+                break;
+            }
+            if(s[left] == s[right]){
+                left--;
+                right++;
+            }else
+            {
+                left++;
+                right--;
+                break;
+            }
+        }
+
+        if(right-left+1 > longest.maxLen){
+            longest.maxLen = right-left + 1;
+            longest.left = left;
+        }
+    }
+
+    return s.slice(longest.left, longest.maxLen+longest.left)
+
+    
+};
+    console.log(longestPalindrome("abccbdac"));
+    </script>
+</body>
+</html>
