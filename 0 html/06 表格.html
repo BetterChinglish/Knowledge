@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格</title>
+</head>
+<body>
+    <!-- 
+        table定义表格
+        tr定义表格的一行
+        td定义一行中的单元格
+
+        th突出表格的表头
+
+        用于展示数据
+    -->
+
+    <!-- 
+        cellpadding为内容与边框的距离
+        cellspacing设置单元格之间的距离, 一般为0, 默认为2
+    -->
+    <table align="center" border="1" cellpadding="10px" cellspacing="0px" width="300" height="200">
+        <tr>
+            <th>name</th>
+            <th>age</th>
+        </tr>
+        <tr>
+            <td>zhangsan</td>
+            <td>18</td>
+        </tr>
+        <tr>
+            <td>lisi</td>
+            <td>22</td>
+        </tr>
+        
+    </table>
+    <br>
+
+    <table border="1" cellspacing="0">
+         <tr>
+            <th>排名</th>
+            <th>关键词</th>
+            <th>趋势</th>
+            <th>今日搜索</th>
+            <th>最近七日</th>
+            <th>相关链接</th>
+         </tr>
+         <tr>
+            <td>1</td>
+            <td>鬼吹灯</td>
+            <td>下降</td>
+            <td>234</td>
+            <td>1435</td>
+            <td><a href="#">百度</a></td>
+         </tr>
+         <tr>
+            <td>2</td>
+            <td>哈利波特</td>
+            <td>上升</td>
+            <td>434</td>
+            <td>935</td>
+            <td><a href="#">百度</a></td>
+         </tr> <tr>
+            <td>1</td>
+            <td>鬼吹灯</td>
+            <td>下降</td>
+            <td>234</td>
+            <td>1435</td>
+            <td><a href="#">百度</a></td>
+         </tr> <tr>
+            <td>1</td>
+            <td>鬼吹灯</td>
+            <td>下降</td>
+            <td>234</td>
+            <td>1435</td>
+            <td><a href="#">百度</a></td>
+         </tr> <tr>
+            <td>1</td>
+            <td>鬼吹灯</td>
+            <td>下降</td>
+            <td>234</td>
+            <td>1435</td>
+            <td><a href="#">百度</a></td>
+         </tr>
+    </table>
+    
+    <br>
+
+
+
+    <!-- 表格结构标签 
+        thead 表格头部区域
+        tbody 表格主体区域
+    -->
+    <table border="1" cellspacing="0" cellpadding="10">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>sex</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>zhangsan</td>
+                <td>19</td>
+                <td>boy</td>
+            </tr>
+            <tr>
+                <td>lisi</td>
+                <td>10</td>
+                <td>girl</td>
+            </tr>
+            <tr>
+                <td>wanger</td>
+                <td>29</td>
+                <td>boy</td>
+            </tr>
+            <tr>
+                <td>mazi</td>
+                <td>22</td>
+                <td>boy</td>
+            </tr>
+            <tr>
+                <td>bob</td>
+                <td>19</td>
+                <td>boy</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+
+
+
+    <!-- 合并单元格
+        1 跨行
+            rowspan="n"     n为合并单元格个数
+        2 跨列
+            colspan="m"     
+    -->
+
+    <!-- 跨行 -->
+    <table border="1" cellspacing="0" cellpadding="10">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>sex</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>zhangsan</td>
+                <td>19</td>
+                <td>boy</td>
+            </tr>
+            <tr>
+                <td>lisi</td>
+                <td rowspan="2">10</td>
+                <td>girl</td>
+            </tr>
+            <tr>
+                <td>wanger</td>
+                <td>boy</td>
+            </tr>
+            <tr>
+                <td>mazi</td>
+                <td>22</td>
+                <td>boy</td>
+            </tr>
+            <tr>
+                <td>bob</td>
+                <td>19</td>
+                <td>boy</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+
+    <!-- 跨列 -->
+    <table border="1" cellspacing="0" cellpadding="10">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>sex</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>zhangsan</td>
+                <td colspan="2">19 and boy</td>
+            </tr>
+            <tr>
+                <td>lisi</td>
+                <td>10</td>
+                <td>girl</td>
+            </tr>
+            <tr>
+                <td>wanger</td>
+                <td>29</td>
+                <td>boy</td>
+            </tr>
+            <tr>
+                <td>mazi</td>
+                <td>22</td>
+                <td>boy</td>
+            </tr>
+            <tr>
+                <td>bob</td>
+                <td>19</td>
+                <td>boy</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+
+    <!-- 跨列与跨行 -->
+    <table border="1" cellspacing="0" cellpadding="10">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>sex</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>zhangsan</td>
+                <td colspan="2" rowspan="2">19 and boy</td>
+            </tr>
+            <tr>
+                <td>lisi</td>
+                <!-- <td>10</td>
+                <td>girl</td> -->
+            </tr>
+            <tr>
+                <td>wanger</td>
+                <td>29</td>
+                <td>boy</td>
+            </tr>
+            <tr>
+                <td>mazi</td>
+                <td>22</td>
+                <td>boy</td>
+            </tr>
+            <tr>
+                <td>bob</td>
+                <td>19</td>
+                <td>boy</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+</body>
+</html>
