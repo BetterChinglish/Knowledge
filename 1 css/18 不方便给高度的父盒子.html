@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            width: 500px;
+            height: auto;
+            background-color: grey;
+        }
+
+
+        .son1 {
+            height: 300px;
+            width: 100%;
+            background-color: skyblue;
+        }
+
+        .son2 {
+            height: 400px;
+            width: 400px;
+            background-color: pink;
+
+        }
+        /* 两个孩子一共700px高, 所以自动计算后父元素高度为700px */
+    </style>
+</head>
+<body>
+    <!-- 
+        对于一些文章长度不定但都是套用一个页面的
+        或是评论这种下拉自动又出现的
+        不是很方便给高度
+
+        这时候设置高度为auto,
+        自动计算子元素需要的高度
+        以达到有多少子元素就装多少的效果
+    -->
+    <div class="father">
+        <div class="son1">1</div>
+        <div class="son2">2</div>
+    </div>
+
+</body>
+</html>

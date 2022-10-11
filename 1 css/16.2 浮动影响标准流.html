@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         /*
+            浮动是相对于当前子域后的元素的
+            也就是说会印象当前元素和当前元素后面的兄弟元素
+                如果一个father有三个son, son1不浮动son2浮动, 则son2的顶部无法超越son1的底部
+                如果此时son3不浮动则son2会遮挡住son3
+
+            如下demo1
+        */
+
+        .demo1 {
+            width: 1000px;
+            height: 1000px;
+            background-color: skyblue;
+        }
+
+        .son1 {
+            height: 100px;
+            width: 200px;
+            background-color: grey;
+        }
+        .son2 {
+            width: 300px;
+            height: 200px;
+            background-color: orange;
+            float: left;
+        }
+
+        .son3 {
+            width: 400px;
+            height: 50px;
+            background-color: pink;
+
+        }
+
+        /* 再如demo2 
+
+            1,3浮动
+                1 浮动影响后面的2, 所以2跑到1下面
+                而3浮动无法影响到2, 所以3要在2下面
+                即3接着2后面浮动且被1阻挡------------见demo3
+
+            详见下例
+        */
+
+
+        .demo2 {
+            width: 1000px;
+            height: 1000px;
+            background-color: skyblue;
+        }
+
+        .demo2Son1 {
+            width: 200px;
+            height: 100px;
+            background-color: grey;
+            float: left;
+            
+        }
+        .demo2Son2 {
+            width: 300px;
+            height: 300px;
+            background-color: orange;
+        }
+
+        .demo2Son3 {
+            width: 400px;
+            height: 50px;
+            background-color: pink;
+            float: left;
+
+        }
+
+
+        .demo3 {
+            width: 1000px;
+            height: 1000px;
+            background-color: skyblue;
+        }
+
+        .demo3Son1 {
+            width: 200px;
+            height: 300px;
+            background-color: grey;
+            float: left;
+            
+        }
+        .demo3Son2 {
+            width: 300px;
+            height: 100px;
+            background-color: orange;
+        }
+
+        .demo3Son3 {
+            width: 400px;
+            height: 50px;
+            background-color: pink;
+            float: left;
+
+        }
+    </style>
+</head>
+<body>
+    demo1
+    <div class="demo1">
+        <div class="son1">1</div>
+        <div class="son2">2</div>
+        <div class="son3">3</div>
+    </div>
+
+    <br>
+
+    demo2
+    <div class="demo2">
+        <div class="demo2Son1">1</div>
+        <div class="demo2Son2">2</div>
+        <div class="demo2Son3">3</div>
+    </div>
+
+    demo3
+    <div class="demo3">
+        <div class="demo3Son1">1</div>
+        <div class="demo3Son2">2</div>
+        <div class="demo3Son3">3</div>
+    </div>
+</body>
+</html>

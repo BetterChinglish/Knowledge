@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 400px;
+            height: 200px;
+            background-color: skyblue;
+            margin-bottom: 60px;
+        }
+
+        /* 
+
+        阴影不占用空间, 不影响其他盒子的布局
+
+        参数意义:
+            box-shadow: x偏移量 y偏移量 blur模糊距离 spread阴影尺寸 color阴影颜色 inset/默认为outset(内外阴影)
+
+            第一个参数: x轴(水平)移动距离
+            第二个参数: y轴(竖直)移动距离
+            这两个参数是必须的
+
+            blur越大, 模糊越扩散, 越像掺了水一样稀, 阴影越不明显
+
+            spread越大, 模糊面积越大
+
+            color设置阴影的颜色, 可以使用特殊词如skyblue, 也可以使用rgba()或16进制#
+
+            当给出两个、三个或四个 <length>值时。
+            如果只给出两个值，那么这两个值将会被当作 <offset-x><offset-y> 来解释。
+            如果给出了第三个值，那么第三个值将会被当作<blur-radius>解释。
+            如果给出了第四个值，那么第四个值将会被当作<spread-radius>来解释。
+        */
+        .demo1 {
+            /* 默认阴影颜色为黑色 */
+            box-shadow: 60px 10px;
+        }
+
+        .demo2 {
+            box-shadow: 20px 20px 20px;
+        }
+
+        .demo3 {
+            box-shadow: 20px 20px 20px 20px;
+        }
+
+        .demo4 {
+            box-shadow: 20px 20px 20px 20px blue;
+        }
+
+        /* inset设置内阴影后, 阴影部分会舌头进入元素中 */
+        .demo5 {
+            box-shadow: 50px 20px 20px 20px blue inset;
+        }
+
+        /* 默认为outset
+        
+            但是outset不能写, 如下写了就不起作用
+        */
+        .demo6 {
+            box-shadow: 50px 20px 20px 20px blue outset;
+        }
+
+        .demo7:hover {
+            box-shadow: 20px 20px 1rem 10px grey;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo1"></div>
+    <div class="demo2"></div>
+    <div class="demo3"></div>
+    <div class="demo4"></div>
+    <div class="demo5"></div>
+    <div class="demo6"></div>
+    <div class="demo7"></div>
+
+</body>
+</html>

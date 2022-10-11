@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        /* 使用自己的样式覆盖浏览器默认样式(用户代理默认样式)
+            以去除内外边距, 直接全部清除即可
+        */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        /* 行内元素为了照顾兼容性, 一般只设置左右内外边距, 不设置上下内外边距 
+            如要设置可以转为行内块或块元素
+        */
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: #aaa;
+        }
+
+        /* 设置的上下左右外边距为10px, 但是上下无法显示出来 */
+        span {
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+            margin: 10px;
+            /* display: inline-block; */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>Lorem ipsum dolor sit.</span>
+    </div>
+</body>
+</html>

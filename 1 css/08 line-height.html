@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        /* 行间距实际上就是字体高度加上间距和下间距
+            如果将其设置的大小与盒子的高度一致
+            那么就会使得其文字在盒子中垂直居中
+
+            如下例
+        */
+
+        .lineHeight {
+            background-color: #aaa;
+            height: 100px;
+            line-height: 100px;
+        }
+
+        .noLineHeight {
+            height: 100px;
+            background-color: #aaa;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="noLineHeight">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, nemo.</div>
+    <div class="lineHeight">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, nemo.</div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            font-size: i;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+
+        static:
+            静态, 即使用页面正常流进行定位
+            使用top, right, bottom, left无法改变其位置
+
+        relative:
+            相对定位
+            相对于其正常位置进行定位
+            即相对于static的位置使用top, right, bottom, left更改其显示位置
+
+        fixed:
+            相对于视口, 即页面展示的窗口进行定位
+            即便滚动页面, 仍以其展示的窗口的位置进行定位
+            
+        absolute:
+            绝对定位
+            相对于最近的使用定位的父辈元素(除了static)进行定位
+
+
+        sticky:
+            粘性定位
+            当遇到他的时候则开始粘着你(视口)
+            其实是一开始使用的relative, 当其滚动到相对于视口的某个位置时开始跟着视口运动, 即变成了fixed
+
+        
+        z-index:
+            并非positon属性的一个值
+            这里顺便介绍
+            也是一个属性
+
+            可以理解为用于设置所处图层, 最上层的图层将挡住下层
+            也就是说当定位时经常会遇到元素重叠, 此时使用该属性设置哪个位于前面哪个位于后面
+
+            z-index 仅能在非static定位元素上奏效
+
+            值为number, 越大则离用户更近
+    -->
+
+    <!-- 
+        top, right, bottom, left都是设置外边距最外边边缘处和定位处的距离
+
+    -->
+    <div></div>
+</body>
+</html>

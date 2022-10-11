@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+      
+        .father {
+            width: 90%;
+            height: 600px;
+            margin: 50px auto;
+            background-color: skyblue;
+        }
+        .aside {
+            float: left;
+            width: 30%;
+            height: 100%;
+            background-color: grey;
+            /* padding: 2% 0; */
+            
+        }
+        .content {
+            float: left;
+            width: 70%;
+            height: 100%;
+            background-color: orange;
+        }
+        .aside>ul {
+            height: 100%;
+            /* padding: 5% 2.5%; */
+            background-color: grey;
+        }
+
+        .aside>ul>li {
+            height: 10%;
+            width: 100%;
+            background-color: grey;
+            list-style: none;
+            color: white;
+            display: table;
+        }
+        .aside>ul>li:hover {
+            background-color: #999;
+        }
+        li>div:nth-child(1) {
+            height: 100%;
+            line-height: 100%;
+            display: table-cell;
+            vertical-align: middle;
+            width: 90%;
+            padding: 5%;
+        }
+
+        li>div:nth-child(2) {
+            height: 100%;
+            line-height: 100%;
+            display: table-cell;
+            vertical-align: middle;
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="aside">
+            <ul>
+                <li>
+                    <div>手机 电话卡</div>
+                    <div>></div>
+                </li>
+                <li>
+                    <div>电视 盒子</div>
+                    <div>></div>
+                </li>
+                <li>
+                    <div>笔记本 平板</div>
+                    <div>></div>
+                </li>
+                <li>
+                    <div>家电 插线板</div>
+                    <div>></div>
+                </li>
+                <li>
+                    <div>出行 穿戴</div>
+                    <div>></div>
+                </li>
+                <li>
+                    <div>智能 路由器</div>
+                    <div>></div>
+                </li>
+                <li>
+                    <div>电源 配件</div>
+                    <div>></div>
+                </li>
+                <li>
+                    <div>健康 儿童</div>
+                    <div>></div>
+                </li>
+                <li>
+                    <div>耳机 音响</div>
+                    <div>></div>
+                </li>
+                <li>
+                    <div>生活 箱包</div>
+                    <div>></div>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="content">
+            <!-- <img src="" alt="something"> -->
+        </div>
+    </div>
+</body>
+</html>

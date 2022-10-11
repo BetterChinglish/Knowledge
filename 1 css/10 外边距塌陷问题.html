@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 当父子元素都有外边距时会导致外边距合并在一起
+            最终的外边距大小为二者较大的那个
+
+            如下父元素上外边距50px,子元素上外边距100px
+            则最终合并在一起, 由于100px>50px, 合并后总体并非150px, 而是较大的那个100px
+        */
+        .father {
+            width: 400px;
+            height: 400px;
+            background-color: #aaa;
+            margin-top: 50px;
+
+            /* 三种解决方法 */
+            /* border: 1px solid transparent; */
+            /* padding-top: 1px; */
+            /* overflow: hidden; */
+        }
+
+        .son {
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+            margin-top: 100px;
+        }
+
+        /* 解决方式
+
+        1 父设置border
+            可以设置box-sizing为border-box
+            再设置border为1px(尽量减少影响), 并将边框颜色设置为透明, 这也就能将其影响降低
+
+        2 父设置 padding
+
+        3 父设置 overflow: hidden
+        
+        */
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+</body>
+</html>

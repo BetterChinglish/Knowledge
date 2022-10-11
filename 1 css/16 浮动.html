@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        /* 将多个盒子水平排列时如果使用inline-block, 中间会出现无法控制的间隔 
+            设置margin于padding均不起作用
+        
+        */
+        /* .normal {
+            width: 100px;
+            height: 200px;
+            background-color: skyblue;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+        } */
+        /* 这是实际上是由于书写时的回车或空格引起的
+            看下面noSpace例子即可清除中间的空隙
+        */
+        /* .noSpace {
+            width: 100px;
+            height: 200px;
+            background-color: skyblue;
+            display: inline-block;
+        } */
+          /* 虽然这种方式清除了空隙, 但是也造成html文档的阅读性降低, 看noSpace这三个div盒子, 挤在一行 */
+            /* 还有其他解决方案, 
+                将前一个标签结束符和后一个标签开始符写在同一行:                     
+                使用注释标签                                                      
+                使用父元素包裹并将父元素的font-size设置为0, 子元素重新设置font-size
+                使用浮动
+                设置父元素display为table, 并将word-spacing设置为-1
+            */
+
+
+        /* 还有一些其他的效果, 如两个盒子一左一右等 */
+
+        /* .floatDiv {
+            width: 100px;
+            height: 200px;
+            background-color: skyblue;
+            float: left;
+            margin: 0 10px;
+        } */
+
+        /* 
+            多个块级元素竖向排列使用标准流即可
+            横向排列时则使用浮动较为方便
+        */
+
+        /* 
+            水平方向上，靠左（根据浮动方向）依次摆放
+            摆不下，摆下一行
+            换行后，尽量上移，但顶部不能超过前一个浮动元素的底部
+        */
+       
+    </style>
+</head>
+<body>
+    <div class="demo1">
+        <div class="son1"></div>
+        <div class="son2"></div>
+        <div class="son3"></div>
+    </div>
+
+    <!-- 
+    
+    <\br>
+
+    <div class="normal">1</div>
+    <div class="normal">2</div>
+    <div class="normal">3</div>
+
+    <div class="noSpace">1</div><div class="noSpace">2</div><div class="noSpace">3</div>
+
+    <div class="floatDiv">floatDiv1</div>
+    <div class="floatDiv">floatDiv2</div>
+    <div class="floatDiv">floatDiv3</div> 
+-->
+</body>
+</html>

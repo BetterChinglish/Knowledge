@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo1 {
+            width: 800px;
+            border: 1px solid black;
+        }
+        .demo1Son1 {
+            height: 200px;
+            width: 300px;
+            background-color: orange;
+            float: left;
+        }
+
+        .demo1Son2 {
+            height: 300px;
+            width: 200px;
+            background-color: pink;
+            float: left;
+        }
+
+        .another {
+            width: 100%;
+            height: 400px;
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        父元素不给高度
+        子元素浮动
+
+        则对于父元素的后续标准流的元素来说
+        会导致一些问题
+    -->
+    <div class="demo1">
+        <div class="demo1Son1">1</div>
+        <div class="demo1Son2">2</div>
+    </div>
+    <div class="another">another</div>
+
+    <!-- 由上可见demo1这个盒子高度为0
+        导致后续的标准流的盒子自动往上挤了
+
+        此时需要清除浮动
+    -->
+</body>
+</html>

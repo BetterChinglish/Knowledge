@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* font-style font-weight font-size font-family 
+
+            必须保留font-size和font-family
+        
+        */
+        .class1 {
+            font: italic bold 3rem Tahoma;
+        }
+
+        .class2 {
+            font: 2rem Verdana;
+        }
+
+        /* 缺少font-family, 则不起作用 */
+        .class3 {
+            font: 2rem;
+        }
+
+        /* 多种font-family使用逗号隔开 */
+        .class3 {
+            font: italic 2rem Georgia,'黑体';
+        }
+
+    </style>
+</head>
+<body>
+    <div class="class1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error qui tempore molestias ad itaque dolorem soluta expedita corporis vel quos.</div>    
+    <div class="class2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error qui tempore molestias ad itaque dolorem soluta expedita corporis vel quos.</div>        
+    <div class="class3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error qui tempore molestias ad itaque dolorem soluta expedita corporis vel quos.</div>        
+
+</body>
+</html>
