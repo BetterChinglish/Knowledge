@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo1 {
+            width: 800px;
+            border: 1px solid black;
+        }
+
+        /* 父元素添加:after伪元素 
+        
+
+            ::after将在选中的元素的最后一个子元素后面创建一个伪元素
+            通常配合content书写来为该元素添加装饰内容
+
+            所以说这个方法相对于额外标签法的升级版
+
+        */
+        .clearFix::after {
+            content: "";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        .clearFix {
+            /* 兼容ie6,7 */
+            *zoom: 1;
+        }
+        
+        .demo1Son1 {
+            height: 200px;
+            width: 300px;
+            background-color: orange;
+            float: left;
+        }
+
+        .demo1Son2 {
+            height: 300px;
+            width: 200px;
+            background-color: pink;
+            float: left;
+        }
+
+        .another {
+            width: 100%;
+            height: 400px;
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <!-- 给父元素设置overflow为hidden或scroll或auto -->
+    <div class="demo1 clearFix">
+        <div class="demo1Son1">1</div>
+        <div class="demo1Son2">2</div>
+    </div>
+    <div class="another">another</div>
+</body>
+</html>

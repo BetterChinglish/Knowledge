@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        /* w3c推荐使用方法
-            但是添加了额外标签, 不如后续几种方式
-        */
         .demo1 {
+            overflow: auto;
             width: 800px;
             border: 1px solid black;
         }
@@ -32,43 +30,13 @@
             height: 400px;
             background-color: grey;
         }
-        .test {
-            height: 200px;
-            background-color: aqua;
-            width: 600px;
-        }
-        .ClearBoth {
-            /* display: inline-block; */
-            /* display: inline; */
-
-            /* 即闭合浮动, 只在父元素内浮动
-                或者说父元素跟着浮动动
-            */
-            clear: both;
-        }
-
-        .testFloat {
-            float: right;
-        }
     </style>
 </head>
 <body>
+    <!-- 给父元素设置overflow为hidden或scroll或auto -->
     <div class="demo1">
-        <div class="test">test</div>
         <div class="demo1Son1">1</div>
         <div class="demo1Son2">2</div>
-
-        <!-- 添加一个额外标签, 并给定样式为clear:both -->
-        <div class="test testFloat"></div>
-
-        <!-- 
-            注意此标签不能是一个行内元素或行内块元素
-            必须是块元素
-        -->
-        <div class="ClearBoth"></div>
-
-        <div class="test"></div>
-        
     </div>
     <div class="another">another</div>
 </body>
