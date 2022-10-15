@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* div {
+            background-color: skyblue;
+        }
+        .setPosition {
+            position: absolute;
+        } */
+
+        span {
+            background-color: grey;
+        }
+
+        .myDefault {
+            position: absolute;
+            /* top:150px; */
+            background-color: aqua;
+        }
+
+        .setSize {
+            position: absolute;
+            height: 300px;
+            width: 400px;
+        }
+
+        .down {
+            top: 400px;
+        }
+
+        .left {
+            left: 50px;
+        }
+
+        .right {
+            right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 在21中已经提到默认叠层
+        
+        本节将提到行内元素和块级元素设置定位后的大小与默认行为
+    -->
+
+    <!-- <div>
+        默认static
+    </div>
+
+    <br>
+
+    <div class="setPosition">
+        块级元素设置定位(非static)后大小默认为内容大小
+    </div> -->
+
+
+    <span>span的默认样式, 大小为内容大小, 且html中的空格会被显示一个出来, 与后面的span有一个空格的距离</span>
+    <span>另一个span</span>
+    
+    <!-- 先看下面的注释内容和后续例子再将该普通span添加上, 看看有什么区别 -->
+    <!-- <span>
+        普通span
+    </span> -->
+    
+
+    <span class="setSize">
+        span设置position后可以直接设置大小
+    </span>
+    
+    <!-- 
+        如果设置top, right, bottom, left的值则使用该设置的值
+
+        如果给了position却没有设置这些值, 则继承标准流的值
+
+        例如四个值都没设置, 则和标准流无异, 只是脱标(看具体设置的position)
+        如果absolute只设置了上下或者只设置了左右, 则设置上下时, 左右继承标准流, 设置左右时, 上下也继承标准流 
+    -->
+    <span class="myDefault down">
+        span设置position后的默认行为1--只设置了top
+        <!-- 继承了标准流的左侧距 -->
+    </span>
+
+    <span class="myDefault left">
+        span设置position后的默认行为2--只设置了left
+    </span>
+
+    <!-- 浮动元素, 绝对定位, 固定定位等脱标情况都不会除法外边距合并问题 -->
+</body>
+</html>

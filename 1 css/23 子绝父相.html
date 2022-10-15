@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 300px;
+            width: 600px;
+        }
+
+        /*  */
+        .demo1 {
+            position: relative;
+            background-color: aqua;
+        }
+
+        .demo2 {
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顾名思义
+        父元素使用相对定位
+        子元素使用绝对定位
+
+        因为绝对定位是根据父元素进行相对定位的
+    -->
+    <!-- 
+        而且绝对定位不占位置
+        但是相对定位占
+
+        如果父元素使用绝对定位
+        那么页面上该父元素的兄弟元素将上升
+    -->
+
+
+    <div class="demo1"></div>
+
+    <div class="demo2"></div>
+</body>
+</html>

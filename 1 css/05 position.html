@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        div {
-            font-size: i;
+        div{
+            position: absolute;
+            top: 100px;
+            left: 300px;
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
         }
     </style>
 </head>
@@ -18,25 +23,40 @@
             静态, 即使用页面正常流进行定位
             使用top, right, bottom, left无法改变其位置
 
+            不设置position的盒子默认position为static
+
         relative:
             相对定位
             相对于其正常位置进行定位
             即相对于static的位置使用top, right, bottom, left更改其显示位置
 
+            占用标准流位置
+
         fixed:
+            固定定位
+
             相对于视口, 即页面展示的窗口进行定位
             即便滚动页面, 仍以其展示的窗口的位置进行定位
+
+            脱标, 不占位置
             
         absolute:
             绝对定位
             相对于最近的使用定位的父辈元素(除了static)进行定位
 
+            如果绝对定位的元素没有祖先，
+            它将使用文档主体（body），并随页面滚动一起移动。
 
+            不占用标准流位置
         sticky:
             粘性定位
             当遇到他的时候则开始粘着你(视口)
             其实是一开始使用的relative, 当其滚动到相对于视口的某个位置时开始跟着视口运动, 即变成了fixed
 
+            必须添加top, right, bottom, left中的一个或多个才生效
+            否则相当于relative
+
+            占有标准流位置
         
         z-index:
             并非positon属性的一个值
@@ -56,5 +76,6 @@
 
     -->
     <div></div>
+    
 </body>
 </html>

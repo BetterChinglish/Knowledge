@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* 
+        
+            本节主要探索了绝对定位, 标准流, 浮动流, 相对定位的默认层叠关系
+            之前介绍过如果要更改可以使用z-index(仅对非static定位元素有效)
+        */
+        .box {
+            width: 400px;
+            height: 200px;
+        }  
+
+
+        /* test1脱离标准流, 原先位置被test2占用 */
+        .test1 {
+            background-color: gray;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+        }
+
+        .test2 {
+            background-color: skyblue;
+        }
+
+        /* test3也使用绝对定位
+
+            但是晚于test1使用
+            所以test3遮挡test1
+
+            由此可见标准流在一层, 绝对定位在一层
+        
+        */
+        .test3 {
+            background-color: bisque;
+            position: absolute;
+            top: 150px;
+            left: 170px;
+        }
+
+
+        .test4 {
+            background-color: orange;
+            float: left;
+        }
+
+        .test5 {
+            background-color: pink;
+            position: relative;
+            top: 100px;
+            left: 50px;
+
+        }
+
+
+
+
+        .demo1 {
+            background-color: aqua;
+            position: relative;
+        }
+
+        /* 又发现一个问题
+
+            没有设置top是这样的绝对定位是相对于标准流的
+        */
+        .demo2 {
+            background-color: pink;
+            position: absolute;
+            left: 100px;
+            /* top: 100px; */
+        }
+
+        .demo3 {
+            background-color: gray;
+            position: absolute;
+            top: 800px;
+        }
+
+        /* 
+            由demo1和demo3
+            以及test3 test5可以得出:
+                相对定位与绝对定位在同级(父子元素关系)时都处于一层
+                处于后面的可以遮盖前面的
+        */
+    </style>
+</head>
+<body>
+    <!-- 即绝对定位脱离标准流
+    
+        其原先的位置将不再自己占有
+        后续元素可以占用
+    -->
+
+    <div class="box test1">test1 绝对定位</div>
+    <div class="box test2">test2 标准流</div>
+    <div class="box test3">test3 绝对定位 测试顺序</div>
+    <div class="box test4">test4 浮动 测试与标准流和绝对定位的顺序
+        <p>比标准流高,比绝对定位低</p>    
+    </div>
+
+    <!-- test5与test4可见一个问题
+        
+        虽然test5脱标了
+        起点应当是test2左下角, 然后被top,left
+        
+        但是里面的内容却由于浮动的关系, 
+        起点为test4的左下角, 然后被top, left
+
+        浮动只会压住后续标准流的盒子, 但不会压住盒子里的内容如文字等
+        浮动最初的目的就是为了做文字环绕的效果
+    -->
+    <div class="box test5">
+        test5 相对定位 
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="box demo1"></div>
+    <div class="box demo2"></div>
+    <div class="box demo3"></div>
+
+</body>
+</html>
