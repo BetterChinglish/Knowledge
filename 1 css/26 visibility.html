@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        .visibilityCollapse {
+            visibility: collapse;
+        }
+
+        .myHidden {
+            visibility: hidden;
+        }
+
+
+        table {
+            background-color: aqua;
+            height: 402px;
+
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        visibility
+        可见性
+
+        inherit:    继承父对象的可见性
+        visible:    正常显示
+        hidden:     隐藏, 只是不显示, 但是位置仍然在, 相当于此元素变成透明, 其他元素的布局不改变
+            如下id="visibilityHidden"案例
+        collapse: 
+            用于 <table> 行、列、列组和行组，
+            隐藏表格的行或列，并且不占用任何空间（与将 display: none 用于表格的行/列上的效果相当)
+            但是，计算其他行和列的大小时，仍会像显示折叠行或列中的单元格一样进行计算。(重要!!!)
+                例如5行, 每行设置父元素高度的20%, 当某行被collapse剩余4行后, 并非每行为父元素高度的25%, 而是仍以他存在一样地进行计算
+                也就是剩余四行每行仍为父元素的20%, 但是只显示了4行
+                如下测试案例(id="testCollapseTable")
+                    只有三行内容, 加上头部一共四行
+                    设置内容高度为400px, border-box
+                    由于上下border各位1px, 所以一共加上2px高度一共设置为402px
+                    发现一行被collapse后剩下每行高度都为100px而不是(400/3)px
+            此值允许从表中快速删除行或列，而不强制重新计算整个表的宽度和高度。
+
+            折叠的弹性元素和 ruby 元素会被隐藏，它们本来将要占用的空间会被移除。
+
+            对于其他元素，折叠处理与隐藏相同。
+    -->
+    <div id="visibilityHidden">
+        <span class="myHidden">Lorem ipsum dolor sit.</span>
+        <span>Lorem ipsum dolor sit.</span>
+        <span>Lorem ipsum dolor sit.</span>
+    </div>
+
+    <table align="center" border="1" cellpadding="10px" cellspacing="0px" id="testCollapseTable">
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+
+        </tr>
+
+        <tr>
+            <td class="visibilityCollapse">zhangsna</td>
+            <td>18</td>
+        </tr>
+        <tr class="visibilityCollapse">
+            <td>lisi</td>
+            <td>21</td>
+        </tr>
+        <tr>
+            <td>wanger</td>
+            <td>19</td>
+        </tr>
+    </table>
+</body>
+</html>
