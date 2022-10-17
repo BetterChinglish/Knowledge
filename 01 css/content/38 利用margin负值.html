@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>38 利用margin负值</title>
+    <style>
+
+        /* 此时相邻两个li中间的border会出现1px+1px=2px略粗的现象 */
+        /* ul li {
+            float: left;
+            list-style: none;
+            width: 200px;
+            height: 300px;
+            border: 1px solid orange;
+
+        } */
+
+        /* 利用margin负值 */
+        ul li {
+            position: relative;
+            float: left;
+            margin-left: -1px;
+            list-style: none;
+            width: 200px;
+            height: 300px;
+            border: 1px solid orange;
+
+        }
+
+        /* 由于利用了margin-left: -1px
+            导致右边的li其实压住了左边的li的右边框
+            直接更新border颜色导致右边框看不到
+        */
+        /* ul li:hover {
+            border: 1px solid red;
+        } */
+        ul li:hover {
+            /* 如果li没有定位则直接加个定位即可提高层级 */
+            /* position: relative; */
+
+            /* 如果已经加了定位则使用z-index提高层级 */
+            z-index: 1;
+            border: 1px solid red;
+        }
+
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</body>
+</html>

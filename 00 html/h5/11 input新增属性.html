@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .testPlace::placeholder {
+            color: skyblue;
+        }
+    </style>
+</head>
+<body>
+     <!-- required
+        
+        input的新增属性
+        值为required时必须输入, 不能为空
+    
+    -->
+    <form action="">
+        <input type="email" required>
+        <input type="submit">
+    </form>
+
+    <!-- placeholder
+        文本框空白时默认显示文本
+        可以使用伪元素::placeholder修改其样式
+    -->
+    <form action="">
+        <input type="text" placeholder="hello world" class="testPlace">
+        <input type="submit">
+    </form>
+
+
+    <!-- autofocus 
+        自动聚焦, 页面加载完成时自动聚焦到指定表单
+    
+    -->
+    <form action="">
+        <input type="text" placeholder="auto focus" class="autofocusTest" autofocus>
+        <input type="submit">
+    </form>
+
+    <!--autocomplete
+        默认为autocomplete="on"
+        记忆之前成功提交的值, 下次输入时可以选择该值
+        
+        需要设置name属性才起作用
+    -->
+    <form action="">
+        <input type="text" placeholder="auto complete test" name="autocompleteTest" >
+        <input type="submit">
+    </form>
+
+    <!-- multiple
+        对于file类型的input, 使用multiple可以设置多个文件上传
+    
+    -->
+    <form action="">
+        <input type="file" placeholder="multiple test" multiple>
+        <input type="submit">
+    </form>
+</body>
+</html>
