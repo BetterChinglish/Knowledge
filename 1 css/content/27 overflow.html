@@ -5,6 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        div {
+            height: 100px;
+            width: 200px;
+            border: 1px solid black;
+        }
+
+        .visible {
+            /* 默认就是visible */
+            overflow: visible;
+        }
+
+        .hidden {
+            margin-top: 200px;
+            overflow: hidden;
+        }
+
+        .clip {
+            margin-top: 200px;
+            overflow: clip;
+        }
+
+        .scroll {
+            margin-top: 200px;
+            overflow: scroll;
+        }
+
+        .auto {
+            margin-top: 200px;
+            overflow-x: scroll;
+        }
+    </style>
 </head>
 <body>
     <!-- overflow
@@ -15,12 +47,15 @@
         的缩写
 
         visible
+            默认
             内容不能被裁减并且可能渲染到边距盒（padding）的外部。
 
         hidden
             如果需要，内容将被裁减以适应边距（padding）盒。
             不提供滚动条，也不支持允许用户滚动（例如通过拖拽或者使用滚轮）。
             内容可以以编程的方式滚动（例如，通过设置 scrollLeft 等属性的值或 scrollTo() 方法）, 因此该元素仍然是一个滚动的容器。
+
+            对于有定位的盒子, 谨慎使用overflow: hidden
 
         clip
             类似于 hidden，内容将以元素的边距（padding）盒进行裁剪。
@@ -37,11 +72,43 @@
 
         auto
             取决于用户代理。
-            
+
             如果内容适应边距（padding）盒，它看起来与 visible 相同，但是仍然建立了一个新的块级格式化上下文。
             如果内容溢出，则浏览器提供滚动条。
 
-
     -->
+
+    <div class="visible">
+        visible
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Similique maxime nihil, maiores, 
+        
+    </div>
+    <div class="hidden">
+        hidden
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Similique maxime nihil, maiores, 
+        
+    </div>
+    <div class="clip">
+        clip
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Similique maxime nihil, maiores, 
+        
+    </div>
+
+    <div class="scroll">
+        scroll
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Similique maxime nihil, maiores, 
+        
+    </div>
+
+    <div class="auto">
+        scrollX
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Similique maxime nihil, maiores, 
+        
+    </div>
 </body>
 </html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px solid black;
+            
+        }
+
+        .notUseBaseline {
+            vertical-align: bottom;
+        }
+    </style>
+</head>
+<body>
+    <!-- 发现图片底部出现空白缝隙
+    
+        其实是因为其默认vertical-align为baseline导致的
+
+        修改为其他即可
+    -->
+    <div>
+        <img src="./images/boat.jpg" alt="">
+    </div>
+
+    <br>
+
+    <div>
+        <img src="./images/boat.jpg" alt="" class="notUseBaseline">
+    </div>
+
+    <!-- 也可以将图片转换为块级元素
+        
+        不建议
+    
+    -->
+</body>
+</html>

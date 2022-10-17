@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vertical-align</title>
+    <style>
+
+        /* vertical-align
+            只对行内元素或行内块元素起效
+            对块元素无效
+
+            具体使用参见:
+                https://developer.mozilla.org/zh-CN/docs/Web/CSS/vertical-align#%E8%AF%AD%E6%B3%95
+        */
+
+        div {
+            margin-bottom: 50px;
+            background-color: aqua;
+            font-size: 50px
+        }
+
+        .baselineTest {
+            vertical-align: baseline;
+        }
+
+        .middleTest {
+            vertical-align: middle;
+        }
+        .topTest {
+            vertical-align: top;
+        }
+        .bottomTest {
+            vertical-align: bottom;
+        }
+    </style>
+</head>
+<body>
+    <div >
+        <img src="./images/boat.jpg" alt="" class="baselineTest">
+        <span >baselineTest测试</span>
+    </div>
+    <div >
+        <img src="./images/boat.jpg" alt="" class="middleTest">
+        <span >baselineTest测试</span>
+    </div>
+    <div >
+        <img src="./images/boat.jpg" alt="" class="topTest">
+        <span >baselineTest测试</span>
+    </div>
+    <div >
+        <img src="./images/boat.jpg" alt="" class="bottomTest">
+        <span >baselineTest测试</span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .test {
+            height: 0;
+            width: 0;
+            border-top: 20px solid red;
+            border-right: 20px solid green;
+            border-bottom: 20px solid grey;
+            border-left: 20px solid blue;
+        }
+
+        .triangle {
+            height: 0;
+            width: 0;
+            /* 这里的100px设置三角形的底 */
+            border: 100px solid transparent;
+
+            /* 这里的60px设置三角形的高 
+                border-top设置倒三角形
+                bottom设置正三角形
+                left设置右朝向的三角形
+                right设置左朝向的三角形
+            */
+            border-top: 60px solid thistle;
+            margin: 50px auto;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="test"></div>
+    <div class="triangle"></div>
+</body>
+</html>

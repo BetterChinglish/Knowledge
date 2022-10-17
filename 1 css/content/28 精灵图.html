@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 精灵图sprites
+        为了减少用户请求服务器次数
+        将多个图片内容放入一个大的图片中一次性返回
+        
+        主要针对背景图片
+        将多个背景图片放到一个大的图片中
+        需要使用某个小图片作为背景时直接将大图片引入该盒子背景
+        然后使用background-position移动背景图片位置到需要的小图片上即可
+
+        详见background-position
+
+        缺点:
+            图片较大
+            修改某个小图片麻烦
+            放大失真
+        
+        故用于一些不怎么需要修改的小图标(以背景的方式展现)
+        
+        关联:
+            字体图标
+            主要用于图标
+            可以对图标部分进行优化(相对于精灵图作图标)
+            (无法完全替代精灵图, 只能替代一些简单的图标)
+
+        
+    -->
+</body>
+</html>
