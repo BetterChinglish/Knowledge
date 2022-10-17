@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>37 溢出文字使用省略号显示</title>
+    <style>
+        div {
+            height: 100px;
+            width: 200px;
+            font-size: 1.3rem;
+            background-color: skyblue;
+            margin: 30px auto;
+        }
+
+        .test {
+
+            /* 强制一行显示 */
+            white-space: nowrap;
+
+            /* 溢出部分省略 */
+            overflow: hidden;
+
+            /* 快溢出末尾使用省略号替换 */
+            text-overflow: ellipsis;
+        }
+
+        .update {
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            /* 弹性伸缩恨字模型显示 */
+            display: -webkit-box;
+
+            /* 限制在一个块元素显示多少行文本 */
+            -webkit-line-clamp: 3;
+
+            /* 设置或检索伸缩盒对象的子元素的排列方式 */
+            -webkit-box-orient: vertical;
+
+            /* 显示省略号后可以调整哪行显示并依此调整盒子大小 */
+            height: 85px;
+
+            /* 更好地方法是让后端设置 */
+        }
+    </style>
+</head>
+<body>
+    <div class="test">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde, officiis?
+    </div>
+
+    <div class="update">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ut, temporibus id aliquid, deserunt provident reiciendis, rem dolor fugiat quam harum reprehenderit nemo voluptate ad cum maxime officia esse iusto.
+    </div>
+</body>
+</html>
