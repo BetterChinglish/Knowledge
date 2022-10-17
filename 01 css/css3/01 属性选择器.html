@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+/* 
+    elementName[attributeName]              elementName标签且有属性attributeName
+    elementName[attributeName="value"]      elementName标签且属性attributeName="value"
+    elementName[attributeName^="val"]       elementName标签且属性attributeName且其值以val开头
+    elementName[attributeName$="val"]       elementName标签且属性attributeName且其值以val结尾
+    elementName[attributeName*="val"]       elementName标签且其attributeName属性中含有val
+
+*/
+        input[value] {
+            color: skyblue;
+        }
+
+        div[class="helloWorld"] {
+            color: grey;
+        }
+        div[class^="oh"] {
+            color: skyblue;
+        }
+        div[class$="ts"] {
+            color: orange;
+        }
+        div[class*="My"] {
+            font-size: 32px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" value="hello world">
+    <input type="text">
+    <div class="helloWorld">Lorem, ipsum dolor.</div>
+    <div class="ohMyGod">Lorem, ipsum dolor.</div>
+    <div class="thisIsOneOfTheTests">Lorem, ipsum dolor.</div>
+    <div class="helloMyGod">Lorem, ipsum dolor.</div>
+</body>
+</html>

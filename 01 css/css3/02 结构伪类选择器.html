@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 主要根据文档的结构进行选择元素
+            e:first-child       选择任意一个元素的子元素的第一个元素, 如果它是e的话
+            e:last-child        选择任意一个元素(body后代)的子元素的最后一个元素, 如果它是e的话
+            e:nth-child(n)      选择任意一个元素的第n个后代元素, 如果这个后代元素是e的话
+                                可以是数字, 表达式, 或者关键字
+                                数字:
+                                    略
+                                关键字:
+                                    even: 偶数
+                                    odd:  奇数
+                                表达式:
+                                    若为f(n)的一个式子, n从0开始每次+1进行计算
+                                    例如f(n)=3n, 则选中0,3,6,9...
+
+                                    注意字母只能是n
+
+            e:first-of-type         
+            e:last-of-type      
+            e:nth-of-type(n)    选则任意一个元素的子元素中的第n个e元素
+
+                                first/last/nth - of - type 有排斥作用
+                                而first/last/nth - child没有
+
+        */
+        /* div:first-child {
+            font-size: 2rem;
+        }
+
+        p:first-child {
+            color: skyblue;
+        }
+
+        p:last-child {
+            color: orange;
+        }
+
+        div:last-child {
+            font-size: 3rem;
+        }
+        p:nth-child(2) {
+            color: aqua;
+        }
+        div:nth-child(2) {
+            color: aqua;
+        } */
+
+        /* p:last-child {
+            font-size: 3rem;
+            color: aqua;
+        }
+         */
+
+        /* p:first-child {
+        font-size: 3rem;
+        } */
+        
+        /* div:nth-of-type(2) {
+            color: skyblue;
+        }
+
+        div:first-of-type {
+            color: orange;
+        } */
+        /* p:first-of-type {
+            color: aquamarine;
+        } */
+
+        div:first-child {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <!-- <p>a p</p> -->
+    <div class="test">
+        <div>div1</div>
+        <div>div2</div>
+        <p>p1</p>
+        <p>p2</p>
+        <div>div3</div>
+        <p>p3</p>
+    </div>
+
+    <div> another div </div>
+    <p>a p</p>
+    
+</body>
+</html>
