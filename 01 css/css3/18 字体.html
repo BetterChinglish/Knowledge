@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>字体</title>
+<style>
+
+    /* 您的“自有”字体在 CSS @font-face 规则中进行定义。 */
+
+    /* 字体格式
+    TrueType 字体 (TTF)
+        TrueType 是 1980 年代后期由 Apple 和 Microsoft 开发的字体标准。 TrueType 是 Mac OS 和 Microsoft Windows 操作系统最常用的字体格式。
+
+    OpenType 字体 (OTF)
+        OpenType 是可缩放计算机字体的格式。它基于 TrueType 构建，并且是 Microsoft 的注册商标。今天，OpenType 字体在主要计算机平台上得到普遍使用。
+
+    Web 开放字体格式 (WOFF)
+        WOFF 是用于网页的字体格式。它于 2009 年开发，现已成为 W3C 的推荐标准。 WOFF 本质上是具有压缩和其他元数据的 OpenType 或 TrueType。目标是支持在有带宽限制的网络上从服务器到客户端进行字体分发。
+
+    Web 开放字体格式 (WOFF 2.0)
+        TrueType/OpenType 字体比 WOFF 1.0 提供更好的压缩。
+
+    SVG 字体/形状
+        SVG 字体允许在显示文本时将 SVG 用作字形。 SVG 1.1 规范定义了一个字体模块，该模块允许在 SVG 文档中创建字体。您还可以将 CSS 应用于 SVG 文档，同时 @font-face 规则可以应用于 SVG 文档中的文本。
+
+    嵌入式 OpenType 字体 (EOT)
+        EOT 字体是 Microsoft 设计的 OpenType 字体的紧凑形式，用作网页上的嵌入式字体。
+        
+    */
+
+    /* 简单使用 */
+    /* 
+    
+    // 引用到css中
+    @font-face {
+        // 设置该字体名称, 以方便后续中使用
+        font-family: myTestFontName;
+
+        // 指定字体文件的位置
+        src: url(uri);
+    } 
+    
+    // 使用
+    p {
+        font-family: myTestFontName;
+    }
+    */
+
+    /* 设置引用字体的粗体形式与普通形式 */
+    /* 
+    
+    // 注意两个font-family取名一样, 只是第二个使用的uri为同一种字体的粗体形式
+    @font-face {
+        font-family: myTestFont;
+        src: url(uri1);
+    }
+    @font-face {
+        font-family: myTestFont;
+        src: url(uri2);
+        font-weight: bold;
+    } 
+    
+    */
+
+    /* @font-face其他可选属性(font-family与src是必须的)
+
+    font-streth:    可选, 定义应如何拉伸字体。默认值是 "normal"。
+        normal
+        condensed
+        ultra-condensed
+        extra-condensed
+        semi-condensed
+        expanded
+        semi-expanded
+        extra-expanded
+        ultra-expanded
+
+    font-style:     可选。定义字体的样式。默认值是 "normal"。
+        normal
+        italic
+        oblique
+
+    font-weight:    可选。定义字体的粗细。默认值是 "normal"。
+        normal
+        bold
+        100
+        200
+        300
+        400
+        500
+        600
+        700
+        800
+        900
+
+    unicode-range:  可选。定义字体支持的 UNICODE 字符范围。默认值是 "U+0-10FFFF"
+        unicode-range
+    */
+
+</style>
+</head>
+<body>
+    
+</body>
+</html>
