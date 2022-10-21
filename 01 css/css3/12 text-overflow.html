@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>text-overflow</title>
+    <style>
+        /* text-overflow
+        
+            规定了如何向用户展示溢出内容
+            例如溢出部分在框内使用...代替等
+        */
+        p {
+            height: 24px;
+            width: 160px;
+            font-size: 16px;
+            border: 1px solid grey;
+            margin-bottom: 30px;
+        }
+
+        p:nth-child(1) {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 默认 */
+        p:nth-child(2) {
+            white-space: nowrap;
+            overflow: hidden;
+            /* text-overflow: ellipsis; */
+        }
+
+        p:nth-child(3) {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: clip;
+
+        }
+
+    </style>
+</head>
+<body>
+    使用text-overflow:ellipsis
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, ut!
+    </p>
+
+    text-overflow默认值(css中不添加该属性测试)
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, ut!
+    </p>
+
+    text-overflow: clip;
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, ut!
+    </p>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 202px;
+            width: 802px;
+            border: 1px solid black;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        /* 
+            background-image: radial-gradient(  
+                ( (shape) (size) (at position),)  
+                color1, 
+                color2, 
+                ...
+            ) 
+
+            默认shape为椭圆, size为最远角, position代表的是中心位置, 默认为center
+
+            center可取四个值, 代表圆最外与谁相交(或相切):
+                closest-side        最近边相切
+                farthest-side       最远边
+                closest-corner      最近角相交
+                farthest-corner     最远角
+
+        
+        */
+        div:nth-child(1) {
+            background-image: radial-gradient(skyblue, pink, grey);
+        }
+
+        div:nth-child(2) {
+            background-image: radial-gradient(circle, skyblue, pink, grey);
+        }
+        div:nth-child(3) {
+            background-image: radial-gradient(at 70% 20%, skyblue, pink, grey);
+        }
+
+        div:nth-child(4) {
+            background-image: radial-gradient(closest-corner at 70% 20%, skyblue, pink, grey);
+        }
+        div:nth-child(5) {
+            background-image: radial-gradient(closest-side at 70% 20%, skyblue, pink, grey);
+        }
+        div:nth-child(6) {
+            background-image: radial-gradient(farthest-side at 70% 20%, skyblue, pink, grey);
+        }
+        div:nth-child(7) {
+            background-image: radial-gradient(farthest-corner at 70% 20%, skyblue, pink, grey);
+        }
+
+        /* repeating-radial-gradient() 函数用于重复径向渐变 
+
+            规则应该是和repeating-linear-gradient()一致
+        
+        */
+        div:nth-child(8) {
+            background-image: repeating-radial-gradient(skyblue, grey 50px, pink 100px);
+        }
+    </style>
+</head>
+<body>
+    
+    <div>只填颜色, 其他默认</div>
+    <div>shape改成圆, 其他默认</div>
+    <div>仅修改position, at 70% 20%</div>
+
+    size参数测试(at 70% 20%)
+    <div>closest-corner</div>
+    <div>closest-side</div>
+    <div>farthest-side</div>
+    <div>farthest-corner</div>
+
+    repeating-radial-gradient()
+    <div></div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>word-wrap</title>
+    <style>
+        /* 
+            将较长的单词折断放入下一行中显示
+        
+        */
+        p {
+            height: 200px;
+            width: 160px;
+            border: 1px solid grey;
+        }
+
+        p:nth-child(2) {
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    默认
+    <p>
+        Lorem ipsum dolor sit amet, 
+        consectetur adipisicing elit. 
+        hereisaveryverylongword
+        Quidem, obcaecati.
+    </p>
+
+    word-wrap: break-word;
+    <p>
+        Lorem ipsum dolor sit amet, 
+        consectetur adipisicing elit. 
+        hereisaveryverylongword
+        Quidem, obcaecati.
+    </p>
+</body>
+</html>
