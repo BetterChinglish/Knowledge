@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* contain
+            图片比盒子大时始终显示完整大小图片
+            自动缩放宽高直到图片较长的一边完全在盒子内
+        
+        */
+        .bgsContainTest {
+            height: 400px;
+            width: 200px;
+            border: 1px solid black;
+            background-image: url(../images/boat.jpg);
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        /* cover
+            自动缩放图片直到图片较短边完全遮住盒子
+         */
+        .bgsCoverTest {
+            height: 400px;
+            width: 200px;
+            border: 1px solid black;
+            background-image: url(../images/boat.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .normal {
+            height: 400px;
+            width: 200px;
+            border: 1px solid black;
+            background-image: url(../images/boat.jpg);
+            background-repeat: no-repeat;
+        }
+
+        .bgsSetselfTest {
+            height: 400px;
+            width: 200px;
+            border: 1px solid black;
+            background-image: url(../images/boat.jpg);
+            background-size: 150px 100px;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="normal">
+        原始图片
+    </div>
+    <div class="bgsContainTest">
+        contain
+    </div>
+
+    <br>
+
+    <div class="bgsCoverTest">
+        cover
+    </div>
+
+    <br>
+
+    <div class="bgsSetselfTest">
+        自己设置背景图片宽高, 当前为: height:100px, width:150px
+    </div>
+
+</body>
+</html>

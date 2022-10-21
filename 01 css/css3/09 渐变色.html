@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 渐变
+            1. 线性渐变
+
+            2. 中心渐变(径向渐变)
+
+        */
+
+        /* 线性渐变
+        
+            linear-gradient(direction, color1, color2, .... )
+
+            direction有预设值:
+                to bottom: 向下渐变, 默认
+        
+        */
+        div {
+            height: 400px;
+            width: 400px;
+            /* border: 1px dotted skyblue; */
+            margin-bottom: 30px;
+        }
+
+        /* 默认即为 to bottom, 可以不写 */
+        .toBottom {
+            background-image: linear-gradient(to bottom, black, green, red);
+        }
+        .toRight {
+            background-image: linear-gradient(to right, yellow, pink);
+        }
+
+        .toRightBottom {
+            background-image: linear-gradient(to right bottom, orange, skyblue, pink);
+        }   
+
+        .toLeftTop {
+            background-image: linear-gradient(to left top, skyblue, #aaa);
+        }
+
+        .toTop {
+            background-image: linear-gradient(to top, red, #aaa);
+        }
+
+        /* 使用角度
+            0deg相当于向上
+            正值顺时针旋转度数
+            负值逆时针旋转读书
+        */
+        .setSelf {
+            background-image: linear-gradient(30deg, pink, skyblue, grey);
+        }
+
+        /* 颜色值可以使用rgba形式, 即可以添加透明度渐变 */
+        .rgbaTest {
+            position: absolute;
+            background-image: linear-gradient(rgb(180, 241, 95), rgba(6, 217, 250, 0.436));
+        }
+        .father {
+            margin-top: 100px;
+            width: 500px;
+            height: 400px;
+            position: relative;
+        }
+
+        /* repeating-linear-gradient()可以设置重复性渐变, 使用方法类似 */
+
+        /* 
+            两个颜色
+                默认
+                    第一个颜色的开始位置为0, 
+                    第二个颜色的结束位置为末尾
+                    二者均分
+
+                修改位置
+                    若第一个颜色位置被修改, 则其起始位置被修改, 第二个颜色结束位置不变, 前面跳过的相当于补到末尾, 并按已经渲染的比例大小进行余下的渲染
+                    若只修改第二个颜色的位置, 则结束位置改变, 其余类似
+                    若两个位置都被修改, 则起始位置和结束位置都改变, 并继续按上述类似原则进行渲染, 如果第一个颜色的起始位置比第二个颜色的结束位置后
+
+                
+                
+
+            
+        */
+        .repeatTest {
+            background-image: repeating-linear-gradient(90deg, skyblue 200px, pink 100px);
+        }
+    </style>
+</head>
+<body>
+    <div class="toBottom"></div>
+    <div class="toRight"></div>
+    <div class="toRightBottom"></div>
+    <div class="toLeftTop"></div>
+    <div class="toTop"></div>
+
+    <div class="setSelf"></div>
+
+    <div class="father">
+        <div class="rgbaTest"></div>
+        一些字体
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, rerum.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, rerum.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, rerum.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, rerum.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, rerum.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, rerum.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, rerum.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, rerum.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, rerum.
+    </div>  
+
+    <div class="repeatTest"></div>
+</body>
+</html>

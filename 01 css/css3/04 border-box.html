@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            对于传统盒子, 设置的width与height都是其content的大小
+            而添加padding, border都会导致盒子继续增大
+            导致布局不方便
+
+            使用box-sizing: border-box将其设置为边框盒子
+            也就是说width与height指定的是border和其内部的padding与content的大小
+        */
+
+        /* 
+            最终高宽都为100+(25+3)*2=156px
+        */
+        .normal {
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+            border: 3px solid orange;
+            padding: 25px;
+        }
+        
+        /*  
+            最终高宽都为100px
+        */
+        .borderBox {
+            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+            border: 3px solid orange;
+            padding: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="normal"></div>
+
+    <br>
+
+    <div class="borderBox"></div>
+</body>
+</html>

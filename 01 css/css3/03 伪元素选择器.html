@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 可以简化html结构
+
+        伪元素选择器使用css添加一个元素, 在html结构中找不到
+        故称为伪元素
+
+        简化html文档与结构 */
+        
+        /* 
+            e::before 
+                在父元素e内部的最前面添加一个盒子
+            e::after
+                在父元素e内部的最后面添加一个盒子 
+
+            他们都必须添加属性content
+
+            默认他们都是行内元素
+
+            ::befor与::after的选择器的权重都为1, 相当于标签选择器
+        */
+
+        /* 重复使用其实都是一个盒子 */
+        .testBeforeAndAfter::after {
+            content: "this is after";
+        }
+
+        .testBeforeAndAfter::after {
+            content: "this is another after";
+        }
+        .testBeforeAndAfter::before {
+            content: "this is before";
+            background-color: #aaa;
+        }
+
+    </style>
+</head>
+<body>
+    
+
+    <div class="testBeforeAndAfter">
+        <p>Lorem, ipsum.</p>
+        <p>Lorem, ipsum dolor.</p>
+        <p>Lorem.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        /* filter过滤
+            https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter
+
+            filter: blur()可以将高斯模糊应用于输入图像
+                若没有设置参数值，默认为 0
+                该参数可以指定为 CSS 长度，但不接受百分比值。(将每多少个像素相互融合)
+        */
+        .filterTest {
+            filter: blur(3px);
+        }
+
+        .filterTest:hover {
+            filter: blur(0px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <img src="../images/boat.jpg" alt="" class="filterTest">
+</body>
+</html>
