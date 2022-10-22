@@ -6,12 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>rotate</title>
     <style>
-        
+        /* ratate(degree) 
 
+            degree在css中写作deg
+
+            顺时针旋转该角度
+        */
+
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: skyblue;
+            transition: all 0.5s ease 0.3s;
+        }
+
+        div:nth-child(1) {
+            transform: rotate(45deg);
+        }
+
+        /* 第一个盒子的标准流的影响没有改变 */
+        div:nth-child(2) {
+            background-color: antiquewhite;
+            opacity: 0.7;
+        }
+
+        /* 发现相对于视口最左边并没有移动
+        
+            原因是因为rotate()旋转的是该元素的z轴
+            也就是说xy轴跟着旋转了
+            (注意是该元素的而非整个页面的)
+
+        */
+        div:nth-child(3) {
+            transform: rotate(45deg) translate(300px, 300px);
+        }
+        /* 旋转坐标有继承关系 */
+        #son {
+            transform: rotate(0deg);
+            width: 200px;
+            height: 200px;
+            background-color: antiquewhite;
+            opacity: 0.7;
+        }
 
     </style>
 </head>
 <body>
-    
+    <div>this is the first div</div>
+    <div>2</div>
+    <div>3
+        <div id="son"></div>
+    </div>
+
+
 </body>
 </html>
