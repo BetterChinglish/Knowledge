@@ -7,9 +7,9 @@
 <title>Document</title>
 <style>
 
-    /* transform属性可以使用的方法:
+    /* transform属性2d使用的方法:
     translate(x,y)          x与y轴移动量
-    rotate()                根据给定的角度顺时针或逆时针旋转元素。
+    rotate()                根据给定的角度顺时针旋转元素(负数则相当于逆时针)
     scale(x,y)              将宽*x, 高*y    
     scaleX()                宽*x
     scaleY()                高*y
@@ -17,7 +17,15 @@
     skewX()                 沿 X 轴倾斜x度
     skewY()                 沿 Y 轴倾斜y度
     matrix()                前面方法的组合: matrix(scaleX(),skewY(),skewX(),scaleY(),translateX(),translateY())
+
     */
+
+    /* 
+        上述旋转rotate()的中心点默认为center
+        可以使用transform-origin修改
+        详见19 transform-origin.html
+    */
+
 
 </style>
 </head>
