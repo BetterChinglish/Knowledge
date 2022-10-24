@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            translateZ()定义的是html元素离屏幕的距离
+            
+            perspective定义的是视角离屏幕的距离
+
+            屏幕上显示的样子相当于视角发出光映射html元素后在屏幕上显示的距离
+
+            perpective: npx;
+                视角离屏幕n像素
+
+            透视的视角是放于本元素的, 影响的是本元素内部的元素
+            如果要本元素的translateZ有效则需要将透视放在本元素的父元素上
+        */
+        .father {
+            perspective: 400px;
+        }
+        .son {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            background-color: antiquewhite;
+            transform: translate3d(300px, 200px, 200px);
+        }
+    </style>
+</head>
+<body>
+    <img src="../images/perspective.jpg" alt="">
+    <div class="father">
+        <div class="son"></div>
+    </div>
+</body>
+</html>

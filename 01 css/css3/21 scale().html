@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* scale(x,y) 
+            宽高变为原来的x,y倍
+
+            若scale(a), 则宽高都变为原来的a倍
+            
+        */
+
+        /* 该元素仅原标准流影响后续元素
+            后续添加的scale()仅在视觉上放大, 并不挤开其他元素
+        */
+        div {
+            width: 300px;
+            height: 500px;
+            background-color: skyblue;
+            margin: 300px auto;
+            transition: all 0.5s;
+            /* 变化中心点影响scale */
+            transform-origin: left top;
+        }
+
+        div:hover {
+            transform: scale(1.5);
+        }
+    </style>
+</head>
+<body>
+    <div>下面文字的位置不动</div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, molestiae.</p>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        /* 定义动画 
+            @keyframes animationName {
+                // 定义关键帧
+                0% {
+                    // 0%也就是开始时是什么样式
+                }
+
+                a% {
+
+                }
+                b% {
+
+                }
+                
+                // ....任意多都可以, 0~100%
+
+                100% {
+                    // 100%时也就是结束的时候是什么样式
+                }
+            } 
+            
+            如果只是0%到100%, 也可以使用from to
+            @keyframes animationName {
+                from {
+
+                }
+
+                to {
+
+                }
+            }
+        */
+        
+        @keyframes myTest {
+            0% {
+                margin-left: 0;
+            }
+
+            /* 
+            
+            注意此处要写margin-top: 0; 
+            否则后面的margin-top: 500px;相当于在此margin-top: 250px 
+            导致0~33%曲线向下进行
+            */
+            33% {
+                margin-left: calc(100vw - 200px);
+                margin-top: 0;
+            }
+
+            66% {
+                margin-left: calc(50vw - 100px);
+                margin-top: 500px;
+            }
+
+            
+            100% {
+                margin-left: 0;
+            }
+        }
+
+        /* 动画的使用
+            1. 调用动画
+                在需要使用动画的元素上添加css属性
+                    animation-name: animationName;
+            2. 持续时间
+                即定义动画播放一共需要多长时间
+                    animation-duration: time;
+                        time的单位为s(秒)
+
+        */
+
+        /* div {
+            height: 200px;
+            width: 200px;
+            background-color: skyblue;
+            animation-name: myTest;
+            animation-duration: 2s;
+        } */
+
+        /* animation-delay
+            设置开始动画前有多久的延迟
+        */
+        /* div {
+            height: 200px;
+            width: 200px;
+            background-color: skyblue;
+            animation-name: myTest;
+            animation-duration: 2s;
+            animation-delay: 1s;
+        } */
+
+        /* animation-iteration-count
+        
+            设置动画运行次数
+            关键值infinite即为无限次
+        */
+        /* div {
+            height: 200px;
+            width: 200px;
+            background-color: skyblue;
+            animation-name: myTest;
+            animation-duration: 2s;
+            animation-delay: 1s;
+            // animation-iteration-count: infinite; 
+            animation-iteration-count: 3;
+        } */
+
+        /* animation-direction
+            规定下一周期的播放顺序
+            normal - 动画正常播放（向前）。默认值
+            reverse - 动画以反方向播放（向后）
+            alternate - 一个周期向前, 一个周期向后
+            alternate-reverse - 一个周期向后, 一个周期向前
+        */
+        /* div {
+            height: 200px;
+            width: 200px;
+            background-color: skyblue;
+            animation-name: myTest;
+            animation-duration: 2s;
+            animation-delay: 0.3s;
+            animation-iteration-count: infinite;
+        } */
+        /* animation-timing-function
+            指定动画的速度曲线
+            ease - 指定从慢速开始，然后加快，然后缓慢结束的动画（默认）
+            linear - 规定从开始到结束的速度相同的动画
+            ease-in - 规定慢速开始的动画
+            ease-out - 规定慢速结束的动画
+            ease-in-out - 指定开始和结束较慢的动画
+            steps(n) -  指定n步, 然后一步一步显示 
+            cubic-bezier(n,n,n,n) - 运行您在三次贝塞尔函数中定义自己的值
+        */
+
+        /* div {
+            height: 200px;
+            width: 200px;
+            background-color: skyblue;
+            animation-name: myTest;
+            animation-duration: 5s;
+            animation-delay: 0.3s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        } */
+
+        /* animation-fill-mode
+            动画样式是否影响原本样式
+
+            none:       不影响, 即动画开始前不应用动画样式
+            backwards:  动画开始前, 应用动画开始时第一帧的样式
+            forwards:   动画结束后, 应用动画结束时最后的样式
+            both:       即backwards与forwards
+        
+        */
+
+        /* 简写
+        
+            animation:  动画名称
+                        持续时间
+                        运动曲线
+                        何时开始
+                        播放次数
+                        播放是否反向或正反交替
+                        起始或结束状态
+        */
+        
+        /* animation-play-state
+            running 运行
+            paused  暂停
+
+            使用js控制动画暂停或运行
+        */
+
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 500px;
+            height: 300px;
+            background-color: skyblue;
+            transition: all 0.4s;
+            margin: 200px auto;
+        }
+
+        div:hover {
+            /* 设置一个仅对于x轴变 */
+            /* transform: skew(30deg); */
+            /* transform: skew(30deg, 0); */
+            /* transform: skewX(30deg); */
+
+            /* 设置俩xy都变 */
+            /* transform: skew(30deg, 20deg); */
+
+            /* 只设置y变 */
+            /* transform: skew(0, 20deg); */
+            transform: skewY(20deg);
+
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

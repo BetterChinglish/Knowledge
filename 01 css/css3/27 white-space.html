@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+            normal
+                连续的空白符会被合并，换行符会被当作空白符来处理。换行在填充「行框盒子 (line boxes)」时是必要。
+
+            nowrap
+                和 normal 一样，连续的空白符会被合并。但文本内的换行无效。
+
+            pre
+                连续的空白符会被保留。在遇到换行符或者<br>元素时才会换行。
+
+            pre-wrap
+                连续的空白符会被保留。在遇到换行符或者<br>元素，或者需要为了填充「行框盒子 (line boxes)」时才会换行。
+
+            pre-line
+                连续的空白符会被合并。在遇到换行符或者<br>元素，或者需要为了填充「行框盒子 (line boxes)」时会换行。
+
+            break-spaces 与 pre-wrap的行为相同，除了：
+                任何保留的空白序列总是占用空间，包括在行尾。
+                每个保留的空格字符后都存在换行机会，包括空格字符之间。
+                这样保留的空间占用空间而不会挂起，从而影响盒子的固有尺寸（最小内容大小和最大内容大小）。
+        */
+    </style>
+</head>
+<body>
+    
+</body>
+</html>
