@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            2d中rotate()为展现2d内容所以旋转的是z轴
+            rotateX()可以旋转x轴
+            rotateY()可以旋转y轴
+            rotateZ()可以旋转z轴
+        */
+        div {
+            perspective: 400px;
+        }
+        img {
+            display: block;
+            margin: 100px auto;
+            transition: all 2s linear;
+        }
+
+        
+        /* img:hover {
+            transform: rotateX(180deg);
+        } */
+        img:hover {
+            transform: rotateY(180deg);
+        }
+        /* img:hover {
+            transform: rotateZ(180deg);
+        } */
+    </style>
+</head>
+<body>
+    <div>
+        <img src="../images/boat.jpg" alt="">
+    </div>
+</body>
+</html>

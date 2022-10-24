@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* transform-style 
+
+            控制该元素的子元素是否开启立体环境
+
+            flat
+                不开启, 默认
+            preserve-3d
+                开启
+        */
+       
+        .flat {
+            position: relative;
+            height: 300px;
+            width: 300px;
+            margin: 200px auto;
+            perspective: 500px;
+            transition: all 2s;
+            /* 修改transform-style为preserve-3d后可以 */
+            transform-style: preserve-3d;
+        }
+
+        .flat:hover {
+            transform: rotateY(60deg);
+        }
+        .flat div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background-color: antiquewhite;
+        }
+        .flatOne {
+            background-color: antiquewhite;
+        }
+
+        .flat .flatTwo {
+            background-color: aqua;
+            transform: rotateX(80deg);
+        }
+
+
+    </style>
+</head>
+<body>
+    无法做到两个元素交叉的效果
+    <div class="flat">
+        <div class="flatOne"></div>
+        <div class="flatTwo"></div>
+    </div>
+</body>
+</html>

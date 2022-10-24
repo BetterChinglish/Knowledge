@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        .box {
+            width: 300px;
+            height: 300px;
+            margin: 200px auto;
+            position: relative;
+            transition: all 1s;
+            transform-style: preserve-3d;
+            animation: move 2s linear 0s infinite none;
+
+        }
+        .box:hover {
+            transform: rotateY(180deg);
+        }
+
+
+        .box div {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: antiquewhite;
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: center;
+            line-height: 300px;
+            /* backface-visibility: hidden; */
+        }
+        .box .back {
+            background-color: aqua;
+            transform: rotateY(180deg) translateZ(1px);
+        }
+
+        @keyframes move {
+            from {
+                transform: rotateY(0deg);
+            }
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="front">正面不一样</div>
+        <div class="back">反面是这个</div>
+
+    </div>
+</body>
+</html>
