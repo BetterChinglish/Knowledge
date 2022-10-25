@@ -5,10 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <!-- <position>
-        一个 <position> 定义一组 x/y 坐标（相对于一个元素盒子模型的边界），来放置项目（原文为 item）。
+    <style>
+        /* 
+        <position> 定义一组 x/y 坐标（相对于一个元素盒子模型的边界），来放置项目（原文为 item）。
             它可以使用一到四个值进行定义。
             如果使用两个非关键字值，第一个值表示水平位置，第二个值表示垂直位置。
             如果仅指定一个值，则第二个值默认是 center。如果使用三个或四个值，则长度百分比值是前面关键字值的偏移量。
@@ -18,7 +17,6 @@
             关键字 top、left、bottom、right 中的一个。用来指定把这个项目（原文为 item）放在哪一个边界。另一个维度被设置成 50%，所以这个项目（原文为 item）被放在指定边界的中间位置。
             <length> 或 <percentage>。指定相对于左边界的 x 坐标，y 坐标被设置成 50%。
 
-
         两个值的语法： 一个定义 x 坐标，另一个定义 y 坐标。每个值可以是：
             关键字 top、left、bottom、right 中的一个。如果这里给出 left 或 right，那么这个值定义 x 轴位置，另一个值定义 y 轴位置。如果这里给出 top 或 bottom，那么这个值定义 y 轴位置，另一个值定义 x 轴位置。
             <length> 或 <percentage>。如果另一个值是 left 或 right，则该值定义相对于顶部边界的 Y。如果另一个值是 top 或 bottom，则该值定义相对于左边界的 X。如果两个值都是 <length> 或 <percentage> 值，则第一个定义 X，第二个定义 Y。
@@ -26,16 +24,101 @@
             排序：配对关键字时，位置并不重要，因为浏览器可以重新排序，写成 top left 或 left top 其产生的效果是相同的。使用 <length> 或 <percentage> 与关键字配对时顺序非常重要，定义 X 的值放在前面，然后是定义 Y 的值， right 20px 和 20px right 的效果是不相同的，前者有效但后者无效。left 20% 或 20% bottom 是有效的，因为 X 和 Y 值已明确定义且位置正确。
             默认值是 left top 或者 0% 0%。
 
-
         三个值的语法： 两个值是关键字值，第三个是前面值的偏移量：
             第一个值是关键字 top、left、bottom、right，或者 center。如果设置为 left 或 right，则定义了 X。如果设置为 top 或 bottom，则定义了 Y，另一个关键字值定义了 X。
             <length> 或 <percentage>，如果是第二个值，则是第一个值的偏移量。如果是第三个值，则是第二个值的偏移量。
             单个长度或百分比值是其前面的关键字值的偏移量。一个关键字与两个 <length> 或 <percentage> 值的组合无效。
-            
         
         四个值的语法： 第一个和第三个值是定义 X 和 Y 的关键字值。第二个和第四个值是前面 X 和 Y 关键字值的偏移量：
             第一个值和第三个值是关键字值 top、left、bottom、 right 之一。如果设置为 left 或 right，则定义了 X。如果设置为 top 或 bottom，则定义了 Y，另一个关键字值定义了 X。
             第二个和第四个值是 <length> 或 <percentage>。第二个值是第一个关键字的偏移量。第四个值是第二个关键字的偏移量。
-     -->
+        */
+        div {
+            width: 300px;
+            height: 300px;
+            margin: 30px auto;
+            border: 1px solid #aaa;
+            background-image: url(../images/bird.jpg);
+            background-repeat: no-repeat;
+        }
+
+        /* 默认靠左上角 */
+        div:nth-child(1) {
+
+        }
+
+        /* 一个值, 另一个方位默认为center */
+        div:nth-child(2) {
+            background-position: center;
+        }
+        div:nth-child(3) {
+            background-position: top;
+        }
+
+        /* 2个值 */
+        div:nth-child(4) {
+            background-position: top right;
+        }
+
+        /* 3个值 */
+        div:nth-child(5) {
+            background-position: top 50px right;
+        }
+        div:nth-child(6) {
+            background-position: top right 50px;
+        }
+
+        /* 4个值 */
+        div:nth-child(7) {
+            background-position: top 50% right 50px;
+
+            position: relative;
+            
+        }
+
+        .test1 {
+            display: block;
+            width: 300px;
+            height: 1px;
+            background-color: #aaa;
+            position: absolute;
+            top: 50%;
+        }
+
+        /* 不使用方位 */
+        div:nth-child(8) {
+            /* 水平方向, 垂直方向 */
+            background-position: 50% 50px;
+        }
+        .test2 {
+            display: block;
+            height: 300px;
+            width: 1px;
+            background-color: #aaa;
+            position: absolute;
+            left: 50%;
+        }
+
+        /* 混合 */
+        div:nth-child(9) {
+            /* 水平方向, 垂直方向 */
+            background-position: 100px center;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div>
+        <span class="test1"></span>
+    </div>
+    <div>
+        <span class="test2"></span>
+    </div>
+    <div></div>
 </body>
 </html>

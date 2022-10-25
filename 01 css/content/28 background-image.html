@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            margin: 30px auto;
+            border: 1px solid #aaa;
+        }
+        /* 使用url添加背景图片 */
+
+        div:nth-child(1) {
+            background-image: url(../images/bird.jpg);
+        }
+
+        /* 使用background-repeat: no-repeat;取消平铺
+            默认平铺(repeat)
+        */
+        div:nth-child(2) {
+            background-image: url(../images/bird.jpg);
+            background-repeat: no-repeat;
+        }
+
+        /* 沿x轴或y轴平铺 */
+        div:nth-child(3) {
+            background-image: url(../images/bird.jpg);
+            background-repeat: repeat-x;
+        }
+        div:nth-child(4) {
+            background-image: url(../images/bird.jpg);
+            background-repeat: repeat-y;
+        }
+
+        /* 可以同时设置背景图片与背景颜色
+            背景图片会压住背景颜色
+        */
+        div:nth-child(5) {
+            background-image: url(../images/bird.jpg);
+            background-repeat: repeat-y;
+            background-color: skyblue;
+        }
+
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

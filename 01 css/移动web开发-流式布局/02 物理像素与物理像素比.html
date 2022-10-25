@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        
+            物理像素即为显示器的像素点
+            而实际上显示的时候可能多个物理像素对应书写中的一个像素
+
+            这时候有一个比值, 就是物理像素比
+            即单位px需要n个物理像素显示时, 物理像素比为2
+
+            一般pc端1px对应1物理像素点
+            移动端1px对应一个或多个物理像素点
+        */
+
+        /* 可以切换到iphone8显示模式查看
+        
+            iPhone8物理像素宽度为750px
+        */
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: skyblue;
+        }
+
+        /* 这是由于视网膜屏幕引起的
+            他将多个像素压缩进一个像素的位置, 使得图片可以显示得更加细腻
+        */
+
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>
