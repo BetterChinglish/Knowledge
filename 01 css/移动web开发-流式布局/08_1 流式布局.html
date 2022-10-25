@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 也就是百分比布局
+            注重宽度
+                即宽度使用百分比
+            不注重高度
+                即给定确定的高度
+
+            可以添加最大宽度和最小宽度以防止缩放过度
+        */
+
+        section {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+        section::after {
+            content: "";
+            clear: both;
+            display: block;
+            visibility: hidden;
+        }
+        section{
+            background-color: #aaa;
+        }
+        section div {
+            width: 40%;
+            height: 300px;
+            background-color: antiquewhite;
+        }
+        section div:nth-child(1) {
+            background-color: skyblue;
+            float: left;
+            margin-left: 8%;
+        }
+
+        section div:nth-child(2) {
+            float: right;
+            margin-right: 8%;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <section>
+        <div></div>
+        <div></div>
+    </section>
+</body>
+</html>

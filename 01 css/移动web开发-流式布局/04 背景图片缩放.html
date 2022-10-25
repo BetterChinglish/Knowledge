@@ -9,29 +9,78 @@
         /* 使用background-size
         
             规定背景图像的尺寸
-        
+
+            值:
+                关键字:
+                    contain:    覆盖盒子最长
+                    cover:      覆盖盒子最短
+                像素参数:
+                    只写一个:   设置宽度, 等比例缩放, 高度省略
+                    两个:       第一个设置宽度, 第二个设置高度
+                百分比参数
+                    相对于图片的父盒子而言
+                    第一个设置宽度, 第二个设置高度
+                    只写一个时设置宽度, 等比例缩放, 高度省略
         */
 
         div {
-            width: 500px;
-            height: 500px;
+            width: 800px;
+            height: 800px;
             border: 1px solid skyblue;
             background-image: url(../images/bird.jpg);
             background-repeat: no-repeat;
+            margin: 30px auto;
             
         }
+
+        /* 关键值 */
         div:nth-child(1) {
             background-size: contain;
         }
         div:nth-child(2) {
             background-size: cover;
         }
+
+        /* 像素参数, 设置宽度, 等比例缩放, 高度省略 */
+        div:nth-child(3) {
+            background-size: 300px;
+        }
+
+        /* 一个百分比参数 */
+        div:nth-child(4) {
+            background-size: 50%;
+        }
+
+        div:nth-child(5) {
+            background-size: 30% 50%;
+        }
+        div:nth-child(6) {
+            background-size: 200px 100px;
+        }
     </style>
 </head>
 <body>
-    <div></div>
-    <div></div>
-    <div></div>
-    
+    <div>
+        background-size: contain;
+    </div>
+    <div>
+        background-size: cover;
+    </div>
+    <div>
+        background-size: 300px;
+
+    </div>
+    <div>
+        background-size: 50%;
+
+    </div>
+    <div>
+        background-size: 30% 50%;
+
+    </div>
+    <div>
+        background-size: 200px 100px;
+
+    </div>
 </body>
 </html>

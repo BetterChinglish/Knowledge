@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            img或a元素在移动端长按时会弹出菜单
+            使用
+                -webkit-touch-callout: none;
+            取消长按弹出菜单
+        */
+
+        /* chrome模拟手机无法体现出来
+            需要到真实手机上进行查看区别
+            这里仅作演示
+
+        */
+        a:nth-child(3),
+        img:nth-child(4) {
+            -webkit-touch-callout: none;
+        }
+    </style>
+</head>
+<body>
+    默认
+    <br>
+    <a href="#">click</a>
+
+    <br>
+
+    <img src="../images/bird.jpg" alt="">
+
+    <br>
+    <br>
+    <br>
+
+    取消后
+    <br>
+    <a href="#">click</a>
+
+    <br>
+
+    <img src="../images/bird.jpg" alt="">
+</body>
+</html>
