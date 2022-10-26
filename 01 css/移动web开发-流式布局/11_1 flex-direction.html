@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 800px;
+            height: auto;
+            display: flex;
+            margin: 50px auto;
+            background-color: skyblue;
+            /* 竖直排列 */
+            /* flex-direction: column; */
+
+            /* 竖直逆序排列 */
+            /* flex-direction: column-reverse; */
+
+            /* 水平排列, 默认 */
+            /* flex-direction: row; */
+
+            /* 水平反转 */
+            flex-direction: row-reverse;
+        }
+
+        .container span {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+    </div>
+</body>
+</html>

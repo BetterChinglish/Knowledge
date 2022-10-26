@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 800px;
+            height: 500px;
+            display: flex;
+            margin: 50px auto;
+            background-color: skyblue;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            /* align-items控制单行项目沿着侧轴如何对齐 */
+            /* align-items: center; */
+            /* align-items: flex-start; */
+            align-items: flex-end;
+
+
+        }
+
+        .container span {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <!-- <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span> -->
+    </div>
+</body>
+</html>
