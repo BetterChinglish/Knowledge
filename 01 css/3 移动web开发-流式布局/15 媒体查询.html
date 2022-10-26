@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            为了得到屏幕大小
+            可以使用媒体查询
+
+            @media mediatype and|not|only (media feature) {
+                css-code
+            }
+
+            以@media开头
+
+            mediatype   媒体类型
+                all     用于所有设备
+                print   用于打印机和打印预览
+                screen  用于电脑屏幕, 平板电脑, 手机等
+                speech	用于大声“读出”页面的屏幕阅读器。
+            关键字 and, not, only
+                and     且
+                not     非
+                only    只
+                将媒体类型或多个媒体特性连接到一起作为媒体查询的条件
+
+            media feature 媒体特性, 用小括号包含
+                每种媒体类型都有不同的特性
+                根据不同的媒体类型的媒体特性设置不同的展示风格
+        */
+
+        /* 当屏幕尺寸小于等于800px时, 将body背景设置为aqua颜色 */
+        @media screen and (max-width: 800px) {
+            /* 这里可以写css样式 */
+            body {
+                background-color: aqua;
+            }
+            /* 可以通过这种方式设置html的font-size */
+        }
+
+    </style>
+</head>
+<body>
+    
+</body>
+</html>

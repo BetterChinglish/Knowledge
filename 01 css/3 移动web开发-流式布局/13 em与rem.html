@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* em是相对于父元素的font-size的倍数 */
+        .fa {
+            font-size: 12px;
+        }
+
+        /* son的宽高都为12*10=120px */
+        .son {
+            width: 10em;
+            height: 10em;
+            background-color: skyblue;
+        }
+
+
+        /* rem是相对于html的font-size的倍数 */
+        html {
+            font-size: 16px;
+        }
+        .remTest {
+            width: 10rem;
+            height: 10rem;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <div class="fa">
+        <div class="son"></div>
+        <div class="remTest"></div>
+    </div>
+</body>
+</html>
