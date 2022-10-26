@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        /* 
+            样式特别多的时候, 针对不同宽度的设备使用不同的样式表(stylesheets)
+
+            原理是在link中判断设备尺寸, 然后引入不同的css文件
+        */
+
+        /* 
+            屏幕大于750px, 一行显示俩div
+            小于750px, 大于375px时, 一行显示一个div
+        */
+    </style>
+
+    <link rel="stylesheet" href="./17_small.css" media="screen and (min-width: 375px)">
+    <link rel="stylesheet" href="./17_big.css"   media="screen and (min-width: 750px)">
+</head>
+<body>
+    <div></div>
+    <div></div>
+</body>
+</html>
