@@ -1,0 +1,19 @@
+// @name: value or expression
+
+// 基础定义
+@width: 10px;
+@height: @width + 20px;
+
+// 使用
+.test {
+    width: @width;
+    height: @height;
+}
+
+// 注意事项:
+// 必须以@为前缀
+// 不能包含特殊字符
+// 不能以数字开头
+// 大小写敏感
+
+

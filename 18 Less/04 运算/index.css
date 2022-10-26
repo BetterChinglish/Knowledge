@@ -1,0 +1,13 @@
+div {
+  margin: 50px auto;
+}
+div:nth-child(1) {
+  width: 800px;
+  height: 400px;
+  background-color: grey;
+}
+div:nth-child(2) {
+  width: 800px;
+  height: 400px;
+  background-color: skyblue;
+}

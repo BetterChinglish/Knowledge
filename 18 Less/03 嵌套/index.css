@@ -1,0 +1,33 @@
+body {
+  color: skyblue;
+}
+body div {
+  color: red;
+}
+.father {
+  height: 100px;
+  width: 200px;
+  background-color: aqua;
+}
+.father .classTest {
+  height: 100px;
+  width: 50px;
+  background-color: grey;
+  float: left;
+}
+.father .classTest:hover {
+  background-color: #bbb;
+}
+.father .classTest::after {
+  content: "";
+  clear: both;
+}
+.father .classTest.Test {
+  background-color: red;
+}
+.father #idTest {
+  height: 100px;
+  width: 100px;
+  background-color: antiquewhite;
+  float: right;
+}

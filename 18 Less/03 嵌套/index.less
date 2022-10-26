@@ -1,0 +1,44 @@
+// 对于body元素里的子元素div可以如下书写
+body {
+    color: skyblue;
+    div {
+        color: red;
+    }
+}
+
+// 类选择与id选择嵌套类似
+.father {
+    height: 100px;
+    width: 200px;
+    background-color: aqua;
+    .classTest {
+        height: 100px;
+        width: 50px;
+        background-color: grey;
+        float: left;
+        // 对于伪元素选择器, 则需要加上&符号
+        // 不加相对于后代
+        &:hover {
+            background-color: #bbb;
+        }
+        // 伪类选择器也要加&
+        &::after {
+            content: "";
+            clear: both;
+        }
+
+        // 交集选择器也要加&
+        &.Test {
+            background-color: red;
+        }
+
+    }
+
+    #idTest {
+        height: 100px;
+        width: 100px;
+        background-color: antiquewhite;
+        float: right;
+    }
+}
+

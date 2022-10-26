@@ -1,0 +1,27 @@
+@widthBase: 100px;
+@heightBase: 50px;
+
+div {
+
+    margin: @heightBase auto;
+
+    &:nth-child(1) {
+
+        // 最好运算符左右都添加一个空格
+        // 这里没有加, 虽然结果正确
+        width: 8*@widthBase;
+
+        // 如果两个数参与运算只有一个带单位
+        // 则最后单位以这个带单位的为准
+        height: @heightBase * 8;
+        background-color: grey;
+    }
+
+    // 如果两个数参与运算都带单位且单位不同, 则以第一个单位为准
+    &:nth-child(2) {
+        width: @widthBase * 8em;
+        height: @heightBase * 8em;
+        background-color: skyblue;
+    }
+    
+}
