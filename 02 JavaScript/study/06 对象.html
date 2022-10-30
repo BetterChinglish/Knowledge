@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        let obj1 = {
+            name: 'zhangsan',
+            age: 18,
+            sayObj: function() {
+                console.log(this.name+" is " + this.age + " years old");
+            }
+        }
+
+        obj1.sayObj();
+
+        let obj2 = new Object();
+        obj2.name = 'lisi';
+        obj2.age = '19';
+        obj2.sayObj = function() {
+            console.log(this.name+" is " + this.age + " years old");
+        }
+
+        obj2.sayObj();
+
+        let obj3 = new Object();
+        obj3['name'] = 'wanger';
+        obj3['age'] = '20';
+        obj3['sayObj'] = function() {
+            console.log(this.name+" is " + this.age + " years old");
+        }
+        obj3.sayObj();
+
+        console.log(obj3['name']);
+        let change = 'name';
+        console.log(obj3[change]);
+
+
+        function Person(name, age, func) {
+            this.name = name;
+            this.age = age;
+            this.sayObj = func;
+        }
+
+        let Obj4 = new Person("mazi", 22, function(){
+            console.log(this.name+" is " + this.age + " years old");
+        });
+
+        Obj4.sayObj();
+        console.log(new Person())
+
+</script>
+</body>
+</html>
