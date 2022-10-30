@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">box</div>
+    <div class="Box">Box</div>
+    <span class="box">box</span>
+    <script>
+        // 按类选择元素
+        // 将选中所有有该类名的元素
+        let box = document.getElementsByClassName('box');
+        console.log(box);   // [div.box, span.box]
+    </script>
+</body>
+</html>

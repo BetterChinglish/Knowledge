@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <script>
+        // element.getElementByTagName()
+        // element可以是任意一个元素
+        // 得到的是HTMLCollection对象, 也就是伪数组
+        // 就算没有这个标签元素, 也会返回HTMLCollection对象
+        let test = document.getElementsByTagName('div');
+        console.log(test);
+        // 发现就是一个有length属性的对象
+        // 0: div
+        // length: 1
+
+        // 有几个div就对应几个数字
+        let testP = document.getElementsByTagName('p');
+        console.log(testP);
+        // 0: p
+        // 1: p
+        // 2: p
+        // 3: p
+        // 4: p
+        // length: 5
+
+        let noH = document.getElementsByName('h1');
+        console.log(noH);
+        // NodeList []
+        // length: 0
+        // [[Prototype]]: NodeList
+    </script>
+</body>
+</html>

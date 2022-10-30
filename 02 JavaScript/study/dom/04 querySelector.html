@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+
+    <span class="testSpan"></span>
+    <span></span>
+    <span></span>
+
+    <p id="testP">Lorem, ipsum dolor.</p>
+    <script>
+        // 按css选择器进行选择, 但只选中第一个
+        // 注意是css选择器, 即字符串参数传入css选择器
+        
+        let testDiv = document.querySelector('div')
+        console.log(testDiv);      // <div>1</div>
+
+        let testSpan = document.querySelector('.testSpan');
+        console.log(testSpan)       // <span class="testSpan"></span>
+
+        let testId = document.querySelector('#testP');
+        console.log(testId);
+    </script>
+</body>
+</html>

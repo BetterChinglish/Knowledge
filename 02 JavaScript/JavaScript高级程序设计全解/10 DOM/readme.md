@@ -12,7 +12,7 @@ js中所有节点类型都继承自Node类型,所有节点类型都共享着相�
 
 ## 节点属性
 
-每个节点都有一个nodeType属性,用于表面节点的类型
+每个节点都有一个nodeType属性,用于表明节点的类型
 节点类型由在Node类型中定义的下列12个数值来表示
 任何节点类型必居其一:
 
@@ -31,7 +31,7 @@ js中所有节点类型都继承自Node类型,所有节点类型都共享着相�
 比较上面的这些常量,可以确定节点的类型
 节点还有属性nodeName和nodeValue
 ```JavaScript
-// 假设someNode是指某个p节点
+// 假设someNode是指某个p节点(p标签)
 console.log(someNode.nodeType)      // 1
 console.log(someNode.nodeName)      // p
 console.log(someNode.nodeValue)     // null
