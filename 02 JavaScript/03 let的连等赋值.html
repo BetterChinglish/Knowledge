@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 1 */
+        // function fn1() {
+        //     let a = b = c = 1;
+        //     console.log("fn1's a: " + a);
+        //     console.log("fn1's b: " + b);
+        //     console.log("fn1's c: " + c);
+        // }
+        
+        // fn1()
+        // fn1's a: 1
+        // fn1's b: 1
+        // fn1's c: 1
+
+        // console.log("window's b: " + b);    // window's b: 1
+        // console.log("window's c: " + c);    // window's c: 1
+        // console.log("window's a: " + a);    // a is not defined
+
+        // 由上可见let的连等与var有类似的问题
+
+
+        /* 2 */
+        // function fn2() {
+        //     // console.log("fn1's a: " + a);
+        //     // console.log("fn1's b: " + b);
+        //     // console.log("fn1's c: " + c);
+        //     let a = b = c = 1;
+        // }
+        // fn2();
+        // // Cannot access 'a' before initialization
+        // // Cannot access 'b' before initialization
+        // // Cannot access 'c' before initialization
+
+        // console.log("window's b: " + b);    // window's b: 1
+        // console.log("window's c: " + c);    // window's c: 1
+        // console.log("window's a: " + a);    // a is not defined
+
+        // 3
+
+        function fn3() {
+            console.log(b);
+            b = 10;
+        }
+        fn3();
+        // b is not defined
+        // 由此可见直接赋值没有声明的变量没得提升
+    </script>
+</body>
+
+</html>

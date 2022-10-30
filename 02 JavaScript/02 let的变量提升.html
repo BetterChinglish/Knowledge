@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 这里报错并不是说a没有定义
+        console.log(a)  // Uncaught ReferenceError: Cannot access 'a' before initialization
+        // 其实let有提升, 但是在初始化之前无法访问: Cannot access 'a' before initialization
+        let a = 1;
+    </script>
+</body>
+</html>
