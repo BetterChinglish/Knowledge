@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 300px;
+            width: 500px;
+            background-color: skyblue;
+            margin: 100px auto;
+        }
+
+        .change {
+            background-color: palevioletred;
+        }
+    </style>
+</head>
+<body>
+    <!-- element.style.attributeName
+        行内样式操作
+    -->
+
+    <!-- element.className
+        类名样式操作
+        即使用js为元素添加类, 而该类的样式可以在css写
+    -->
+    <div></div>
+    <div class="test"></div>
+    <script>
+        // 直接使用style属性
+        let demo = document.querySelector('div');
+        demo.onclick = function() {
+            // 此操作将把样式添加到div元素上, 也就是行内样式
+            demo.style.backgroundColor='pink';
+        }
+
+        // 添加类名的方式
+        let test = document.querySelector('.test');
+        test.onclick = function() {
+            // 将该元素的class属性修改为change, 原本的test会消失
+            this.className = 'change';
+        }
+
+        // 修改后该元素样式还在, 因为已经渲染过一遍了
+
+        // 虽然类名被修改了但仍然可以通过test变量得到该元素
+        // 说明querySelector仅仅是通过当时的快照寻找在节点树中的该节点
+        // 也属于快照方式查询, 但获得的是实际的节点而非当时的快照节点
+        setTimeout(() => {
+            console.log(test);
+        }, 5000);
+
+        // 综上为了避免类名修改导致原类名消失的问题, 可以使用:
+        // element.className+=" addClassName" 
+        // 的方式, +=, addClassName前加上空格
+    </script>
+</body>
+</html>
