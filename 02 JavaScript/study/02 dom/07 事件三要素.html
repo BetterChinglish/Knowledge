@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">click me</button>
+    <script>
+        let myBtn = document.getElementById('btn');
+        // 事件三要素
+        // 1 事件源         对谁
+        // 2 事件类型       如何触发, 触发什么事件
+        // 3 事件处理程序   函数, 事件引起什么影响
+        btn.onclick = function() {
+            alert("hello world")
+        }
+
+    </script>
+</body>
+</html>

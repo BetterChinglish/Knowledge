@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <button id="bird">bird</button>
+    <button id="boat">boat</button>
+    <br>
+    <img src="../../../01 css/images/bird.jpg" title="bird">
+    <!-- <img src="../../../01 css/images/boat.jpg" alt=""> -->
+    <script>
+        let myImg = document.querySelector('img');
+        let showBird = document.querySelector('#bird');
+        let showBoat = document.querySelector('#boat');
+
+        showBird.onclick = function() {
+            myImg.src = '../../../01 css/images/bird.jpg';
+            myImg.title = 'bird';
+        }
+
+        showBoat.onclick = function() {
+            myImg.src = '../../../01 css/images/boat.jpg';
+            myImg.title = 'boat';
+        }
+
+    </script>
+    
+</body>
+</html>

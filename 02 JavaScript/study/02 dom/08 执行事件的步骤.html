@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        1. 获取事件源
+
+        2. 绑定事件
+
+        3. 添加事件处理程序
+
+    -->
+    <div>click me</div>
+    <script>
+        let myDiv = document.querySelector('div');
+        myDiv.onclick = function() {
+            console.log('hello world')
+        }
+
+        // onclick          鼠标点击左键触发
+        // onmouseover      鼠标经过触发
+        // onmouseout       鼠标离开触发
+        // onfocus          获得鼠标焦点触发
+        // onblur           失去鼠标焦点触发
+        // onmousemove      鼠标移动触发
+        // onmouseup        鼠标弹起触发
+        // onmousedown      鼠标按下触发
+    </script>
+</body>
+</html>

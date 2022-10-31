@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- innerText修改元素内部文字内容 -->
+    <P>Lorem, ipsum dolor.</P>
+    <button>show time</button>
+    <script>
+        let demo = document.querySelector('p');
+        let btn = document.querySelector('button');
+        btn.onclick = function() {
+            let dateNow = new Date();
+            demo.innerText = dateNow.getFullYear() + '年' + (dateNow.getMonth()+1) + "月"+ dateNow.getDate() + '日'; 
+        }
+
+    </script>
+</body>
+</html>
