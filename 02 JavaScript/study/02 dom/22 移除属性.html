@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="test"></div>
+
+    <script>
+        let test = document.getElementsByClassName('test');
+
+        // 使用removeAttribute(attributeName: String)
+        console.log(test[0]);
+        test[0].removeAttribute('class');
+        console.log(test[0]);
+
+
+    </script>
+</body>
+</html>

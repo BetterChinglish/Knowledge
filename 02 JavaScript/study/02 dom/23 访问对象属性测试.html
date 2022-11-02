@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let obj = {
+
+            1:'a',
+
+            0:'b',
+            '0': 'c',
+
+            name:'zhangsan',
+
+            true: 2,
+            'true': 3,
+
+            'age':'love',
+            age: 18,
+
+            undefined:'hi',
+            'undefined':'ha',
+
+            'test':'test',
+
+        }
+        console.log(obj[0])             // c
+        console.log(obj['0']);          // c
+
+
+        console.log(obj[name]);         // undefined
+        console.log(obj['name']);       // zhangsan
+        
+        let num = 0;
+        console.log(obj[num]);          // b
+        console.log(obj.name);          // zhangsan
+
+
+        console.log(obj.true);          // 3
+        // 基本变量如字符串, 数字, 布尔值都可以访问
+        // 优先访问对象中字符串名称的属性, 如果没有再将属性名转为字符串以访问
+        console.log(obj[true]);         // 3, 
+        console.log(obj['true']);       // 3
+
+        // 没办法 obj.'abc' 去访问'abc'这个变量
+        // 但是 .优先访问变量
+        console.log(obj.age);           // 18
+
+        let age = 0;
+        // console.log(obj[age]);       // age not defined  
+        console.log(obj['age']);        // 18
+        console.log(obj[age]);          // c
+
+
+        let test1 = undefined;
+        console.log(obj.test1);         // undefined
+        console.log(obj[undefined]);    // ha
+        console.log(obj['undefined']);  // ha
+        console.log(obj[test1]);        // ha
+
+        console.log(obj.test);          // test
+
+        let test2 = 1;
+        console.log(obj.test2);         // undefined
+        // 总结:    
+
+        // 对于obj[name]访问方式, 
+        // 可以直接访问基本变量如boolean, string, number
+        // 如果name不是一个基本量, 则将其作为变量解析为基本量后查询
+        // 这里的解析是个双向转换, 即[name]解析一次, 在obj中查询也要解析键值对的键的值
+        // 检查键值对时首先对比的是字符串的键, 如果没有才将非字符串的键名转为字符串
+
+        // 对于obj.name的访问方式,
+        // 首先不支持基本了访问方式, 即不可以obj.1或obj.'name'
+        // 其次对键值对的解析顺序正好与上面相反
+        // 即直接去查询name, 如果没有才搜索字符串键名的键值对
+
+
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+
+        }
+        table {
+            border-collapse:collapse;
+            margin: 100px auto;
+        }
+        td {
+            vertical-align: center;
+            text-align: center;
+        }
+        th {
+            font-weight: normal;
+            color: skyblue;
+        }
+
+        td, th {
+            width: 100px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th> 
+                    <input type="checkbox"></input> 
+                </th>
+                <th>商品</th>
+                <th>价格</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>iphone</td>
+                <td>5000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>iphone</td>
+                <td>5000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>iphone</td>
+                <td>5000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>iphone</td>
+                <td>5000</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <script>
+        let chkboxes = document.querySelectorAll('input');
+        chkboxes[0].onclick = function() {
+            for(let i = 1; i < chkboxes.length; i++) {
+                chkboxes[i].checked = this.checked;
+            }
+
+
+        }
+
+        let checked = null;
+
+        for(let i = 1; i < chkboxes.length; i++) {
+            chkboxes[i].onclick = function() {
+                checked = null;
+                for(let i = 1; i < chkboxes.length; i++) {
+                    if(chkboxes[i].checked== false){
+                        checked = false;
+                        break;
+                    }
+                }
+                if(checked===null){
+                    checked = true;
+                }
+
+                chkboxes[0].checked = checked;
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>

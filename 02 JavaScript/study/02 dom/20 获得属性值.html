@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test" class="demo" myAttribute="thisIsATest">
+        test
+    </div>
+
+    <script>
+        let test = document.getElementById('test');
+
+        // 1 element.attributeName
+        console.log(test.id);       // test
+
+        // 2 element.getAttribute('attributeName');
+        console.log(test.getAttribute('class'));        // demo
+
+        // 区别
+        // 一般使用方法二获得自定义属性
+        // 使用方法一获得内置属性
+        console.log(test.getAttribute('myAttribute'));  // thisIsATest
+
+        // element.getAttributeNames() 获得该element所有的属性名, 以数组返回
+        console.log(test.getAttributeNames());      // (3) ['id', 'class', 'myattribute']
+
+
+        // 从当前元素中通过名称获取属性节点
+        console.log(test.getAttributeNode('id').value);
+        
+
+    </script>
+</body>
+</html>

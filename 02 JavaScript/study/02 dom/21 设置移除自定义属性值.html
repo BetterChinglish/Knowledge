@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test" index="1"></div>
+
+    <script>
+        let test = document.getElementById('test');
+        // 修改属性值
+        // 1 直接element.attributeName = newValue;
+        test.id = 'demo';
+        console.log(test.id);
+
+        let obj = {
+            name: 'helloworld'
+        }
+        // 2 使用element.setAttribute(attributeName: string, newValue:any)
+        console.log(typeof test.getAttribute('index'));
+
+        test.setAttribute('index', obj)
+        console.log(test.getAttribute('index'))
+        console.log(typeof test.getAttribute('index'));
+
+        test.setAttribute('index', 2)
+        console.log(test.getAttribute('index'))
+        console.log(typeof test.getAttribute('index'));
+
+        // 可以看出自定义属性值会自动变为字符串
+        test.setAttribute('class', 'demo');
+        console.log(test.getAttribute('class'))
+        console.log(typeof test.getAttribute('class'));
+
+        // test.setAttribute('class', hello);  // hello is not defined
+        // console.log(test.getAttribute('class'))
+        // console.log(typeof test.getAttribute('class'));
+
+        // 由上可见, 在setAttribute(attributeName, newValue)中
+        // 如果给的值不是字符串, 则转为字符串, 
+        // 如果是字符串, 则直接作为值
+    </script>
+</body>
+</html>
