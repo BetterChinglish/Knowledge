@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 605px;
+            margin: 200px auto;
+            border-bottom: 1px solid #ccc;
+            height: 40px;
+            position: relative;
+        }
+        .box input {
+            outline: none;
+            border: 0;
+            width: 370px;
+            height: 40px;
+            background-color: transparent;
+        }
+
+        .box div:nth-of-type(1) {
+            width: 30px;
+            height: 40px;
+            display: inline-block;
+            line-height: 30px;
+            text-align: center;
+        }
+        .information {
+            color: #ccc;
+            position: absolute;
+            white-space: nowrap;
+            display: inline-block;
+            margin: 0 auto;
+            
+        }
+
+        .red {
+            color: red;
+        }
+        .right {
+            color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <input type="password" id="pwd">
+        <div id="show">
+            n
+        </div>
+        <div class="information">请输入6~10位密码</div>
+    </div>
+
+    <script>
+        let pwd = document.querySelector('#pwd');
+        let show = document.querySelector('#show');
+        let infor = document.querySelector('.information');
+
+        // 0不显示, 密码框
+        // 1显示,   文本框
+        let flag = 0;
+        show.onclick = function() {
+            if(flag==0){
+                this.innerHTML = 's';
+                pwd.type='text';
+                flag=1;
+            }
+            else if(flag==1){
+                this.innerHTML = 'n';
+                pwd.type='password';
+                flag=0;
+            }
+        }
+
+        pwd.onblur = function() {
+            if(this.value.length<6||this.value.length>10) {
+                infor.innerHTML='输入错误, 请输入正确长度(6~10)';
+                infor.className+=' red';
+            }
+            else{
+                infor.innerHTML='符合长度条件';
+                infor.className+=' right';
+            }
+        }
+
+        pwd.onfocus=function() {
+            infor.innerHTML='请输入6~10位密码';
+            infor.className='information';
+        }
+
+    </script>
+</body>
+</html>

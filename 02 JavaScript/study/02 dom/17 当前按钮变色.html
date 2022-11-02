@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bgcSkyBlue {
+            background-color: skyblue;
+        }
+
+        ul {
+            text-align: center;
+            margin-top: 100px;
+            list-style: none;
+        }
+        li {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><input type="button" value="clickMe"></li>
+        <li><input type="button" value="clickMe"></li>
+        <li><input type="button" value="clickMe"></li>
+        <li><input type="button" value="clickMe"></li>
+        <li><input type="button" value="clickMe"></li>
+        
+    </ul>
+
+
+
+    <script>
+        let btns = document.querySelectorAll('input');
+
+        for (let i = 0; i < btns.length; i++) {
+
+            // 为每个按钮绑定点击事件
+            btns[i].onclick = function () {
+                // 先把其他按钮都去掉背景颜色(默认无, 可以单独提出透明背景颜色类)
+                for(let i = 0; i < btns.length; i++) {
+                    btns[i].className = '';
+
+                }
+
+                // 再为当前按钮添加背景色
+                btns[i].className='bgcSkyBlue';
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

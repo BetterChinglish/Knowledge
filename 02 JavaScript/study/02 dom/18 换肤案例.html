@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        ul {
+            text-align: center;
+            margin-top: 100px;
+            list-style: none;
+        }
+        li {
+            display: inline-block;
+            width: 100px;
+            height: 62px;
+            
+        }
+
+        img {
+            width: 100px;
+            height: 62px;
+        }
+        img:hover {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><img src="../images/bird.jpg" alt=""></li>
+        <li><img src="../images/boat.jpg" alt=""></li>
+        <li><img src="../images/perspective.jpg" alt=""></li>
+    </ul>
+
+    <script>
+        let bd = document.body;
+        let imgs = document.querySelectorAll('img');
+
+        let mySrc = '';
+
+        for(let i = 0; i < imgs.length; i++) {
+            imgs[i].onmouseover = function() {
+                bd.style.backgroundImage='url('+ this.src +')';
+                bd.style.backgroundRepeat='no-repeat';
+                bd.style.backgroundSize='cover';
+                bd.style.opacity='0.3';
+            }
+            // 实现hover时预览, click时确定, 移开鼠标时取消预览
+            // 需要使用一个变量控制三个是否click
+            // 此方法会比较复杂, 可以实现但控制起来很麻烦
+
+
+            // 或者使用一个变量记录当前click的src, onmouseout时则恢复原src
+            // 此方法较好, 很容易实现
+            // 一下就此方法书写
+
+            imgs[i].onclick = function() {
+                mySrc = this.src;
+                bd.style.backgroundImage='url('+ this.src +')';
+                bd.style.backgroundRepeat='no-repeat';
+                bd.style.backgroundSize='cover';
+                whetherClick[i] = 1;
+            }
+            
+            imgs[i].onmouseout = function() {
+                bd.style.backgroundImage='url('+ mySrc +')';
+                bd.style.backgroundRepeat='no-repeat';
+                bd.style.backgroundSize='cover';
+                bd.style.opacity='1';
+            }
+        }
+    </script>
+</body>
+</html>
