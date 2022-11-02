@@ -8,17 +8,33 @@
     
 </head>
 <body>
-<ul>
-    <li> li one </li>
-    <li> li two </li>
-    <li> li three </li>
-</ul>
+    <div id="test">
+        <div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
 
 <script>
+    let test = document.getElementById('test');
 
-    console.log(document.nodeName, document.nodeType, document.nodeValue)
-    console.log()
-    console.log(document.documentElement)
+
+    console.log(test.children);
+    console.log(test.childNodes);
+
 </script>
 </body>
 </html>

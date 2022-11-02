@@ -45,15 +45,26 @@ console.log(someNode.nodeValue)     // null
 1. childNodes
 每个节点都有一个childNodes属性,其中保存着一个NodeList对象,
 Node List是一个类数组对象, 他并不是数组实例
-将这个节点的所有子节点都保存在这个对象之中(子节点的子节点也包含其中,也就是全部包含其中,并不只是单单的一级子节点)
+将这个节点的所有子节点都保存在这个对象之中
+(子节点的子节点也包含其中,也就是全部包含其中,并不只是单单的一级子节点)
+```
+---注. js高级程序设计第三版, 然鹅在chrome测试时并没有选择子节点的子节点
+
+更:
+    第四版似乎删除了, 没有提到, 但是其他地方有侧面体现出来只是一级子节点
+    当然也有可能是我当年看错了,阿巴巴,
+    更可能是我当时理解错了, 我还记得那天是冬天的一个傍晚哈哈哈和女朋友在kfc的时候看的
+    具体以浏览器内核为准
+
+    谁没事去读标准文件呢?
+```
+(包括所有节点, 不单单是元素节点)
 
 2. 访问方法
 可以使用方括号访问其中的内容, 有length属性, 查看其长度
 也可以通过item方法访问第n个子节点
 
 3. 转化为数组
-
-
 
 ```javascript
 // 使用someNode代替某个节点
@@ -68,11 +79,14 @@ var arr = Array.prototype.slice.call(someNode.childNodes, 0)
 
 
 ```
+### children
+非标准
 
+获得该节点的所有子元素节点, 适用更广, 因为childNodes会把文本节点也选中
 
 ### parentNode
 
-每个节点都有一个parentNode属性, 指向文档中的父节点
+每个节点都有一个parentNode属性, 指向文档中他的父节点(最近的父元素)
 ```JavaScript
 let Parent_Node = someNode.parentNode;      // 访问someNode的父节点
 
