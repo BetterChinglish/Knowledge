@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 此处data-list-Name与data-list-name冲突, 前者先前者胜出覆盖后者 -->
+    <div data-test="test" id="demo" data-times="5" data-list-Name="myListName" data-list-name="my name"></div>
+    <script>
+
+        // 为了防止自定义属性与内置属性混淆
+        // h5规定自定义属性当以   data-    开头为属性名
+
+        // 自定义属性无法使用内置属性的方式得到
+        let test = document.getElementsByTagName('div')[0];
+        console.log(test.data-test);        // NaN
+
+        console.log(test.getAttribute('id'))    // demo
+
+        // h5新增获取自定义属性的方法
+        // element.dataset.name可以获取data-name
+        // element.dataset.value可以获取data-value
+        // element.dataset.listName可以获取data-list-name
+        // element.dataset保存了所有以data-开头的自定义属性
+        console.log(test.dataset);  // DOMStringMap {test: 'test', times: '5'}
+
+        console.log(test.dataset.listName);
+
+
+    </script>
+</body>
+</html>
