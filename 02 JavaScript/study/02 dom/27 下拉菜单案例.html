@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        ul {
+            list-style: none;
+            
+        }
+        a {
+            text-decoration: none;
+            color: black;
+
+        }
+        .nav {
+            text-align: center;
+        }
+        .nav>li {
+            display: inline-block;
+            text-align: center;
+            margin-top: 100px;
+            position: relative;
+            margin-left: 60px;
+            
+        }
+        .title {
+            display: inline-block;
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            /* border: 1px solid skyblue; */
+
+        }
+        .selectList {
+            position: absolute;
+            display: none;
+            width: 100px;
+            border: 1px solid skyblue;
+            top: 30px;
+            left: -25px;
+            border-top: transparent;
+        }
+        .selectList a {
+            height: 30px;
+            display: inline-block;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .selectList li:not(:nth-of-type(3)) {
+            border-bottom: 1px solid skyblue;
+        }
+        
+    </style>
+</head>
+<body>
+    <ul class="nav">
+        <li>
+            <a href="#" class="title">微博</a>
+            <ul class="selectList">
+                <li><a href="#">私信</a></li>
+                <li><a href="#">评论</a></li>
+                <li><a href="#">@我</a></li>
+            </ul>
+            
+        </li>
+        <li>
+            <a href="#" class="title">微博</a>
+            <ul class="selectList">
+                <li><a href="#">私信</a></li>
+                <li><a href="#">评论</a></li>
+                <li><a href="#">@我</a></li>
+            </ul>
+            
+        </li>
+        <li>
+            <a href="#" class="title">微博</a>
+            <ul class="selectList">
+                <li><a href="#">私信</a></li>
+                <li><a href="#">评论</a></li>
+                <li><a href="#">@我</a></li>
+            </ul>
+            
+        </li>
+        <li>
+            <a href="#" class="title">微博</a>
+            <ul class="selectList">
+                <li><a href="#">私信</a></li>
+                <li><a href="#">评论</a></li>
+                <li><a href="#">@我</a></li>
+            </ul>
+            
+        </li>
+    </ul>
+
+    <script>
+        let nav = document.querySelector('.nav');
+        let list = nav.children;
+        console.log(list);
+
+        for(let i = 0; i < list.length; i++) {
+            list[i].onmouseover = function() {
+                this.children[1].style.display = 'inline-block';
+            }
+            list[i].onmouseout = function() {
+                this.children[1].style.display = 'none';
+            }
+        }
+
+
+    </script>
+</body>
+</html>

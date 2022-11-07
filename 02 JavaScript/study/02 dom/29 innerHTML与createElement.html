@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 主要分析这两个的时间效率 -->
+    <div class="innerH"></div>
+    <div class="creatE"></div>
+
+    <script>
+        let inn = document.querySelector('.innerH');
+        let cre = document.querySelector('.creatE');
+
+        // 如果采用innerHTML拼接字符串, 则0的时间远小于1
+        console.time('0');
+        // 0
+        for(let i = 0; i < 1000; i++) {
+            let dv = document.createElement('div');
+            cre.appendChild(dv);
+        }
+        console.timeEnd('0');
+
+        // 1
+        console.time('1');
+
+        for(let i = 0; i < 100; i++) {
+            inn.innerHTML +='<div></div>';
+        }
+        console.timeEnd('1');
+        
+        // 因为字符串的拼接需要浪费很多时间
+        // 每次都要找新的地方并将原本字符串复制过来再加上新的一段
+        // 会浪费很多时间
+
+        // 可以先将字符串添加到数组中, 最后一起拼接以减少时间
+        // 这样使用innerHTML的话可以看到innerHTML这一个操作其实是时间很短的
+        // 2
+        console.time('2');
+
+        let stringArr = [];
+        for(let i = 0; i < 100; i++) {
+            stringArr.push('<div></div>');
+        }
+        let endString = stringArr.join('');
+        inn.innerHTML = endString;
+
+        console.timeEnd('2');
+    </script>
+</body>
+</html>

@@ -95,8 +95,8 @@ let Parent_Node = someNode.parentNode;      // 访问someNode的父节点
 
 ### nextSibling 和 previousSibling
 
-1. nextSibling 指向下一个同胞节点, 如果下一个同胞节点为空(也就是没有), 则返回null
-2. previousSibling指向上一个同胞节点, 如果上一个同胞节点为空(也就是没有), 也返回null
+1. nextSibling 指向下一个同胞节点, 如果下一个同胞节点为空(也就是没有), 则返回null, 对于所有节点, 如注释节点,文本节点等
+2. previousSibling指向上一个同胞节点, 如果上一个同胞节点为空(也就是没有), 也返回null, 对于所有节点, 如注释节点,文本节点等
 
 ```JavaScript
 // 可以利用这两个属性判断某节点是否为其父节点的第一个或者最后一个子节点
@@ -107,6 +107,11 @@ if(someNode.previousSibling == null){
 }
 
 ```
+
+### nextElementSibling 与 previousElementSibling
+得到下一个兄弟元素节点或 上一个兄弟元素节点
+不包括注释等节点, 只包含元素节点
+
 
 ### hasChildNodes()
 
@@ -127,7 +132,26 @@ if(someNode.hasChildNodes() == true) {
 ```javascript
 console.log(document.body.ownerDocument)        // #document
 ```
+## 创建节点
+### createElement()
+```javascript
+let myElement = document.createElement(tagName:String);
+```
+创建由tagName指定的html元素
 
+### innerHTML()
+```JavaScript
+someNode.innerHTML('<div>this is a div</div>')
+```
+
+### document.write()
+```javascript
+let myDiv = document.write('<div>this is a div</div>')
+```
+此操作将在body当前情况下创建一个标签(字符串中的内容解释为标签)
+
+注意:
+document.write()在页面文档流加载完后再使用会引起页面重绘
 ## 操作节点
 
 ### appendChild()
@@ -311,3 +335,5 @@ console.log(shallowList.length)
 
 2. 解释
 即在后代节点中寻找文本节点,如果文本节点是空的, 则删除这个, 如果是两个相邻的文本节点,则合并成一个
+
+
