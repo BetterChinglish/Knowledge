@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <!-- 减少dom访问次数
+        给父元素添加事件监听器
+        而通过event.target获得具体触发的对象
+
+        从而不需要为每个子元素添加事件监听器
+        只需要给父元素加一个即可
+    -->
+
+    <div>
+        <button>click me 1</button>
+        <button>click me 2</button>
+        <button>click me 3</button>
+        <button>click me 4</button>
+    </div>
+
+
+    <script>
+        let div = document.querySelector('div');
+        div.addEventListener('click', function(e) {
+            let event = e || window.event;
+            let target = e.target || e.srcElement;
+
+            console.log(target.innerText);
+
+        })
+
+
+    </script>
+</body>
+</html>

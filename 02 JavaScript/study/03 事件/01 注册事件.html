@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>传统on方式添加</button>
+    <button>addEventListener()</button>
+    <button>ie9之前 attachEvent()</button>
+
+    <script>
+        // 这里使用var是为了ie测试
+
+        // 1 传统on方式添加
+        var btns = document.querySelectorAll('button');
+        btns[0].onclick =  function() {
+            alert('hello world');
+        }
+
+        // 具有唯一性, 只能添加一个事件处理函数, 如果后续再添加, 会被覆盖
+        btns[0].onclick =  function() {
+            alert('oh my god');
+        }
+
+
+        // 2 addEventListener(eventType:string, eventFunction, options)
+        // eventType, 事件类型, 如click, mouseover等, 不需要加on
+        // eventFunction, 事件处理函数, 事件发生调用该函数
+        // options, 一些其他选项, 具体看mdn 
+        // 
+        // 使用该方法可以添加多个事件处理函数, 他们会按添加的顺序依次执行
+        var helloWorld = function() {
+            alert('hello world!');
+        }
+        var tsGod = function() {
+            alert('oh my god');
+        }
+        // 不加(), 加()代表调用, 这里只是传入待调用的函数的源代码即可
+        btns[1].addEventListener('click', helloWorld);
+        btns[1].addEventListener('click', tsGod);
+
+
+        // ie9之前没有addEventListener(), 使用attachEvent(type, callback)
+        // 其中type需要加on
+
+        // 使用chrome插件IE Tab进行测试
+        // btns[2].attachEvent('onclick', function(){
+        //     alert('attachEvent()');
+        // })
+
+    </script>
+</body>
+</html>

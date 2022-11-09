@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .son {
+            float: left;
+            height: 100px;
+            width: 200px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="father">
+        <div class="son"></div>
+    </div>
+
+    <script>
+        // onclick或attachEvent只能得到冒泡阶段
+        // js代码中只能执行捕获或冒泡之一
+        let father = document.querySelector('.father');
+        let son = document.querySelector('.son');
+
+
+        // father没有大小以测试与包含区域是否有关
+
+        // addEventListener的第三个参数默认false, 即冒泡阶段调用事件处理程序
+        // 如果为true则在捕获阶段调用
+        son.addEventListener('click', function() {
+            alert('son');
+        }, true)
+        father.addEventListener('click', function() {
+            alert('father');
+        }, true)
+        son.addEventListener('click', function() {
+            alert('son');
+        }, false)
+        father.addEventListener('click', function() {
+            alert('father');
+        }, false)
+
+        // 发现是无关的, 就算没有区域也会被调用到
+        // 可见内部原理应该是判断子节点是否有涵盖本区域, 并不是子节点本身是否涵盖
+        // 而是子节点与子节点内部的元素是否涵盖有点击位置
+
+
+        // 更多使用的是事件冒泡, 而比较少用事件捕获
+        // 有些事件没有冒泡:
+            // onblur
+            // onfocus
+            // onmousenter
+            // onmouseleave
+            
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 200px;
+            width: 300px;
+            background-color: skyblue;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+
+    <script>
+        let myDivs = document.querySelectorAll('div');
+        // 传统的onEvent, 直接 = null即可
+        myDivs[0].onclick = function() {
+            alert('hello world');
+            // 解绑
+            myDivs[0].onclick = null;
+
+        }
+
+
+        // addEventListener绑定的事件解绑
+        // 使用eventTarget.removeEventListener(type, listener[, options])
+        // myDivs[1].addEventListener('click', function() {
+        //     alert('hello my second div');
+        //     // 无法使用匿名函数
+        //     // myDivs[1].removeEventListener('click',[?????])
+        // })
+
+        myDivs[1].addEventListener('click', hello);
+        function hello() {
+            alert('hello my second div');
+            // 写这里也可以
+            // myDivs[1].removeEventListener('click', hello);
+        }
+
+        setTimeout(() => {
+            myDivs[1].removeEventListener('click', hello);
+            console.log('removed second div\'s click hello function');
+        }, 10000);
+
+        // attachEvent()添加的事件使用detachEvent();
+        // 类似于removeEventListener();
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+    <script>
+        let myUl = document.querySelector('ul');
+
+        myUl.onclick  = function(event) {
+            event = event || window.event;
+
+            // this 返回绑定事件的对象
+            console.log(this);
+
+            // event.target返回触发事件对象
+            // 也就是最具体节点(然后冒泡冒上去)
+            console.log(event.target || event.srcElement);
+
+            // 类似于this的, event.currentTarget, 但有兼容性问题, ie678无法识别
+            // 所以此属性不如直接使用this
+            console.log(event.currentTarget);
+
+            console.log('\n');
+        }
+    </script>
+</body>
+</html>

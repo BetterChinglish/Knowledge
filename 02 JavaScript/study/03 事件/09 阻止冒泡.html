@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            height: 500px;
+            width: 800px;
+            margin: 0 auto;
+            background-color: orange;
+        }
+        .son {
+            float: left;
+            height: 100px;
+            width: 200px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="father">
+        <div class="son"></div>
+    </div>
+
+    <script>
+ 
+        let father = document.querySelector('.father');
+        let son = document.querySelector('.son');
+
+        son.addEventListener('click', function(e) {
+            let event = e || window.event;
+            alert('son');
+            event.stopPropagation() ? event.stopPropagation():event.cancelBubble=true;
+        }, false)
+
+        father.addEventListener('click', function() {
+            alert('father');
+        }, false)
+
+      
+            
+    </script>
+</body>
+</html>

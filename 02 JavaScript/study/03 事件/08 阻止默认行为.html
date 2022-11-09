@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 如input按钮点击自动提交, 超链接点击自动跳转等 -->
+    <a href="https://www.baidu.com">baidu</a>
+    <script>
+        //阻止浏览器的默认行为---超链接
+        let a = document.querySelector('a');
+        a.onclick=function(evt){
+            var e = evt || window.event;
+            //e.preventDefault();//标准浏览器阻止超链接默认行为
+            //e.returnValue=false;//IE678 阻止超链接默认行为
+            e.preventDefault()?e.preventDefault() : e.returnValue=false;//用三目写阻止超链接默认行为的兼容
+            // 或者直接使用return false, 但会导致后面的代码失效 无兼容问题
+            // return false;
+        }		
+            
+        </script>
+
+</body>
+</html>

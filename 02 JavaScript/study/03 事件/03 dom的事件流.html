@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        事件发生时在元素节点直接按特定的顺序传播
+        这个传播的过程称为dom事件流
+
+        js代码中只能执行捕获或冒泡之一
+    -->
+
+    <!-- 捕获阶段   网景公司最早提出
+        事件开始时由最顶层节点接收, 然后逐级深入到最具体元素
+    
+        例如click事件, 假设给如下div绑定了一个click事件
+        当鼠标点击当前结构如下的div时, 
+        毫无疑问div在document中, 所有元素节点都在document中
+        点击div肯定也相当于点到了document
+        所以第一个是点击过程传播给了document
+        但是document没有绑定任何事件所以没有执行任何操作
+
+        但是事件会继续往里走
+        从而传给html, html元素也没绑定事件, 也没有执行任何操作
+        
+        点击的区域为div所在的区域, div还在body中, 肯定也相当于点到了body
+        但body也没有绑定任何事件
+        所以没有执行任何操作
+
+        最后由于里面只有这个div了, 所以执行div的click事件
+        而我们给div绑定了click事件, 所以执行
+
+        document -> html -> body -> div
+    -->
+    <div></div> <!-- 当前目标阶段 -->
+
+    <!-- 冒泡阶段   IE最早提出
+        事件开始时由最具体的元素接收, 任何逐级向上创博到dom最顶层节点的过程
+        
+        和捕获正好相反
+        div -> body -> html -> document
+    -->
+
+
+    <!-- 
+        找到最具体的节点
+        然后再根据节点树进行的传播
+
+        虽然不知道内部如何实现的, 
+        但是就算father没有大小没有包含son的区域无法被点击到
+        捕获阶段和冒泡阶段都会调用二者身上的click事件
+
+    -->
+ 
+    <script>
+
+    </script>
+
+</body>
+</html>
