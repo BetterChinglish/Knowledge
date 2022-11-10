@@ -8,5 +8,32 @@
 </head>
 <body>
     
+    <script>
+
+        // document.addEventListener('keyup', function() {
+        //     console.log('key up')
+        // })
+
+        // 按下触发, 一直按着一直触发
+        // document.addEventListener('keydown', function() {
+        //     console.log('key down')
+        // })
+
+        // 按下触发, 一直按住一直触发, 无法识别功能键如 ctrl, shift, 箭头等
+        document.addEventListener('keypress', function() {
+            // 一直按住ctrl不会输出key press
+            console.log('key press')
+        })
+
+        // 测试press与down的执行顺序
+        document.addEventListener('keydown', function() {
+            console.log('key down')
+        })
+
+        // 执行顺序为:
+        // 1 keydown
+        // 2 keypress
+        // 3 keyup
+    </script>
 </body>
 </html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="search">
+    <script>
+        let search = document.querySelector('input');
+        document.addEventListener('keydown', function(e) {
+            console.log(e.keyCode);
+            // key: string  按键描述, 如按1输出key: '1', 有兼容性问题 
+            // keyCode: number, 按键对应的ASCII值, 不区分字母大小写
+            // keypress的keyCode区分大小写
+
+            
+        })
+
+        document.addEventListener('keyup', function(e) {
+            if(e.keyCode = 83) {
+                search.focus();
+            }
+        })
+
+    </script>
+</body>
+</html>
