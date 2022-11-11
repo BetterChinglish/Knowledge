@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Browser Object Model 
+    
+        将浏览器看作一个对象
+        操作该对象以操作浏览器的一些行为
+    
+
+        顶级对象: window
+
+        主要与浏览器窗口进行交互
+
+        缺乏标准, 最初是网景公司浏览器标准的一部分
+        现在不同浏览器可能有不同的情况, 兼容性较差
+
+        document属于bom的一部分
+        window对象中: 
+            document
+            location
+            navigation
+            screen
+            history
+        是浏览器的顶级对象
+        是一个全局对象
+    -->
+    <script>
+        let a = 10;
+        console.log(window.a);
+
+        var b = 11;
+        console.log(window.b);
+
+        c = 12;
+        console.log(window.c);
+
+        function fn() {
+            var d = 13;
+            e = 14
+            console.log(d);
+        }
+
+        window.fn();
+
+        console.log(window.d);
+        console.log(window.e);
+
+    </script>
+
+</body>
+</html>

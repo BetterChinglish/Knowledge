@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>0</div>
+    <button>stop</button>
+    <script>
+        let seconds = 0;
+        let div = document.querySelector('div');
+        let stopBtn = document.querySelector('button');
+
+        // setInterval(callback, time);
+        // 每隔time时间调用一次callback
+        let time1 = setInterval(() => {
+            seconds++;
+            div.innerText = seconds;
+        }, 1000);
+        let charge = 0;
+        console.log(time1);
+        stopBtn.addEventListener('click', function() {
+            if(charge == 0){
+                charge = 1;
+
+                // clearInterval(timeID); 取消定时器, 返回值为undefined
+                clearInterval(time1);
+                console.log(time1);
+                stopBtn.innerText = 'restart';
+                seconds = 0;
+            }
+
+            else if(charge == 1) {
+                charge = 0;
+                div.innerText = '0';
+                time1 = setInterval(() => {
+                    seconds++;
+                    div.innerText = seconds;
+                }, 1000);
+                stopBtn.innerText = 'stop';
+
+            }
+        })
+
+        // setInterval() 和 setTimeout() 共用其定义的 IDs，
+        // 即可以使用 clearInterval() 和 clearTimeout() 中的任意一个。
+        // 然而，为了使代码可读性更强，你应该尽量避免这种用法。
+
+        // 这两个函数都是window的, 在内部调用this则都指向window
+    </script>
+</body>
+</html>

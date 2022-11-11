@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // setTimeout(callback: function, delayTime: ms);   delayTime默认0
+        // 这个函数的返回值timeoutID是一个正整数表示定时器的编号。这个值可以传递给clearTimeout()来取消该定时器。
+        let time1 = setTimeout(() => {
+            alert('hello world');
+        }, 2000);
+        let time2 = setTimeout(() => {
+            alert('hello world');
+
+            // clearTimeout(timeID); 取消定时器, 返回值为undefined
+            clearTimeout(time3);
+            console.log('time3 cleared');
+        }, 4000);
+        let time3 = setTimeout(() => {
+            alert('hello world');
+        }, 6000);
+        
+    </script>
+</body>
+</html>

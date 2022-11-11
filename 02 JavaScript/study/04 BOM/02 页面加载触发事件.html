@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 如果这样写会出现button标签还没加载就执行了js的情况导致无法实现
+        // let btn = document.querySelector('button');
+        // btn.addEventListener('click', function() {
+        //     alert('hello world');
+        // })
+
+        // 使用window.onload事件, 当页面全部加载后再触发函数
+        // 传统方式:
+        // window.onload = function() {
+        //     let btn = document.querySelector('button');
+        //     btn.addEventListener('click', function() {
+        //         alert('oh my god');
+        //     })
+        // }
+        
+        // 使用addEventListener()
+        window.addEventListener('load', function() {
+            let btn = document.querySelector('button');
+            btn.addEventListener('click', function() {
+                alert('addEventListener load');
+            })
+        })
+        
+        // onload虽然解决了script标签摆放位置不同引起的问题
+        // 但是其是整个页面加载完后才执行js代码
+        // 如果页面图片较多或某个服务器出现延迟乃至无法返回图片
+        // 就会导致页面一直处于加载过程而还没有执行js代码
+        // 使得用户体验不佳
+
+        // 使用DOMContenLoad事件, 即页面dom加载完成后触发, 不包括图片 css flash等资源
+        document.addEventListener('DOMContentLoaded', function() {
+            let btn = document.querySelector('button');
+            btn.addEventListener('click', function() {
+                alert('DOMContentLoaded');
+            })           
+        })
+    </script>
+
+
+    <button>click me</button>
+</body>
+</html>
