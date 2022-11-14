@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            width: 500px;
+            height: 300px;
+            background-color: skyblue;
+            margin: 100px auto;
+        }
+
+        .son {
+            width: 300px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+
+    <script>
+        let fa = document.querySelector('.father');
+        let so = document.querySelector('.son');
+
+        // mouseenter在进入盒子的当前盒子的时候触发一次
+        // 经过其子元素的时候不会再触发
+        fa.addEventListener('mouseenter', function() {
+            console.log('mouseenter');
+        })
+
+        // mouseover在进入盒子的当前盒子的时候触发
+        // 经过其子元素的时候会再触发一次
+        fa.addEventListener('mouseover', function(e) {
+            console.log('mouseover');
+        })
+
+        // 很容易想到这是因为冒泡的原因
+        // mouseenter拒绝接受子元素的冒泡, 还有mouseleave也一样
+    </script>
+</body>
+</html>
