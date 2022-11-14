@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 200px;
+            width: 300px;
+            background-color: orange;
+            border: 10px solid skyblue;
+            overflow: scroll;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eligendi? Quisquam, quaerat. Qui provident minima commodi quaerat repudiandae nam, inventore exercitationem placeat, laborum atque eos fuga esse accusamus incidunt vel!
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eligendi? Quisquam, quaerat. Qui provident minima commodi quaerat repudiandae nam, inventore exercitationem placeat, laborum atque eos fuga esse accusamus incidunt vel!
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eligendi? Quisquam, quaerat. Qui provident minima commodi quaerat repudiandae nam, inventore exercitationem placeat, laborum atque eos fuga esse accusamus incidunt vel!
+    </div>
+    <script>
+        // e.scrollTop
+            // 顶部被卷去的左边的内容的最左侧离元素的padding最外侧的距离
+        // e.scrollLeft
+            // 左边被卷去的左边的内容的最左侧离元素的padding最外侧的距离
+        // e.scrollWidth
+            // 返回自身的实际宽度(如果内容超过盒子自身大小则返回内容大小), 
+            // 不含边框, 返回值不带单位
+        // e.scrollHeight       
+            // 返回自身的实际高度(如果内容超过盒子自身大小则返回内容大小), 
+            // 不含边框, 不含滚动条, 返回值不带单位
+        let div = document.querySelector('div');
+
+        console.log(div.scrollHeight);
+        console.log(div.scrollWidth);
+
+        div.addEventListener('click', function() {
+            console.log(div.scrollTop); 
+
+        })
+
+    </script>
+</body>
+</html>
