@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- js是单线程的 -->
+
+    <!-- js是异步的 -->
+
+    <!-- js的异步通过回调函数来实现的
+        相关的回调函数会放入任务队列中
+        如
+            普通事件: click, resize等
+            资源加载: load, error等
+            定时器:   setInterval, setTimeout等
+    -->
+
+    <!-- 事件循环
+        主线执行栈
+            js刚开始时所有代码相当于都在主线中
+            然后按顺序执行
+            如果是同步任务则直接执行
+            如果是异步任务则交给异步进程处理程序
+
+        异步进程处理程序
+            当异步任务要触发的时候将回调函数放入任务队列中
+
+        任务队列
+            当主线执行完后监听任务队列是否有任务
+            如果有则取出第一个并放回主线中进行执行
+    -->
+
+    <!--宏任务与微任务
+
+
+    -->
+</body>
+</html>

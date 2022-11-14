@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- location常见属性
+        href        完整uri
+        protocol    通信协议
+        host        主机域名
+        port        端口号
+        pathname        路径文件
+        origin      协议域名端口
+        search      查询参数(以?开头, 多个参数以&分开, 参数以键值对key=value形式)
+        hash        片段, #开头, 常见于锚点
+    -->
+
+    <!-- location对象的方法
+        assign()        跳转页面, 有记录前一个页面, 可以点击回退按钮返回刚才的页面
+        replace()       跳转页面但无不记录, 无法回退页面
+        reload(bool)    重新加载页面, 参数为true为强制刷新, 默认false
+
+        强制刷新即重新向服务器请求资源
+        普通刷新可能仍然使用本地缓存
+    -->
+    <button class="assign">assign</button>
+    <button class="replace">replace</button>
+    <button class="reload">reload</button>
+
+    <script>
+        console.log(location);
+        console.log(location.href);
+        console.log(location.protocol);
+        console.log(location.host);
+        console.log(location.port);
+        console.log(location.origin);
+        console.log(location.search);
+        console.log(location.hash);
+
+        let assignBtn = document.querySelector('.assign');
+        let replaceBtn = document.querySelector('.replace');
+        let reloadBtn = document.querySelector('.reload');
+
+        assignBtn.addEventListener('click', function() {
+            location.assign('http://www.baidu.com');
+        })
+        replaceBtn.addEventListener('click', function() {
+            location.replace('http://www.baidu.com');
+        })
+        reloadBtn.addEventListener('click', function() {
+            location.reload();
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            background-color: skyblue;
+        }
+
+        .son {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            background-color: orange;
+            margin-left: 30px;
+            margin-top: 90px;
+            border: 4px solid pink;
+            padding: 3px 12px 23px 87px;
+        }
+        .self {
+            width: 300px;
+            height: 200px;
+            background-color: aquamarine;
+            margin: 200px auto;
+            box-sizing: border-box;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- offset 偏移量  均为只读属性
+        element.offsetParent    返回最近的一个带有定位的父级元素, 都没有则返回body
+        element.offsetTop       返回该元素离带有定位的父级元素的上方的偏移量
+        element.offsetLeft      返回该元素离带有定位的父级元素的左边的偏移量
+        element.offsetWidth     返回自身包括padding, border, content的宽度, 返回结果不带单位
+        element.offsetHeight    返回自身包括padding, border, content的高度, 返回结果不带单位
+    -->
+
+    <div class="father">
+        <div class="son"></div>
+    </div>
+
+    <div class="self" style="width: 300px; height: 200px;"></div>
+
+    <script>
+        let son = document.querySelector('.son');
+        let far = document.querySelector('.father');
+        let self = document.querySelector('.self');
+        console.log(son.offsetParent);
+        console.log(son.offsetTop);
+        console.log(son.offsetLeft);
+        console.log(son.offsetWidth);
+        console.log(son.offsetHeight);
+
+
+        console.log(self.offsetParent);
+        console.log(self.offsetTop);
+        console.log(self.offsetLeft);
+        console.log(self.offsetWidth);
+        console.log(self.offsetHeight);
+        console.log(self.style.width);
+        // 与style的区别
+
+        // 均为只读属性, 无法通过这些进行更改元素的样式
+        // 但是style可以
+        // 但是style只能获取内联样式, 而offset可以获得元素的最终计算结果的样式
+
+        // offsetWidth与offsetHeight都是padding+border+contentX/Y
+        // 但是element.style.width/height获得的为width或height属性给定的值
+
+        // style方式获得的带单位
+
+
+    </script>
+</body>
+</html>
