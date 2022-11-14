@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="http://www.baidu.com">baidu</a>
+    <script>
+        // pageshow 事件将在页面显示的时候触发, 无论页面是否来自缓存
+        // 该事件用于window
+        // 有一个事件属性为persisted, 如果为true则说明页面来自缓存, 为false不是来自缓存
+
+        // 其顺序在load之后
+        window.addEventListener('pageshow', function(e) {
+            alert('pageshow and ' + e.persisted);
+        })
+        window.addEventListener('load', function() {
+            alert('load');
+        })
+    </script>
+</body>
+</html>

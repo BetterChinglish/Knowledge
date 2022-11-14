@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="https://www.baidu.com">baidu</a>
+    <script>
+        // 触发load事件的情况:
+        // 1 a标签的超链接
+        // 2 f5(刷新)
+        // 3 前进后退, 但某些浏览器有 往返缓存, 将整个页面的dom和js都缓存了, 后退按钮无法刷新页面
+        window.addEventListener('load', function() {
+            alert('hello world');
+        })
+
+
+    </script>
+</body>
+</html>
