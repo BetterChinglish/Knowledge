@@ -1,0 +1,26 @@
+{
+  "name": "mywork",
+  "version": "1.0.1",
+  "description": "this is my test work",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git"
+  },
+  "keywords": [
+    "vue",
+    "js",
+    "package.json"
+  ],
+  "author": "BetterChinglish",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.6.1"
+  },
+  "devDependencies": {
+    "bootstrap": "^5.2.2"
+  }
+}
