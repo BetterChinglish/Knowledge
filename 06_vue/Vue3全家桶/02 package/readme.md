@@ -140,3 +140,23 @@ npm install
 如~3.6.1, 3和6不动, 最后一位更新到最新
 
 如果这两个符号都没有, 如3.4.2, 则指定了安装版本为3.4.2
+
+# 如何使用导入的包?
+
+```js
+// JavaScript
+let $ = require('jquery');      // 这里写入包名即可
+```
+
+js可以将数据作为模块暴露
+
+```js
+// export.js
+module.export = [1,2,3,4,5];
+```
+
+```js
+// require.js
+let nums = require('./export.js');
+console.log(nums);
+```
