@@ -86,11 +86,13 @@ npm list moduleName (-g)    不加-g则在当前路径查找
 # 开发时依赖与运行时依赖
 ```
 将module作为开发时依赖安装
-npm i -save-dev moduleName
+npm i --save-dev moduleName
 
--save
+--save
 默认, 运行时依赖
+简写为-s
 
--save-dev
+--save-dev
 说明是开发需要的, 运行时(发布时)用不到
+简写为-D
 ```
