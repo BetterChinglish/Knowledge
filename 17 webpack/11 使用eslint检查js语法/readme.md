@@ -47,6 +47,8 @@ eslint-loader找到规范后去寻找规范文件eslint-config-airbnb-base
     exclude: /node_module/,
     // 使用eslint-loader, 其自动去寻找规范
     loader: 'eslint-loader',
+
+    // 添加选项, 开启修复
     options: {
         fix: true
     }
