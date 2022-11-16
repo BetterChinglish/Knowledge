@@ -1,30 +1,8 @@
-/* #box1 {
+#box1 {
     width: 500px;
     height: 500px;
     color: red;
     background-color: green;
     backface-visibility: hidden;
     display: flex;
-} */
-
-#img1 {
-    width: 300px;
-    height: 200px;
-    background-image: url('./img1.jpg');
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-#img2 {
-    width: 300px;
-    height: 200px;
-    background-image: url('./img2.jpg');
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-#img3 {
-    width: 300px;
-    height: 200px;
-    background-image: url('./img3.jpg');
-    background-repeat: no-repeat;
-    background-size: contain;
 }

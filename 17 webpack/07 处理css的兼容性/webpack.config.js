@@ -17,15 +17,6 @@ module.exports={
             { test:/\.css$/,  use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'] },
             { test:/\.less$/, use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader', 'postcss-loader'] },
             { test:/\.scss$/, use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader', 'postcss-loader'] },
-            {
-                test: /\.(png|jpg|gif)$/,
-                loader: 'url-loader',
-                options: {
-                    publicPath: './images/',
-                    outputPath: 'images/',
-                    limit: 1024*30
-                }
-            }
 
         ]
     },
