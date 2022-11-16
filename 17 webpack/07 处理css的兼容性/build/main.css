@@ -1,0 +1,35 @@
+/*!***********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/style.css ***!
+  \***********************************************************************************************************/
+#box1 {
+    width: 500px;
+    height: 500px;
+    color: red;
+    background-color: green;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    display: flex;
+}
+/*!*******************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/lessstyle.less ***!
+  \*******************************************************************************************************************************************************/
+#box2 {
+  width: 500px;
+  height: 500px;
+  background-color: gray;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex;
+}
+
+/*!*******************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/sassstyle.scss ***!
+  \*******************************************************************************************************************************************************/
+#box3 {
+  width: 200px;
+  height: 200px;
+  background-color: red;
+  display: flex;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; }
+
