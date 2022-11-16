@@ -38,7 +38,7 @@
 
     1. mode:''
         指定webpack打包模式
-        有三种,常用development,production
+        有三种,none, development, production
     
     2. entry 入口
         entry:'url','url1',....
@@ -67,7 +67,7 @@
     5. plugin
         插件,比loader更强
 
-# entry的几种写法
+# entry多入口
 
     1. 直接一个url
         entry:'.src/index.js'
@@ -86,7 +86,7 @@
             two:'url2',
             // ...
         }
-        这里有几个键对就生成几个chunk和bundle
+        这里有几个键值对就生成几个chunk和bundle
         同时,output应该改变
         output:{
             filename:'[name].js',
@@ -95,13 +95,13 @@
         这里的[name]就是entry中的键的key,
         会生成两个文件,一个为one.js,另一个为two.js
 
-    4. 特殊用法
-        数组与对象写法混合使用
+    4. 特殊用法, 即数组与对象写法混合使用
         如:
         entry:{
             one:['url_one', 'url_two'],
             two:['url_three']
         }
+        这里生成两个chunk两个bundle, 第一个chunk是两个入口文件合在一起的
 
 # 自动将打包后的js文件引入到模板html文件中
     1. 下载html-webpack-plugin
@@ -120,9 +120,9 @@
             minify:false //默认为false
             minify:{
                 // 移除空格
-                collapseWhitespace:Boolean,
+                collapseWhitespace: true/false,
                 // 移除注释
-                removeComments:Boolean
+                removeComments:true/false
             }
 
         配置完成
