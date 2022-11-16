@@ -55,6 +55,9 @@
     发现打包成果
 
 ## sass文件的打包
+```
+npm i node-sass sass-loader -D
+```
     类似于less文件的打包
     注意sass文件的后缀名为.scss
     { test:/\.scss$/, use:['style-loader','css-loader', 'sass-loader'] }

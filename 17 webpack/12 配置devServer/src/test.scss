@@ -1,0 +1,7 @@
+$lg: 100px;
+$color_set: #926;
+.sassTest {
+    width: 2*$lg;
+    height: $lg;
+    background-color: $color_set;
+}
