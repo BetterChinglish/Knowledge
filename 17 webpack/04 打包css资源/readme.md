@@ -48,3 +48,20 @@
     点击console,发现输出之前写的东西,js打包引入成功
     点击elements
     打开head标签,发现其中有style子标签,css打包引入成功
+
+# style标签
+打包好的文件是html中有script标签引入js
+
+然后js再创建style引入css
+
+这里需要浏览器打开html文件再查看dom树
+
+直接查看打包好的html文件发现head标签下并没有style标签
+
+浏览器打开后f12查看elements发现head标签下出现style标签
+
+或者打开打包好的js文件
+```
+04 打包css资源/build/bundle.js
+```
+ctrl+f搜索createElement发现52行创建了一个style标签并使用for each将键值对添加到style元素中

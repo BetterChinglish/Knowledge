@@ -4,17 +4,18 @@ const {resolve} = require('path');
 module.exports={
     mode:'development',
 
+    // 由js链接得到css文件以使用css-loader将css打包到js中
     entry:'./src/main.js',
 
     output:{
         filename:'bundle.js',
-        path:resolve(__dirname,'dist')
+        path:resolve(__dirname,'build')
     },
 
     module:{
         rules:[
             {
-                // 正则
+                // 正则规则
                 // \是转义符, \.即为字符串.
                 // $表示匹配以前面字符串结尾
                 // 这里即为对以.css结尾的文件使用css-loader和style-loader
@@ -23,6 +24,8 @@ module.exports={
                 // 这里从右往左依次使用loader
                 // 即先使用css-loader再使用style-loader
                 use:['style-loader', 'css-loader']
+                // 如果只需要使用一个loader则use属性改为
+                // loader: 'css-loader'
             }
         ]
     },
