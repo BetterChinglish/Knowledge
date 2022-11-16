@@ -15,18 +15,11 @@ module.exports={
         path:resolve(__dirname, 'build')
     },
     module:{
-        rules:[
-            // 17
-            // { test:/\.css$/, use:['style-loader'.loader,'css-loader'] },
-            // { test:/\.less$/, use:['style-loader','css-loader', 'less-loader'] },
-
-            // 18
-            // { test:/\.css$/, use:[MiniCssExtractPlugin.loader,'css-loader'] },
-            // { test:/\.less$/, use:[MiniCssExtractPlugin.loader,'css-loader', 'less-loader'] },
-
-            // 19
-            { test:/\.css$/, use:[MiniCssExtractPlugin.loader,'css-loader','postcss-loader'] },
-            { test:/\.less$/, use:[MiniCssExtractPlugin.loader,'css-loader', 'less-loader','postcss-loader'] },
+        rules: [
+            // 多个规则, 一个对以.less结尾的, 一个对以.css结尾的
+            // 分别应用不同的loader
+            { test:/\.css$/, use:['style-loader','css-loader'] },
+            { test:/\.less$/, use:['style-loader','css-loader', 'less-loader'] },
         ]
     },
 
@@ -35,14 +28,6 @@ module.exports={
             template:'./src/index.html',
             filename:'main.html',
             minify:false
-        }),
-
-
-        new MiniCssExtractPlugin({
-            filename: 'mystyle.css'
-        }),
-
-        // new OptimizeCssAssetsWebpackPlugin()
-
+        })
     ]
 }
