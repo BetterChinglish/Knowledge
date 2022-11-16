@@ -33,7 +33,8 @@ module.exports = {
                 collapseWhitespace:false,
                 // 移除注释
                 removeComments:true
-            }
+            },
+            // chunks:[]
 
         })
            
