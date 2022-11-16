@@ -1,5 +1,3 @@
-
-
 const {resolve} = require('path')
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 
@@ -24,10 +22,13 @@ module.exports = {
         ]
     },
 
-    plugins:[
+    plugins: [
+        // 如果这里多个页面则new多个HtmlWebpackPlugin对象
         new HtmlWebpackPlugin({
 
             template:'./src/index.html',
+
+            // 使用chunks属性确定该html需要引入哪些js文件
             chunks:['vender','index'],
             filename:'index.html',
             minify:false
