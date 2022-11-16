@@ -1,11 +1,6 @@
 
 const {resolve} = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
-// 20
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
-
 
 module.exports={
     mode:'development',
