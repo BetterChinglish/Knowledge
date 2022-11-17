@@ -3,10 +3,7 @@
 npm i postcss-loader postcss-preset-env -D
 ```
 
-# 创建配置文件
-```
-postcss.config.js
-```
+
 
 # 添加rule
 在webpack.config.js的module下的rule中, 对css先进行兼容性处理
@@ -27,6 +24,7 @@ postcss.config.js
 
 # 创建postcss.config.js文件并配置
 ```js
+// postcss.config.js, 与webpack.config.js同一层级
 module.exports = {
     plugins: [
         // require后立即()调用, 这里会自动寻找package.json文件中的browserlist
@@ -49,4 +47,9 @@ json不允许注释, 但这里为说明所以注释
     // 死掉的浏览器(过时, 无人使用的)无不进行兼容
     "not dead"
   ]
+```
+
+# 重新打包
+```
+webpack
 ```
