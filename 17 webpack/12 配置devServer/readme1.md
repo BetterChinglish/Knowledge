@@ -27,10 +27,4 @@ webpack5非正式版需要添加webpack.config.js暴露对象添加属性
 target: 'web',
 // ...
 ```
-
-webpack5正式版则是添加另一个属性:
-```js
-devServer: {
-    hot: true
-}
-```
+**但是我不知道为啥, 可能版本更新或我陷入了某个bug, 尝试了诸多方法我仍然无法自动刷新**
