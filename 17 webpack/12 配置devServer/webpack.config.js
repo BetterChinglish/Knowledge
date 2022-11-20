@@ -39,6 +39,8 @@ module.exports = {
 
         // 设置端口
         // host: 'local-ip',
+        hot: true
+
     },
     
     plugins: [
