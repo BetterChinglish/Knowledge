@@ -28,6 +28,10 @@
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
   </div>
+
+  <div class="test">
+    test  
+  </div>
 </template>
 
 <script>
@@ -54,5 +58,13 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.test {
+  width: 300px;
+  height: 200px;
+  background-color: skyblue;
+  margin: 20px auto;
+  line-height: 200px;
 }
 </style>
