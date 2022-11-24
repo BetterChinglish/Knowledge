@@ -94,9 +94,37 @@ vue是组件化的
 一般放该项目的配置文件
 如
 ```
+
 package.json
 package-lock.json
 vue.config.js
 ...
+
 ```
 
+# 8 .vue文件的结构
+分三部分
+1. template
+2. script
+3. style
+
+```html
+1. template
+其中只包含一个根节点, 不能有俩
+<template>
+<div>
+    <!-- write here -->
+</div>
+
+<div>
+    <!-- wrong, the second root node -->
+</div>
+</template>
+
+
+2. script
+写js
+
+3. style
+写css
+```
