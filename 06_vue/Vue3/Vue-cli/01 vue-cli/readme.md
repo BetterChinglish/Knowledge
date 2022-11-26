@@ -128,3 +128,8 @@ vue.config.js
 3. style
 写css
 ```
+# 查看test-demo
+用以记录基础语法及使用方法
+
+# 查看test-demo
+用以记录组件使用方法
