@@ -1,4 +1,4 @@
 import { createApp } from 'vue';
-import App from './05 slot插槽.vue';
+import App from './06 依赖注入.vue';
 
-createApp(App).mount('#app');
+let app = createApp(App).mount('#app');
