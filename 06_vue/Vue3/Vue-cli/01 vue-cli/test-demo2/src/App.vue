@@ -1,19 +1,46 @@
 <template>
 <div>
-  
+
 </div>
 </template>
 
-<script>
-export default {
-  name: 'app',
-  data() {
-    return {
 
-    };
-  },
+
+<script>
+
+export default {
+
+    name: 'app',
+    
+    components:{
+      
+    },
+
+    props: {
+
+    },
+
+    data() {
+      return {
+
+      };
+    },
+
+    computed: {
+
+    },
+
+    methods: {
+
+    },
+
+
 };
+
 </script>
-<style>
+
+
+
+<style scoped>
 
 </style>
