@@ -1,11 +1,30 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-    <router-link to="/test1">test1</router-link>
+    <router-link to="/about">About</router-link> | 
+    
+    <!-- <router-link to="/test1" active-class="myActive">test1</router-link> | 
+    <router-link to="/test1" custom v-slot=" { navigate } ">
+      <button @click="navigate">test1</button>
+    </router-link>  | 
+    <button @click="$router.push('/test1')">to test1</button> | 
+    <button @click="$router.go(-1)">back</button> | 
 
+    <router-link to="/user">个人中心</router-link> -->
+    <router-link to="/page" >params</router-link> | 
+    <router-link to="/article" >query</router-link>
+
+
+    <p type="text" :innerText="$route.path"></p>
+    
   </nav>
-  <router-view/>
+  <router-view />
+
+<!-- 使用命名视图 -->
+  <!-- <router-view name="about" />
+  <router-view />
+  <router-view name="test" /> -->
+
 </template>
 
 <style>

@@ -161,3 +161,80 @@ chunkName可以通过魔术注释进行修改
 const About = () => import(/* webpackChunkName: 'about' */'../view/AboutPage.vue');
 ```
 这样About组件就会单独打包为about.[hash].js文件了, 其中[hash]为一串哈希值
+
+### 修改默认渲染标签
+默认将router-link渲染为a
+vue2直接使用tag="button",就可以直接改为渲染成按钮标签
+```html
+<router-link to="/test1" tag="button">
+  test1
+</router-link>
+```
+
+vue3则需要使用插槽的方式
+```html
+<router-link to="/test1" custom v-slot=" { navigate } ">
+  <button @click="navigate">test1</button>
+</router-link>
+```
+
+### 修改active-link标签
+当前路由会默认添加俩标签:router-link-active router-link-exact-active
+使用active-class属性修改router-link-active类名
+```html
+<router-link to="/test1" active-class="myActive">test1</router-link> | 
+
+```
+渲染为:
+```html
+<a href="/test1" 
+  class="myActive router-link-exact-active" 
+  aria-current="page"
+>
+test1
+</a>
+```
+但是没必要这样改, 可以自己直接加类名再通过新加的类名修改样式
+
+
+### 使用全局变量$router
+上面修改默认渲染的方式很麻烦, 可以直接对新标签添加跳转路由
+使用$router.go()可以跳转页面, 相当于history.go()
+使用$router.push('router'), 可以跳转路由页面
+```html
+<button @click="$router.push('/test1')">to test1</button> | 
+<button @click="$router.go(-1)">back</button> | 
+```
+使用$route.path获得当前路由路径
+
+### 使用命名视图(一个路由对应多个组件)
+router-view标签一般只放一个, 但是需要多个页面级组件同时展示也是可以的
+```html
+<!-- App.vue -->
+
+<!-- 添加name属性, 对应router/index.js中的组件名
+-->
+<router-view name="About"></router-view>
+<router-view></router-view>
+<router-view name="User"></router-view>
+```
+
+```js
+// /router/index.js
+const routes = [
+  {
+    path: '/',
+    name: 'home',
+    // component: HomeView
+
+    // 使用components
+    components: {
+      default: Home,
+      // 这里是es6语法, 可以修改名字, router-view中应当使用此处的键名
+      About,
+      User
+    }
+  },
+  // ...
+]
+```
