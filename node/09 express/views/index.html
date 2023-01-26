@@ -9,5 +9,35 @@
 <body>
     <h2>title</h2>
     <p>Lorem, ipsum dolor.</p>
+
+    <!-- 获取静态资源 -->
+    <!-- 这里直接使用express接口的方式, 而不是使用相对路径 -->
+    <img src="/images/01 sky.png" alt="sky" title="sky pic test">
+
+    <!-- 使用模板并传入数据 -->
+    <!-- 具体语法查看: http://aui.github.io/art-template/zh-cn/docs/syntax.html -->
+    <ul>
+        <li>name: {{name}} </li>
+        <li>age: {{age}} </li>
+        <li>job: {{job}}</li>
+        <li>kids: <br>
+            {{if kids.length == 0}}
+            <span>没有孩子</span>
+            {{else}}
+                {{each kids}}
+                <span>第{{$index + 1}}个孩子: </span>    
+                <span>{{$value}}</span>
+                <br>
+                {{/each}}
+            {{/if}}
+        </li>
+
+        {{if age >=18}}
+        <li>是成年人</li>
+        {{else}}
+        <li>是未成年人</li>
+        {{/if}}
+    </ul>
+
 </body>
 </html>
