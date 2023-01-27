@@ -1,4 +1,3 @@
-// 使用 07 使用模板.js 修改
 // 注意引入template
 // 查看 app.get('/', ()=>{})
 
@@ -6,9 +5,7 @@
 // 引入express模块
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
 
-// 
 const template = require('art-template');
 
 // 创建app对象
