@@ -1,5 +1,5 @@
 const express = require('express');
-
+const db = require('prisma');
 const app = express();
 const port = 3000;
 
