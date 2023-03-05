@@ -10,13 +10,13 @@ let pool = mysql.createPool({
     host: 'rm-bp10l6tput5rz9y0tjo.mysql.rds.aliyuncs.com',
 
     // 登录用户
-    user: '',
+    user: 'betterchinglish',
 
     // 用户密码
-    password: '',
+    password: '9834001zjj',
 
     // 连接数据库名称
-    database: '',
+    database: 'computerdata',
 });
 
 // 对数据库增删改查的基础
