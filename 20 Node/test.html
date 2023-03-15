@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var a = '123';
+        // console.log(window);
+
+        // var obj = {
+        //     a: '123',
+        //     b: {
+        //         a:'234',
+
+        //     }
+        // }
+
+        // console.log(obj);
+        // console.log(obj.b.__proto__);
+
+
+        // var a = 2;
+        // function fn() {
+        //     b();
+        //     var a = 1;
+        //     function b() {
+        //         console.log(a);
+        //     }
+        // }
+        // fn();
+
+        // var b = 3;
+        // (function () {
+        //     b = 5;
+        //     console.log(b);
+        //     var b = 2;
+        // })();
+        // console.log(b);
+
+        // function objectNum(num) {
+        //     this.value = num;
+        // }
+        // var num1 = new objectNum(1);
+        // var num2 = new objectNum('2');
+        // console.log(num1 + num2); //这里进行默认的Object.prototype.toString() 
+        // // 结果为  [object Object][object Object]  ，加号作为了字符串连接的作用
+        // //重写之后
+        // objectNum.prototype.toString = function () {
+        //     return parseFloat(this.value); //js中number数据类型是float
+        // }
+        // console.log(num1 + num2);  // 结果为 3
+        // console.log(num1 - num2);  // 结果为 -1
+        // console.log(num1 * num2);  // 结果为 2
+        // console.log(num1 / num2);  // 结果为 0.5
+
+        // 解决环形引用
+        let cachedMap = new WeakMap();
+        function deepClone(obj) {
+            // 1 基本常量与null----不处理
+            if(typeof obj !== 'object' || !obj) {
+                return obj;
+            }
+
+            if(cachedMap.has(obj)) return cachedMap.get(obj);
+
+
+            let constructor = obj.constructor;
+            let tmp, params;
+            // 2 无元素RegExp,Date， 可以直接new出来
+            if( obj instanceof RegExp || obj instanceof Date) {
+
+                // 使用其构造函数constructor
+                params = obj;
+            }
+            tmp = new constructor(params);
+
+            cachedMap.set(obj, tmp);
+
+            // 3 新结构Map, Set    Map使用set(key, value), Set使用add(value)
+            if(obj instanceof Map) {
+                for(let [key, value] of obj) {
+                    tmp.set(deepClone(key), deepClone(value))
+                }
+            }
+            else if( obj instanceof Set) {
+                for(let value of obj) {
+                    tmp.add(deepClone(value));
+                }
+            }
+            // 4 键值对(数组，类似json的对象)
+            if(Array.isArray(obj) || Object.prototype.toString.call(obj) === '[object Object]') {
+                for(let key in obj) {
+                    tmp[key] = deepClone(obj[key]);
+                }
+            }
+
+            return tmp;
+        }
+
+        let obj1 = {
+            a: {
+                b: [1,2,3,4],
+                c: new Map([['goodbye','张三']]).set('hello', 'world'),
+            }
+        }
+
+        let objCopied = deepClone(obj1);
+        console.log(objCopied, obj1);
+    </script>
+</body>
+</html>
