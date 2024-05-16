@@ -5,7 +5,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     // 模式
-    mode:'production',
+    mode:'production',    // production or develop, develop: 编译代码能运行， 质量检查等
 
     // 输入
     entry:'./src/index.js',
