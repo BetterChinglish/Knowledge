@@ -26,11 +26,26 @@ npm i eslint eslint-loader eslint-config-airbnb-base eslint-plugin-import -D
 }
 ```
 
+## 也可以单独写成文件
+文件名为 xxx.eslintrc | xxx.eslintrc.* | xxx.eslintrc.js | xxx.eslintrc.json
+
+例如xxx.eslintrc.js:
+```js
+module.exports = {
+    parserOptions: {},    // 解析选项
+    rules: {},    // 检查的具体规则
+    extends: [],    // 继承其他规则
+}
+```
+其中rules中自己写的规则优先级 > extends继承的规则
+详见[eslint官方文档](https://eslint.nodejs.cn/docs/latest/use/configure/)
+
 # package.json中确定规范
 这里确定了规范
 ```json
 "eslintConfig": {
-    "extends": "airbnb-base"
+    // airbnb-base：别人配置好的规范，直接拿来用的；
+    "extends": "airbnb-base"    // 继承
 }
 ```
 
@@ -54,3 +69,10 @@ eslint-loader找到规范后去寻找规范文件eslint-config-airbnb-base
     }
 }
 ```
+
+
+# webpack5
+已经从loader变成了plugin
+具体官网看**EslintWebpackPlugin**
+
+
