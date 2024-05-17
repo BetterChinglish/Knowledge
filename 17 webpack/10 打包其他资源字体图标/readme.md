@@ -17,3 +17,14 @@
 # 注意
 file-loader已经被asset替代
 所以这里没有演示
+
+例如：
+```js
+{
+    test: /\.(ttf|woff2?)$/,
+    type: "asset/resource",
+    generator:{
+        filename: "static/media/[hash][ext][query]",
+    }
+}
+```
