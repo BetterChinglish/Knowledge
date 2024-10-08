@@ -1,10 +1,6 @@
 <template>
   <div class="home">
     <div class="demo1">this is a test</div>
-    <img alt="Vue logo" src="~assets/logo.png">
-    <img :src="imgsrc" alt="">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-
     <div id="demo">
 
     </div>
@@ -22,7 +18,6 @@ export default {
   name: 'Home',
   data() {
     return {
-      imgsrc:require('assets/logo.png')
       
     }
   },
