@@ -5,10 +5,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-
+    name: 'zhangsan',
+    age: 18
   },
   mutations: {
-
+    changeAge(state, payload) {
+      state.age += payload;
+    }
   },
   actions: {
 
