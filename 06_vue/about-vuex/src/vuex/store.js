@@ -49,11 +49,23 @@ class Store{
         mutation.call(this, this.state, payload)
       }
     });
+    
+    this._actions = {};
+    objForEach(options.actions, (key, action) => {
+      this._actions[key] = (payload) => {
+        // call指向store实例，后面第一个参数是上下文也还是store实例，第二个参数是传入的参数
+        action.call(this, this, payload)
+      }
+    });
   }
   
   // 用户调用commit时传入需要调用mutations对应的方法，type确定是哪个方法，payload是传入的参数
   commit = (type, payload) => {
     this._mutations[type](payload)
+  }
+  
+  dispatch = (type, payload) => {
+    this._actions[type](payload)
   }
   
   get state() {

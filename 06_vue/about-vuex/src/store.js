@@ -14,6 +14,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
-
+    changeAgeAsync({ commit }, payload) {
+      setTimeout(() => {
+        commit('changeAge', payload)
+      }, 3000)
+    }
   }
 })
