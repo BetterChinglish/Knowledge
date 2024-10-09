@@ -85,7 +85,127 @@
       <option name="project" value="LOCAL" />
       <updated>1728379343734</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="还原">
+      <option name="closed" value="true" />
+      <created>1728381727685</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728381727685</updated>
+    </task>
+    <task id="LOCAL-00003" summary="创建vuex项目">
+      <option name="closed" value="true" />
+      <created>1728381830300</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728381830300</updated>
+    </task>
+    <task id="LOCAL-00004" summary="删除无用文件">
+      <option name="closed" value="true" />
+      <created>1728381996590</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728381996590</updated>
+    </task>
+    <task id="LOCAL-00005" summary="分片提交">
+      <option name="closed" value="true" />
+      <created>1728382095029</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728382095029</updated>
+    </task>
+    <task id="LOCAL-00006" summary="分片提交">
+      <option name="closed" value="true" />
+      <created>1728382111155</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1728382111155</updated>
+    </task>
+    <task id="LOCAL-00007" summary="分片提交">
+      <option name="closed" value="true" />
+      <created>1728382126117</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1728382126117</updated>
+    </task>
+    <task id="LOCAL-00008" summary="分片提交">
+      <option name="closed" value="true" />
+      <created>1728382152285</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1728382152285</updated>
+    </task>
+    <task id="LOCAL-00009" summary="分片提交">
+      <option name="closed" value="true" />
+      <created>1728382184830</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1728382184830</updated>
+    </task>
+    <task id="LOCAL-00010" summary="分片提交">
+      <option name="closed" value="true" />
+      <created>1728382268780</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1728382268780</updated>
+    </task>
+    <task id="LOCAL-00011" summary="分片提交">
+      <option name="closed" value="true" />
+      <created>1728382345736</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1728382345736</updated>
+    </task>
+    <task id="LOCAL-00012" summary="分片提交">
+      <option name="closed" value="true" />
+      <created>1728382359496</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1728382359496</updated>
+    </task>
+    <task id="LOCAL-00013" summary="分片提交">
+      <option name="closed" value="true" />
+      <created>1728382378933</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1728382378933</updated>
+    </task>
+    <task id="LOCAL-00014" summary="分片提交">
+      <option name="closed" value="true" />
+      <created>1728382394642</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1728382394642</updated>
+    </task>
+    <task id="LOCAL-00015" summary="分片提交">
+      <option name="closed" value="true" />
+      <created>1728382408899</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1728382408899</updated>
+    </task>
+    <task id="LOCAL-00016" summary="install方法与store.state实现">
+      <option name="closed" value="true" />
+      <created>1728382507958</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1728382507958</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
