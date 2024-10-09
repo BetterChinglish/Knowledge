@@ -35,7 +35,18 @@ class Store{
     this._vm = new Vue({
       data: {
         // 以$开头的变量不会代理到vue的实例上,而是在_data上
-        $$state: options.state
+        $$state: state
+      },
+      // 计算属性设置
+      computed,
+    });
+    
+    // 用户构建的store配置项的mutations
+    this._mutations = {};
+    objForEach(options.mutations, (key, mutation) => {
+      this._mutations[key] = (payload) => {
+        // 注意this让this指针指向Store实例，并传入state和payload（mutation方法默认入参）
+        mutation.call(this, this.state, payload)
       }
     });
   }
