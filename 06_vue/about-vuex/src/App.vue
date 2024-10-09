@@ -1,5 +1,16 @@
 <template>
   <div id="app">
+    <div>
+      hello
+      {{ $store.state.name }}
+      {{ $store.state.age }}
+    </div>
+    
+    <div>
+      <button @click="$store.state.age += 1">+1</button>
+      
+      <button @click="$store.commit('changeAge', 1)"> commit-age +1 </button>
+    </div>
   </div>
 </template>
 
@@ -8,7 +19,6 @@
 export default {
   name: 'app',
   components: {
-    HelloWorld
   }
 }
 </script>
