@@ -88,6 +88,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="vuex" />
-    <option name="LAST_COMMIT_MESSAGE" value="vuex" />
+    <MESSAGE value="错误删除" />
+    <MESSAGE value="还原" />
+    <MESSAGE value="创建vuex项目" />
+    <MESSAGE value="删除无用文件" />
+    <MESSAGE value="分片提交" />
+    <MESSAGE value="install方法与store.state实现" />
+    <option name="LAST_COMMIT_MESSAGE" value="install方法与store.state实现" />
   </component>
 </project>
