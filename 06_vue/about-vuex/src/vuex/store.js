@@ -32,6 +32,7 @@ function installModule(store, rootState, path, module) {
 // Vuex的东西如何进行的初始化以及提供的功能
 class Store{
   _modules = null;
+  
   constructor(options) {
     // 存放所有模块中的mutations
     this._mutations = {};
@@ -48,15 +49,6 @@ class Store{
     let state = this._modules.root.state;
     installModule(this, state, [], this._modules.root);
     
-
-
-
-
-
-
-
-
-
 
 
 
