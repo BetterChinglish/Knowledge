@@ -46,6 +46,13 @@ export default new Vuex.Store({
           console.log('a changeAge');
           
         }
+      },
+      modules: {
+        acStore: {
+          state: {
+            acAge: 66
+          }
+        }
       }
     },
     bStore: {

@@ -11,7 +11,22 @@ const install = (_Vue) => {
 };
 
 function installModule(store, rootState, path, module) {
-
+  console.log(path)
+  module.forEachMutation((mutationName, mutationFn) => {
+    console.log(mutationFn, mutationName)
+  })
+  
+  module.forEachAction((actionName, actionFn) => {
+    console.log(actionFn, actionName)
+  })
+  
+  module.forEachGetters((getterName, getterFn) => {
+    console.log(getterFn, getterName)
+  })
+  
+  module.forEachChild((childName, childModule) => {
+    installModule(store, rootState, path.concat(childName), childModule)
+  })
 }
 
 // Vuex的东西如何进行的初始化以及提供的功能
@@ -32,7 +47,7 @@ class Store{
 
     let state = this._modules.root.state;
     installModule(this, state, [], this._modules.root);
-
+    
 
 
 
