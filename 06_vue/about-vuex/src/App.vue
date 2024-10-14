@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div>
-      <!-- {{ $store.state.name }} -->
-      <!-- {{ $store.state.age }} -->
+       {{ $store.state.name }}
+       {{ $store.state.age }}
     </div>
 
     <div>
@@ -16,10 +16,10 @@
     </div>
 
     <div>
-      <!-- <button @click="$store.state.age += 1">+1</button> <br/> -->
-      <!-- 如果modules里还有同名的mutation则也会执行 -->
-      <!-- <button @click="$store.commit('changeAge', 1)"> commit-age +1 </button> <br/> -->
-      <!-- <button @click="$store.dispatch('changeAgeAsync', 1)"> dispatch-age +1 </button> <br/> -->
+     <button @click="$store.state.age += 1">+1</button> <br/>
+     如果modules里还有同名的mutation则也会执行
+     <button @click="$store.commit('changeAge', 1)"> commit-age +1 </button> <br/>
+     <button @click="$store.dispatch('changeAgeAsync', 1)"> dispatch-age +1 </button> <br/>
     </div>
 
   </div>

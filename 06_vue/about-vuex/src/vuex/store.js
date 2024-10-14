@@ -17,21 +17,79 @@ const install = (_Vue) => {
 * @module: 模块
 */
 function installModule(store, rootState, path, module) {
-  console.log(path)
+  // console.log(path)
+  
+  // 子模块
+  if (path.length > 0) {
+    // 将子模块的状态定义到根模块上
+    // 找父元素
+    const parent = path.slice(0, -1).reduce((state, current) => {
+      return state[current];
+    }, rootState)
+    Vue.set(parent, path[path.length - 1], module.state) // 非响应式数据直接赋值
+    /*state = {
+      age: xxx,
+      aStore: {
+        aAge: xxx,
+        abStore: xxx
+      }
+    }*/
+  }
+  
   module.forEachMutation((mutationName, mutationFn) => {
-    console.log(mutationFn, mutationName)
+    // 发布订阅，以数组存储所有mutationFn，后续commit的时候直接遍历数组全部执行
+    // 如果已经存储过则用已有的，没的时候创建新的数组存放
+    store._mutations[mutationName] = store._mutations[mutationName] || [];
+    store._mutations[mutationName].push((payload) => {
+      // 注意修改this指针的指向
+      // 传入当前mutation所在的模块的state
+      mutationFn.call( store, module.state, payload );
+    })
   })
   
   module.forEachAction((actionName, actionFn) => {
-    console.log(actionFn, actionName)
+    store._actions[actionName] = store._actions[actionName] || [];
+    store._actions[actionName].push((payload) => {
+      actionFn.call( store, store, payload )
+    })
   })
   
+  // getters重名的会被覆盖
   module.forEachGetters((getterName, getterFn) => {
-    console.log(getterFn, getterName)
+    store._wrappedGetters[getterName] = function() {
+      return getterFn(module.state)
+    }
   })
   
   module.forEachChild((childName, childModule) => {
     installModule(store, rootState, path.concat(childName), childModule)
+  })
+}
+
+function resetStoreVm(store, state) {
+  const wrappedGetters = store._wrappedGetters;
+  const computed = {};
+  store.getters = {};
+  
+  objForEach(wrappedGetters, (getterName, getterFn) => {
+    // 创建computed变量，将getters全部放入，然后将computed变量作为Vue参数创建一个vue实例
+    // 这样getters全部转化为了computed
+    computed[getterName] = function () {
+      return getterFn()
+    }
+    
+    // 同时，后续调用$store.getters.xxx时,需要返回vue实例的computed
+    // 那么可以用definedProperty来实现
+    Object.defineProperty(store.getters, getterName, {
+      get: () => store._vm[getterName]
+    })
+  })
+  
+  store._vm = new Vue({
+    data: {
+      $$state: state
+    },
+    computed
   })
 }
 
@@ -54,17 +112,29 @@ class Store{
     
     let state = this._modules.root.state;
     installModule(this, state, [], this._modules.root);
+    
+    // 将状态放到vue的实例中
+    resetStoreVm(this, state)
+    
+    console.log( this._mutations );
+    console.log( state );
+    console.log( this._actions );
+    console.log( this._wrappedGetters );
   }
   // 用户调用commit时传入需要调用mutations对应的方法，type确定是哪个方法，payload是传入的参数
   commit = (type, payload) => {
-    this._mutations[type](payload)
+    this._mutations[type].forEach(mutationFn => {
+      mutationFn(payload);
+    })
   }
   dispatch = (type, payload) => {
-    this._actions[type](payload)
+    this._actions[type].forEach(action => {
+      action(payload);
+    })
   }
-  get state() {
-    return this._vm._data.$$state;
-  }
+  // get state() {
+  //   return this._vm._data.$$state;
+  // }
 }
 
 /* 无modules的简单原理描述写法如下 */

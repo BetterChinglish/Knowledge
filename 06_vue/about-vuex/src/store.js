@@ -43,8 +43,7 @@ export default new Vuex.Store({
       mutations: {
         changeAge(state,payload) {
           state.ageA += payload;
-          console.log('a changeAge');
-          
+          // console.log('a changeAge');
         }
       },
       modules: {

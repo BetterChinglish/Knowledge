@@ -25,7 +25,7 @@ export default class ModuleCollection {
   root = null;
   constructor(options) {
     this.register([], options);
-    console.log(this.root);
+    console.log('register root', this.root);
   }
 
   // 递归注册模块
