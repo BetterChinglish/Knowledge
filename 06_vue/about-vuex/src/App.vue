@@ -30,6 +30,9 @@
 export default {
   name: 'app',
   components: {
+  },
+  mounted() {
+    console.log('this.$store', this.$store)
   }
 }
 </script>

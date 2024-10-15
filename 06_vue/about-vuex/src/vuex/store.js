@@ -116,10 +116,13 @@ class Store{
     // 将状态放到vue的实例中
     resetStoreVm(this, state)
     
-    console.log( this._mutations );
-    console.log( state );
-    console.log( this._actions );
-    console.log( this._wrappedGetters );
+    console.log('install-----');
+    console.log(state);
+    console.log(this._wrappedGetters);
+    console.log(this._mutations);
+    console.log(this._actions);
+    console.log('installed-----')
+    
   }
   // 用户调用commit时传入需要调用mutations对应的方法，type确定是哪个方法，payload是传入的参数
   commit = (type, payload) => {
@@ -132,9 +135,9 @@ class Store{
       action(payload);
     })
   }
-  // get state() {
-  //   return this._vm._data.$$state;
-  // }
+  get state() {
+    return this._vm._data.$$state;
+  }
 }
 
 /* 无modules的简单原理描述写法如下 */
