@@ -74,9 +74,19 @@ let store =  new Vuex.Store({
       //     }
       //   }
       // }
+    },
+    cStore: {
+      namespaced: true,
+      state: {}
     }
   }
 })
 
+store.registerModule(['cStore', 'fStore'], {
+  state: {
+    nameF: 'f store',
+    ageF: 20
+  }
+})
 
 export default store;

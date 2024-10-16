@@ -30,7 +30,8 @@ export default class ModuleCollection {
   // 递归注册模块
   register(path, rootModule) {
     let newModule = new Module(rootModule);
-
+    // 将生成的Module对象挂载到原始module上
+    rootModule._rawModule = newModule;
     if(path.length === 0) {
       this.root = newModule;
     } else {

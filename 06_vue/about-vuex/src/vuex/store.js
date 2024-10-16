@@ -86,6 +86,14 @@ function resetStoreVm(store, state) {
     })
   })
   
+  // 注意要销毁旧的vm
+  const oldVm = store._vm;
+  if(oldVm instanceof Vue) {
+    Vue.nextTick(() => {
+      oldVm.$destroy();
+    })
+  }
+  
   store._vm = new Vue({
     data: {
       $$state: state
@@ -118,12 +126,12 @@ class Store{
     resetStoreVm(this, state)
     
     /*输出测试*/
-    console.log('install-----');
+    /*console.log('install-----');
     console.log(state);
     console.log(this._wrappedGetters);
     console.log(this._mutations);
     console.log(this._actions);
-    console.log('installed-----');
+    console.log('installed-----');*/
     
     
   }
@@ -141,6 +149,22 @@ class Store{
   get state() {
     // resetStoreVm中设置的_vm, 其实是一个Vue实例, 通过_data获取到state
     return this._vm._data.$$state;
+  }
+  
+  registerModule(path, storeModuleObj) {
+    // 格式化path
+    if (typeof path === 'string') {
+      path = [path];
+    }
+    
+    // 将原始对象转化为Module对象
+    this._modules.register(path, storeModuleObj);
+    
+    // 重新安装模块
+    installModule(this, this.state, path, storeModuleObj._rawModule);
+    
+    // 重新生成Vue实例
+    resetStoreVm(this, this.state)
   }
 }
 
