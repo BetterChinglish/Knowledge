@@ -17,12 +17,8 @@ const install = (_Vue) => {
 * @module: 模块
 */
 function installModule(store, rootState, path, module) {
-  // console.log(path)
-  
   // 命名空间
   const namespace = store._modules.getNamespace(path);
-  console.log(path)
-  console.log(namespace)
   
   // 子模块，找到父元素，将子模块的状态定义到父模块的state上
   if (path.length > 0) {
@@ -44,8 +40,8 @@ function installModule(store, rootState, path, module) {
   module.forEachMutation((mutationName, mutationFn) => {
     // 发布订阅，以数组存储所有mutationFn，后续commit的时候直接遍历数组全部执行
     // 如果已经存储过则用已有的，没的时候创建新的数组存放
-    store._mutations[mutationName] = store._mutations[mutationName] || [];
-    store._mutations[mutationName].push((payload) => {
+    store._mutations[namespace + mutationName] = store._mutations[namespace + mutationName] || [];
+    store._mutations[namespace + mutationName].push((payload) => {
       // 注意修改this指针的指向
       // 传入当前mutation所在的模块的state
       mutationFn.call( store, module.state, payload );
@@ -53,15 +49,15 @@ function installModule(store, rootState, path, module) {
   })
   
   module.forEachAction((actionName, actionFn) => {
-    store._actions[actionName] = store._actions[actionName] || [];
-    store._actions[actionName].push((payload) => {
+    store._actions[namespace + actionName] = store._actions[namespace + actionName] || [];
+    store._actions[namespace + actionName].push((payload) => {
       actionFn.call( store, store, payload )
     })
   })
   
   // getters重名的会被覆盖
   module.forEachGetters((getterName, getterFn) => {
-    store._wrappedGetters[getterName] = function() {
+    store._wrappedGetters[namespace + getterName] = function() {
       return getterFn(module.state)
     }
   })
@@ -122,12 +118,13 @@ class Store{
     resetStoreVm(this, state)
     
     /*输出测试*/
-    /*console.log('install-----');
+    console.log('install-----');
     console.log(state);
     console.log(this._wrappedGetters);
     console.log(this._mutations);
     console.log(this._actions);
-    console.log('installed-----');*/
+    console.log('installed-----');
+    
     
   }
   // 用户调用commit时传入需要调用mutations对应的方法，type确定是哪个方法，payload是传入的参数

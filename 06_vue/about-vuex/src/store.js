@@ -3,7 +3,7 @@ import Vuex from './vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+let store =  new Vuex.Store({
   state: {
     name: 'zhangsan',
     age: 18
@@ -77,3 +77,6 @@ export default new Vuex.Store({
     }
   }
 })
+
+
+export default store;
