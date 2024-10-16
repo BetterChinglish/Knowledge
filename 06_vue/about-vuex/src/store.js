@@ -36,6 +36,7 @@ export default new Vuex.Store({
   */
   modules: {
     aStore: {
+      namespaced: true,
       state: {
         nameA: 'a store name',
         ageA: 20
@@ -53,6 +54,7 @@ export default new Vuex.Store({
       },
       modules: {
         acStore: {
+          namespaced: true,
           state: {
             acAge: 66
           }

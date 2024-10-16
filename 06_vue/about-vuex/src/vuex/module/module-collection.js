@@ -25,7 +25,7 @@ export default class ModuleCollection {
   root = null;
   constructor(options) {
     this.register([], options);
-    console.log('register root', this.root);
+    // console.log('register root', this.root);
   }
 
   // 递归注册模块
@@ -77,5 +77,15 @@ export default class ModuleCollection {
       }) 
     }
 
+  }
+  
+  getNamespace(path) {
+    let module = this.root;
+    console.log('getNamespace', path);
+    console.log(module);
+    return path.reduce((namespace, key) => {
+      module = module.getChild(key);
+      return namespace + (module._raw.namespaced ? key + '/' : '');
+    }, '');
   }
 }

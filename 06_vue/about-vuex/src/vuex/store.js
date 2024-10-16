@@ -19,7 +19,12 @@ const install = (_Vue) => {
 function installModule(store, rootState, path, module) {
   // console.log(path)
   
-  // 子模块
+  // 命名空间
+  const namespace = store._modules.getNamespace(path);
+  console.log(path)
+  console.log(namespace)
+  
+  // 子模块，找到父元素，将子模块的状态定义到父模块的state上
   if (path.length > 0) {
     // 将子模块的状态定义到根模块上
     // 找父元素
@@ -116,12 +121,13 @@ class Store{
     // 将状态放到vue的实例中
     resetStoreVm(this, state)
     
-    console.log('install-----');
+    /*输出测试*/
+    /*console.log('install-----');
     console.log(state);
     console.log(this._wrappedGetters);
     console.log(this._mutations);
     console.log(this._actions);
-    console.log('installed-----')
+    console.log('installed-----');*/
     
   }
   // 用户调用commit时传入需要调用mutations对应的方法，type确定是哪个方法，payload是传入的参数
@@ -136,6 +142,7 @@ class Store{
     })
   }
   get state() {
+    // resetStoreVm中设置的_vm, 其实是一个Vue实例, 通过_data获取到state
     return this._vm._data.$$state;
   }
 }
