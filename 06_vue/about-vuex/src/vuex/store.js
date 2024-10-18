@@ -10,6 +10,12 @@ const install = (_Vue) => {
   applyMixin(Vue)
 };
 
+function getNestedState(store, path) {
+  return path.reduce((state, key) => {
+    return state[key];
+  }, store.state)
+}
+
 /*
 * @store: store实例
 * @rootState: 当根state
@@ -44,7 +50,8 @@ function installModule(store, rootState, path, module) {
     store._mutations[namespace + mutationName].push((payload) => {
       // 注意修改this指针的指向
       // 传入当前mutation所在的模块的state
-      mutationFn.call( store, module.state, payload );
+      mutationFn.call( store, getNestedState(store, path), payload );
+      store._subscribers.forEach(sub => sub({ type: namespace + mutationName, mutationFn }, store.state));
     })
   })
   
@@ -58,7 +65,7 @@ function installModule(store, rootState, path, module) {
   // getters重名的会被覆盖
   module.forEachGetters((getterName, getterFn) => {
     store._wrappedGetters[namespace + getterName] = function() {
-      return getterFn(module.state)
+      return getterFn(getNestedState(store, path));
     }
   })
   
@@ -119,11 +126,19 @@ class Store{
     // 格式化用户传入的参数
     this._modules = new ModuleCollection(options);
     
+    // 存放插件函数
+    this._subscribers = [];
+    
     let state = this._modules.root.state;
     installModule(this, state, [], this._modules.root);
     
     // 将状态放到vue的实例中
     resetStoreVm(this, state)
+    
+    // 插件
+    options.plugins.forEach(pluginFn => {
+      pluginFn(this);
+    });
     
     /*输出测试*/
     /*console.log('install-----');
@@ -132,9 +147,17 @@ class Store{
     console.log(this._mutations);
     console.log(this._actions);
     console.log('installed-----');*/
-    
-    
   }
+  
+  subscribe(fn) {
+    this._subscribers.push(fn);
+  }
+  
+  // 替换当前state
+  replaceState(newState) {
+    this._vm._data.$$state = newState;
+  }
+  
   // 用户调用commit时传入需要调用mutations对应的方法，type确定是哪个方法，payload是传入的参数
   commit = (type, payload) => {
     this._mutations[type].forEach(mutationFn => {

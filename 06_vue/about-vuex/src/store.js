@@ -3,7 +3,20 @@ import Vuex from './vuex'
 
 Vue.use(Vuex)
 
+function persists(store) {
+  let local = localStorage.getItem('VUEX:STATE');
+  if (local) {
+    store.replaceState(JSON.parse(local));
+  }
+  store.subscribe((mutation, state) => {
+    localStorage.setItem('VUEX:STATE', JSON.stringify(state));
+  });
+}
+
 let store =  new Vuex.Store({
+  plugins: [
+    persists
+  ],
   state: {
     name: 'zhangsan',
     age: 18
