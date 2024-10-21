@@ -14,6 +14,7 @@ function persists(store) {
 }
 
 let store =  new Vuex.Store({
+  strict:true,
   plugins: [
     persists
   ],

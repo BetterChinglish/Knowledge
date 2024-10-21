@@ -33,7 +33,9 @@ function installModule(store, rootState, path, module) {
     const parent = path.slice(0, -1).reduce((state, current) => {
       return state[current];
     }, rootState)
-    Vue.set(parent, path[path.length - 1], module.state) // 非响应式数据直接赋值
+    store._withCommitting(() => {
+      Vue.set(parent, path[path.length - 1], module.state) // 非响应式数据直接赋值
+    })
     /*state = {
       age: xxx,
       aStore: {
@@ -50,7 +52,9 @@ function installModule(store, rootState, path, module) {
     store._mutations[namespace + mutationName].push((payload) => {
       // 注意修改this指针的指向
       // 传入当前mutation所在的模块的state
-      mutationFn.call( store, getNestedState(store, path), payload );
+      store._withCommitting(() => {
+        mutationFn.call( store, getNestedState(store, path), payload );
+      })
       store._subscribers.forEach(sub => sub({ type: namespace + mutationName, mutationFn }, store.state));
     })
   })
@@ -107,6 +111,15 @@ function resetStoreVm(store, state) {
     },
     computed
   })
+  
+  // 只有mutation的时候才将_committing设置为true, 其他时候都是false
+  // 下面这个watch会在state修改之后立即执行
+  // 如果是mutation修改的state则_committing为true, 否则为false
+  if(store.strict) {
+    store._vm.$watch(() => store._vm._data.$$state, () => {
+      console.assert(store._committing, '在mutation之外修改了state');
+    }, { deep: true, sync: true })
+  }
 }
 
 // Vuex的东西如何进行的初始化以及提供的功能
@@ -130,6 +143,11 @@ class Store{
     this._subscribers = [];
     
     let state = this._modules.root.state;
+    
+    // 判断是action还是mutation
+    this._committing = false;
+    this.strict = options.strict || false;
+    
     installModule(this, state, [], this._modules.root);
     
     // 将状态放到vue的实例中
@@ -149,13 +167,22 @@ class Store{
     console.log('installed-----');*/
   }
   
+  _withCommitting(fn) {
+    const committing = this._committing;
+    this._committing = true;
+    fn();
+    this._committing = committing;
+  }
+  
   subscribe(fn) {
     this._subscribers.push(fn);
   }
   
   // 替换当前state
   replaceState(newState) {
-    this._vm._data.$$state = newState;
+    this._withCommitting(() => {
+      this._vm._data.$$state = newState;
+    })
   }
   
   // 用户调用commit时传入需要调用mutations对应的方法，type确定是哪个方法，payload是传入的参数
