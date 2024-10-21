@@ -2,7 +2,7 @@
   <div id="app">
     <div>
        {{ $store.state.name }}
-       {{ $store.state.age }}
+       {{ age }}
     </div>
 
     <div>
@@ -27,13 +27,18 @@
 
 <script>
 
+import { mapState } from "./vuex";
+
 export default {
   name: 'app',
   components: {
   },
+  computed: {
+    ...mapState(['age'])
+  },
   mounted() {
     console.log('this.$store', this.$store)
-  }
+  },
 }
 </script>
 

@@ -1,6 +1,7 @@
 // 整合操作
 
 import { Store, install } from "./store";
+import { mapState } from "./helpers";
 
 
 
@@ -8,11 +9,13 @@ import { Store, install } from "./store";
 // new Vuex.Store()
 export default {
   Store,
-  install
+  install,
+  mapState
 }
 
 // import { Store } from 'vuex'
 export {
   Store,
-  install
+  install,
+  mapState
 }
