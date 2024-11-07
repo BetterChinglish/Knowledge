@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{ person.name }}</h2>
+        <h2>{{ person.age }}</h2>
+        <h3>{{ person.fav }}</h3>
+
+        <p>{{msg}}</p>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <div v-text="person.name"></div>
+        <div v-text="msg"></div>
+        <div v-html="testHtml"></div>
+        <!-- <div v-model="person.age"></div> -->
+        <div v-on:click="sayHello">click</div>
+        <div @click="sayHello">click @</div>
+    </div>
+
+    <script src="./Observer.js"></script>
+    <script src="./MVue.js"></script>
+    <script>
+        // my vue -> MVue
+        let vm = new MVue({
+            el: '#app',
+            data: {
+                person: {
+                    name: 'John Doe',
+                    age: 18,
+                    fav: 'coding'
+                },
+                msg: 'Hello World',
+                testHtml: '<h1>test v-html</h1>'
+            },
+            methods: {
+                sayHello() {
+                    console.log('Hello', this);
+                }
+            }
+        })
+    </script>
+</body> 
+</html>
