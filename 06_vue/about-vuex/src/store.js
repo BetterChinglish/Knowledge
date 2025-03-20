@@ -3,7 +3,21 @@ import Vuex from './vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+function persists(store) {
+  let local = localStorage.getItem('VUEX:STATE');
+  if (local) {
+    store.replaceState(JSON.parse(local));
+  }
+  store.subscribe((mutation, state) => {
+    localStorage.setItem('VUEX:STATE', JSON.stringify(state));
+  });
+}
+
+let store =  new Vuex.Store({
+  strict:true,
+  plugins: [
+    persists
+  ],
   state: {
     name: 'zhangsan',
     age: 18
@@ -36,6 +50,7 @@ export default new Vuex.Store({
   */
   modules: {
     aStore: {
+      namespaced: true,
       state: {
         nameA: 'a store name',
         ageA: 20
@@ -46,8 +61,14 @@ export default new Vuex.Store({
           // console.log('a changeAge');
         }
       },
+      getters: {
+        getAge(state) {
+          return state.ageA + 10;
+        }
+      },
       modules: {
         acStore: {
+          namespaced: true,
           state: {
             acAge: 66
           }
@@ -67,6 +88,19 @@ export default new Vuex.Store({
       //     }
       //   }
       // }
+    },
+    cStore: {
+      namespaced: true,
+      state: {}
     }
   }
 })
+
+store.registerModule(['cStore', 'fStore'], {
+  state: {
+    nameF: 'f store',
+    ageF: 20
+  }
+})
+
+export default store;

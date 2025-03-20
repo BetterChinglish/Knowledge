@@ -10,6 +10,12 @@ const install = (_Vue) => {
   applyMixin(Vue)
 };
 
+function getNestedState(store, path) {
+  return path.reduce((state, key) => {
+    return state[key];
+  }, store.state)
+}
+
 /*
 * @store: store实例
 * @rootState: 当根state
@@ -17,16 +23,19 @@ const install = (_Vue) => {
 * @module: 模块
 */
 function installModule(store, rootState, path, module) {
-  // console.log(path)
+  // 命名空间
+  const namespace = store._modules.getNamespace(path);
   
-  // 子模块
+  // 子模块，找到父元素，将子模块的状态定义到父模块的state上
   if (path.length > 0) {
     // 将子模块的状态定义到根模块上
     // 找父元素
     const parent = path.slice(0, -1).reduce((state, current) => {
       return state[current];
     }, rootState)
-    Vue.set(parent, path[path.length - 1], module.state) // 非响应式数据直接赋值
+    store._withCommitting(() => {
+      Vue.set(parent, path[path.length - 1], module.state) // 非响应式数据直接赋值
+    })
     /*state = {
       age: xxx,
       aStore: {
@@ -39,25 +48,28 @@ function installModule(store, rootState, path, module) {
   module.forEachMutation((mutationName, mutationFn) => {
     // 发布订阅，以数组存储所有mutationFn，后续commit的时候直接遍历数组全部执行
     // 如果已经存储过则用已有的，没的时候创建新的数组存放
-    store._mutations[mutationName] = store._mutations[mutationName] || [];
-    store._mutations[mutationName].push((payload) => {
+    store._mutations[namespace + mutationName] = store._mutations[namespace + mutationName] || [];
+    store._mutations[namespace + mutationName].push((payload) => {
       // 注意修改this指针的指向
       // 传入当前mutation所在的模块的state
-      mutationFn.call( store, module.state, payload );
+      store._withCommitting(() => {
+        mutationFn.call( store, getNestedState(store, path), payload );
+      })
+      store._subscribers.forEach(sub => sub({ type: namespace + mutationName, mutationFn }, store.state));
     })
   })
   
   module.forEachAction((actionName, actionFn) => {
-    store._actions[actionName] = store._actions[actionName] || [];
-    store._actions[actionName].push((payload) => {
+    store._actions[namespace + actionName] = store._actions[namespace + actionName] || [];
+    store._actions[namespace + actionName].push((payload) => {
       actionFn.call( store, store, payload )
     })
   })
   
   // getters重名的会被覆盖
   module.forEachGetters((getterName, getterFn) => {
-    store._wrappedGetters[getterName] = function() {
-      return getterFn(module.state)
+    store._wrappedGetters[namespace + getterName] = function() {
+      return getterFn(getNestedState(store, path));
     }
   })
   
@@ -85,12 +97,29 @@ function resetStoreVm(store, state) {
     })
   })
   
+  // 注意要销毁旧的vm
+  const oldVm = store._vm;
+  if(oldVm instanceof Vue) {
+    Vue.nextTick(() => {
+      oldVm.$destroy();
+    })
+  }
+  
   store._vm = new Vue({
     data: {
       $$state: state
     },
     computed
   })
+  
+  // 只有mutation的时候才将_committing设置为true, 其他时候都是false
+  // 下面这个watch会在state修改之后立即执行
+  // 如果是mutation修改的state则_committing为true, 否则为false
+  if(store.strict) {
+    store._vm.$watch(() => store._vm._data.$$state, () => {
+      console.assert(store._committing, '在mutation之外修改了state');
+    }, { deep: true, sync: true })
+  }
 }
 
 // Vuex的东西如何进行的初始化以及提供的功能
@@ -110,17 +139,52 @@ class Store{
     // 格式化用户传入的参数
     this._modules = new ModuleCollection(options);
     
+    // 存放插件函数
+    this._subscribers = [];
+    
     let state = this._modules.root.state;
+    
+    // 判断是action还是mutation
+    this._committing = false;
+    this.strict = options.strict || false;
+    
     installModule(this, state, [], this._modules.root);
     
     // 将状态放到vue的实例中
     resetStoreVm(this, state)
     
-    console.log( this._mutations );
-    console.log( state );
-    console.log( this._actions );
-    console.log( this._wrappedGetters );
+    // 插件
+    options.plugins.forEach(pluginFn => {
+      pluginFn(this);
+    });
+    
+    /*输出测试*/
+    /*console.log('install-----');
+    console.log(state);
+    console.log(this._wrappedGetters);
+    console.log(this._mutations);
+    console.log(this._actions);
+    console.log('installed-----');*/
   }
+  
+  _withCommitting(fn) {
+    const committing = this._committing;
+    this._committing = true;
+    fn();
+    this._committing = committing;
+  }
+  
+  subscribe(fn) {
+    this._subscribers.push(fn);
+  }
+  
+  // 替换当前state
+  replaceState(newState) {
+    this._withCommitting(() => {
+      this._vm._data.$$state = newState;
+    })
+  }
+  
   // 用户调用commit时传入需要调用mutations对应的方法，type确定是哪个方法，payload是传入的参数
   commit = (type, payload) => {
     this._mutations[type].forEach(mutationFn => {
@@ -132,9 +196,26 @@ class Store{
       action(payload);
     })
   }
-  // get state() {
-  //   return this._vm._data.$$state;
-  // }
+  get state() {
+    // resetStoreVm中设置的_vm, 其实是一个Vue实例, 通过_data获取到state
+    return this._vm._data.$$state;
+  }
+  
+  registerModule(path, storeModuleObj) {
+    // 格式化path
+    if (typeof path === 'string') {
+      path = [path];
+    }
+    
+    // 将原始对象转化为Module对象
+    this._modules.register(path, storeModuleObj);
+    
+    // 重新安装模块
+    installModule(this, this.state, path, storeModuleObj._rawModule);
+    
+    // 重新生成Vue实例
+    resetStoreVm(this, this.state)
+  }
 }
 
 /* 无modules的简单原理描述写法如下 */

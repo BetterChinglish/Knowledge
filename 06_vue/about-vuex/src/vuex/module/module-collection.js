@@ -25,13 +25,13 @@ export default class ModuleCollection {
   root = null;
   constructor(options) {
     this.register([], options);
-    console.log('register root', this.root);
   }
 
   // 递归注册模块
   register(path, rootModule) {
     let newModule = new Module(rootModule);
-
+    // 将生成的Module对象挂载到原始module上
+    rootModule._rawModule = newModule;
     if(path.length === 0) {
       this.root = newModule;
     } else {
@@ -77,5 +77,13 @@ export default class ModuleCollection {
       }) 
     }
 
+  }
+  
+  getNamespace(path) {
+    let module = this.root;
+    return path.reduce((namespace, key) => {
+      module = module.getChild(key);
+      return namespace + (module._raw.namespaced ? key + '/' : '');
+    }, '');
   }
 }

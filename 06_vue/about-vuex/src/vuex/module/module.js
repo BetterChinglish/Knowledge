@@ -7,6 +7,10 @@ export default class Module {
     this.state = rootModule.state;
   }
   
+  get namespaced() {
+    return !!this._raw.namespaced;
+  }
+  
   getChild(key) {
     return this._children[key];
   }
