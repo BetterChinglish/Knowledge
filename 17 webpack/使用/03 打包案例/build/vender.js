@@ -1,0 +1,1 @@
+console.log("这是jquery库"),console.log("这里面有通用的库object和function");

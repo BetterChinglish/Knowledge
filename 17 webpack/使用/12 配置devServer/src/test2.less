@@ -1,0 +1,19 @@
+@lg: 100px;
+@color_set1: #999;
+
+.lessTest {
+    width: 3*@lg;
+    height: 2*@lg;
+    background-color: @color_set1;
+    transition: all 2s linear;
+}
+
+.lessTest:hover {
+    width: 300px;
+    height: 200px;
+    background-color: pink;
+    opacity: 0.5;
+    transform: translate(30px, 50px) rotate(90deg);
+
+    
+  }
