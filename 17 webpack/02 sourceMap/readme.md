@@ -142,7 +142,7 @@ hello world -> world hello
 
 再按照之前思路----当前行用分号表示，只看当前行的第几列，源文件使用sources数组存放
 
-```js
+```
 sources: ['source.txt']
 names:['hello', 'world']
 
@@ -161,7 +161,7 @@ hello:
 
 练习：
 
-```js
+```
 'hello wang ma zi' -> 'hello ma zi wang'  (sayHello.js) -> (bundle.js)
 names: ['hello', 'wang', 'ma', 'zi']
 sources: ['sayHello.js']
@@ -182,7 +182,7 @@ wang对应names中的下标1
 若练习中的字符串再长一些，例如:
 
 
-```js
+```
 'hello wang ma zi ni hao a chi fan le ma' -> 'hello ma zi wang ni hao a fan chi le ma'  (sayHello.js) -> (bundle.js)
 names: ['hello', 'wang', 'ma', 'zi', 'ni', 'hao', 'a', 'chi', 'fan', 'le', 'ma']
 sources: ['sayHello.js']
@@ -200,7 +200,7 @@ sources: ['sayHello.js']
 
 回到最初的例子
 
-```js
+```
 sources: ['source.txt']
 names:['hello', 'world']
 
