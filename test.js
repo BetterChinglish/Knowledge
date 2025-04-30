@@ -15,10 +15,10 @@ function recursionToDeepestNode(tree, path=[]) {
     }
 
     if(tree.leftSubNode) {
-        recursionToDeeppestNode(tree.leftSubNode, [...path])
+        recursionToDeepestNode(tree.leftSubNode, [...path])
     } 
     if(tree.rightSubNode) {
-        recursionToDeeppestNode(tree.rightSubNode, [...path])
+        recursionToDeepestNode(tree.rightSubNode, [...path])
     }
 
     if(!tree.leftSubNode && !tree.rightSubNode) {
