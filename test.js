@@ -26,7 +26,7 @@ function recursionToDeepestNode(tree, path=[]) {
     }
 }
 
-getMaxDeep({
+getMaxDepth({
     val: 1,
     leftSubNode: {
         val: 2,
