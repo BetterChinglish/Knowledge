@@ -1,11 +1,11 @@
 const allPath = []
 
-function getMaxDeep(tree) {
+function getMaxDepth(tree) {
     if(!tree) return 0;
-    recursionToDeeppestNode(tree);
+    recursionToDeepestNode(tree);
 }
 
-function recursionToDeeppestNode(tree, path=[]) {
+function recursionToDeepestNode(tree, path=[]) {
     console.log(tree);
     
     if(tree.val) {
@@ -24,7 +24,7 @@ function recursionToDeeppestNode(tree, path=[]) {
     }
 }
 
-getMaxDeep({
+getMaxDepth({
     val: 1,
     leftSubNode: {
         val: 2,
