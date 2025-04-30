@@ -3,7 +3,7 @@ const allPath = []
 function getMaxDepth(tree) {
     if(!tree) return 0;
     recursionToDeepestNode(tree);
-    allPath.sort((arrA, arrB) => arrA.length - arrB.length);
+    allPath.sort((arrA, arrB) => arrB.length - arrA.length);
     console.log(allPath?.[0]?.length || 0)
 }
 
