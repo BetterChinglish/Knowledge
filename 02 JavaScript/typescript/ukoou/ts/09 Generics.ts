@@ -56,3 +56,19 @@ queue.push(2);
 const popped = queue.pop(); // 1
 
 console.log(popped);
+
+
+// 泛型接口
+interface IKeyValue<k, v> {
+    key: k;
+    value: v;
+}
+
+const kv1: IKeyValue<number, string> = { key: 1, value: 'hello' };
+const kv2: IKeyValue<string, string> = { key: 'id', value: '1001' };
+
+console.log(kv1, kv2);
+
+// 一些默认数据类型中的泛型
+const names: Array<string> = ['Alice', 'Bob', 'Charlie'];
+const names2: string[] = ['Alice', 'Bob', 'Charlie'];
