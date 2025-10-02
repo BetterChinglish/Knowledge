@@ -34,3 +34,25 @@ function echoWithLength<t extends IWithLength>(input: t): t {
 console.log(echoWithLength('hello')); // hello
 console.log(echoWithLength([1, 2, 3])); // [1, 2, 3]
 console.log(echoWithLength({ length: 10, value: 'hello' })); // { length: 10, value: 'hello' }
+
+// 泛型类
+class Queue<t> {
+    private data: t[] = [];
+
+    push(item: t) {
+        this.data.push(item);
+    }
+
+    pop(): t | undefined {
+        return this.data.shift();
+    }
+}
+
+const queue = new Queue<number>();
+
+queue.push(1);
+queue.push(2);
+
+const popped = queue.pop(); // 1
+
+console.log(popped);
