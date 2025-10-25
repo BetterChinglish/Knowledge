@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #canvas1 {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <!-- 清空矩形 -->
+  <canvas id="canvas1" width="1000" height="618"></canvas>
+  <button id="btn1">清空画布</button>
+  <script>
+    // 清空矩形
+    // clearRect(x, y, width, height) 是清空矩形的方法
+    // x, y 是被清空的矩形区域的起始位置
+    // width, height 是被清空的矩形区域的宽度和高度
+    const cnv1 = document.getElementById('canvas1');
+    const ctx = cnv1.getContext('2d');
+    ctx.fillStyle = 'pink';
+    ctx.fillRect(100, 100, 300, 200);
+    // 清空矩形
+    ctx.clearRect(150, 150, 200, 100);
+
+    // 点击按钮清空画布
+    const btn1 = document.getElementById('btn1');
+    btn1.addEventListener('click', function () {
+      ctx.clearRect(0, 0, cnv1.width, cnv1.height);
+    })
+  </script>
+</body>
+</html>

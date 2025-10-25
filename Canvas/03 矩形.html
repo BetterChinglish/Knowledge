@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #canvas1 {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas1" width="1000" height="618"></canvas>
+  <script>
+    // 矩形如果使用moveTo和lineTo绘制则太过麻烦
+    // 所以canvas提供了rect方法来绘制矩形
+    // rect(x, y, width, height)
+    // x, y 是矩形的起始位置
+    // width, height 是矩形的宽度和高度
+    const cnv1 = document.getElementById('canvas1');
+    const ctx = cnv1.getContext('2d');
+    ctx.rect(100, 100, 300, 200);
+    ctx.stroke();
+
+    // 这两部操作可以合为一步
+    ctx.strokeRect(100, 400, 300, 200);
+
+    // 线的样式
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'red';
+    ctx.strokeRect(500, 100, 300, 200);
+
+    // strokeStyle可以填不同格式的颜色如
+    // 1. 颜色名称
+    ctx.strokeStyle = 'blue';
+    ctx.strokeRect(500, 400, 40, 30);
+    // 2. rgb格式
+    ctx.strokeStyle = 'rgb(255, 0, 0)';
+    ctx.strokeRect(550, 400, 40, 30);
+    // 3. rgba格式
+    ctx.strokeStyle = 'rgba(0, 0, 255, 0.5)';
+    ctx.strokeRect(500, 450, 40, 30);
+    // 4. 十六进制格式
+    ctx.strokeStyle = '#00ff00';
+    ctx.strokeRect(550, 450, 40, 30);
+
+
+    
+
+  </script>
+</body>
+</html>

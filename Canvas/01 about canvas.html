@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #canvas2 {
+      width: 400px;
+      height: 300px;
+    }
+
+    #canvas3 {
+      width: 200px;
+      height: 150px;
+    }
+  </style>
+</head>
+<body>
+  <!-- canvas 是一个行内块，一般需要给三个属性，id、width、height -->
+  <canvas id="canvas1" width="800" height="600"></canvas>
+
+  <!-- 
+    不要在样式文件中设置 canvas 的宽度和高度，而要在 html 中设置
+   具体原因可以查看下述代码（canvas2、canvas3）
+  -->
+  <canvas id="canvas2" width="800" height="600"></canvas>
+  <canvas id="canvas3"></canvas>
+
+
+  <script>
+    const cnv2 = document.getElementById('canvas2');
+    console.log(cnv2.width, cnv2.height); // 800 600
+
+    const cnv3 = document.getElementById('canvas3');
+    console.log(cnv3.width, cnv3.height); // 300 150
+
+    // canvas对象的常用属性
+    // const cnv1 = document.getElementById('canvas1');
+    // cnv1.width
+    // cnv1.height
+    // cnv1.getContext('2d') // 2d上下文对象，暂时只讲2d上下文对象
+    // cnv1.toDataURL(); // 获取canvas对象产生的位图的字符串
+    
+  </script>
+
+</body>
+</html>

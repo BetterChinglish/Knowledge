@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #canvas1 {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <!-- 直线图形 -->
+  <canvas id="canvas1" width="800" height="600"></canvas>
+
+  <script>
+    // canvas的坐标系----w3c坐标系
+    // 原点在屏幕左上角
+    // x轴向右为正，y轴向下为正
+
+
+    /**
+     * 直线绘制
+     * 1. 获取2d上下文对象
+     * 2. 确定画笔起始位置
+     * 3. 确定直线结束位置
+     * 4. 绘制直线
+    */
+    const cnv1 = document.getElementById('canvas1');
+    // 1. 获取2d上下文对象
+    const ctx = cnv1.getContext('2d');
+    // 2. 确定画笔起始位置
+    ctx.moveTo(100, 100);
+    // 3. 确定直线结束位置
+    ctx.lineTo(500, 300);
+    // 4. 绘制直线----此时才是真正绘制图像，上面只是确定了直线的起点（moveTo）与直线往哪走（lineTo）
+    ctx.stroke();
+
+    // 再次调用lineTo会以上次lineTo的结束位置为起点，绘制直线
+    ctx.lineTo(100, 300);
+    ctx.stroke();
+
+    // 重新调用moveTo会将画笔移动到新的位置，不影响已绘制的直线
+    ctx.moveTo(500, 300);
+    ctx.lineTo(700, 500);
+    ctx.stroke();
+
+    // 所以moveTo是用来确定画笔起始位置的
+    // lineTo是用来确定直线结束位置的
+    // stroke是用来绘制直线的
+    
+
+  </script>
+</body>
+</html>

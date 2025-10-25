@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #canvas1 {
+      width: 1000px;
+      height: 618px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 正多边形 -->
+  <canvas id="canvas1" width="1000" height="618"></canvas>
+
+  <script>
+    // 正多边形----没有原生的方法，需要自己实现
+    // 正多边形的中心为 (x, y)
+    // 正多边形的边数为 n
+    // 正多边形的边长为 len
+    function drawRegularPolygon(ctx, x, y, len, n) {
+      ctx.beginPath();
+      ctx.moveTo(x + len * Math.cos(0), y + len * Math.sin(0));
+      const fullAngle = 2 * Math.PI / n;
+      for (let i = 1; i < n; i++) {
+        const changedX = len * Math.cos(fullAngle * i);
+        const changedY = len * Math.sin(fullAngle * i);
+        ctx.lineTo(x + changedX, y + changedY);
+      }
+      ctx.closePath();
+      ctx.fillStyle = 'pink';
+      ctx.fill();
+      ctx.stroke();
+    }
+    // 调用drawRegularPolygon函数
+    const cnv1 = document.getElementById('canvas1');
+    const ctx = cnv1.getContext('2d');
+    ctx.fillStyle = 'pink';
+    drawRegularPolygon(ctx, 500, 300, 200, 6);
+    // // 正三角形
+    // drawRegularPolygon(ctx, 500, 300, 200, 3);
+    // // 正四边形
+    // drawRegularPolygon(ctx, 500, 300, 200, 4);
+
+  </script>
+</body>
+</html>

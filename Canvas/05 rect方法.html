@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #canvas1 {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas1" width="1000" height="618"></canvas>
+  <script>
+    // 前面其实已经提到了rect方法， rect方法就是确定矩形位置但是没有画出来
+    // 所以我们需要调用stroke方法或者fill方法来画出来
+    const cnv1 = document.getElementById('canvas1');
+    const ctx = cnv1.getContext('2d');
+    ctx.rect(100, 100, 300, 200);
+    ctx.stroke();
+
+    // 我们也可以直接调用fill方法来填充矩形
+    ctx.fillStyle = 'pink';
+    ctx.rect(100, 400, 300, 200);
+    ctx.fill();
+
+    // 这里可以看到，我们第一个矩形也被填充了pink颜色
+    // 这是因为路径积累导致的意外，我们可以使用beginPath方法来开始新路径
+    ctx.beginPath();
+    ctx.rect(500, 100, 300, 200);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.fillStyle = 'pink';
+    ctx.rect(500, 400, 300, 200);
+    ctx.fill();
+
+    // 这里只对beginPath做个了解，后续再详细讲
+  </script>
+</body>
+</html>

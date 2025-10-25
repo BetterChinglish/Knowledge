@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #canvas1 {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <!-- 填充矩形 -->
+  <canvas id="canvas1" width="1000" height="618"></canvas>
+
+
+  <script>
+    // 使用fillStyle和fillRect来填充矩形
+    // fillStyle 是填充颜色
+    // fillRect(x, y, width, height) 是填充矩形的方法
+    // x, y 是矩形的起始位置
+    // width, height 是矩形的宽度和高度
+    const cnv1 = document.getElementById('canvas1');
+    const ctx = cnv1.getContext('2d');
+    ctx.fillStyle = 'pink';
+    ctx.fillRect(100, 100, 300, 200);
+
+    // 又要描边又要填充
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'skyblue';
+    ctx.strokeRect(500, 100, 300, 200);
+    ctx.fillStyle = 'pink';
+    ctx.fillRect(500, 100, 300, 200);
+
+    // 两个填充矩形部分重叠
+    ctx.fillStyle = 'skyblue';
+    ctx.fillRect(100, 400, 300, 200);
+    // 重叠部分会被填充颜色覆盖
+    ctx.fillStyle = 'pink';
+    ctx.fillRect(180, 480, 300, 200);
+
+    // 但是有透明度的则颜色会混合
+    ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+    ctx.fillRect(500, 400, 300, 200);
+    // 重叠部分会被填充颜色覆盖
+    ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
+    ctx.fillRect(580, 480, 300, 200);
+  </script>
+
+</body>
+</html>
