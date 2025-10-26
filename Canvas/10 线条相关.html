@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+    #canvas1 {
+      border: 1px dashed #000;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas1" width="1680" height="1680"></canvas>
+
+  <script>
+    const canvas1 = document.getElementById('canvas1');
+    const ctx = canvas1.getContext('2d');
+    
+    /**
+     * 线条宽度
+     * ctx.lineWidth = value
+     * 默认值为1
+    */
+   // 10px宽的线
+    ctx.beginPath();
+    ctx.moveTo(100, 100);
+    ctx.lineTo(300, 100);
+    ctx.lineWidth = 10;
+    ctx.stroke();
+
+    // 5px宽的线
+    ctx.beginPath();
+    ctx.moveTo(100, 200);
+    ctx.lineTo(300, 200);
+    ctx.lineWidth = 5;
+    ctx.stroke();
+
+    // 圆的半径为95px，线条宽度为5px，实际绘制的圆的半径为90px
+    ctx.beginPath();
+    ctx.arc(200, 200, 95, 0, Math.PI * 2);
+    ctx.lineWidth = 5;
+    ctx.stroke();
+
+    // 矩形宽度为190px，高度为50px，线条宽度为5px，实际绘制的矩形宽度为185px，高度为45px
+    ctx.beginPath();
+    ctx.rect(100, 100, 190, 50);
+    ctx.lineWidth = 5;
+    ctx.stroke();
+
+
+    /**
+     * 线条线帽 lineCap
+     * ctx.lineCap = value
+     * 默认值为butt，value值如下：
+     * butt：方形线帽
+     * round：圆形线帽
+     * square：方形线帽
+     * 
+     * 其中，round和square与butt的区别在于，round与square会比butt多出一截，多出部分的长度与lineWidth有关
+     * round和square会在线的两端添加一个半径为线宽一半的圆（round）或宽度为线宽的正方形的一半（square），而butt则不会
+    */
+    // 10px宽的线，butt线帽
+    ctx.beginPath();
+    ctx.moveTo(100, 300);
+    ctx.lineTo(300, 300);
+    ctx.lineWidth = 10;
+    ctx.lineCap = 'butt';
+    ctx.stroke();
+
+    // 10px宽的线，round线帽
+    ctx.beginPath();
+    ctx.moveTo(100, 350);
+    ctx.lineTo(300, 350);
+    ctx.lineWidth = 10;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+
+    // 10px宽的线，square线帽
+    ctx.beginPath();
+    ctx.moveTo(100, 400);
+    ctx.lineTo(300, 400);
+    ctx.lineWidth = 10;
+    ctx.lineCap = 'square';
+    ctx.stroke();
+
+    /**
+     * 线条连接处（关节）lineJoin
+     * ctx.lineJoin = value
+     * 默认值为miter，value值如下：
+     * miter：尖角
+     * round：圆角
+     * bevel：斜角
+    */
+
+    // 20px宽的两条互相垂直的线，miter线连接
+    ctx.beginPath();
+    ctx.moveTo(100, 450);
+    ctx.lineTo(100, 750);
+    ctx.lineTo(200, 750);
+    ctx.lineWidth = 50;
+    ctx.lineJoin = 'miter';
+    ctx.stroke();
+
+    // 20px宽的两条互相垂直的线，round线连接
+    ctx.beginPath();
+    ctx.moveTo(300, 450);
+    ctx.lineTo(300, 750);
+    ctx.lineTo(400, 750);
+    ctx.lineWidth = 50;
+    ctx.lineJoin = 'round';
+    ctx.stroke();
+
+    // 20px宽的两条互相垂直的线，bevel线连接
+    ctx.beginPath();
+    ctx.moveTo(500, 450);
+    ctx.lineTo(500, 750);
+    ctx.lineTo(600, 750);
+    ctx.lineWidth = 50;
+    ctx.lineJoin = 'bevel';
+    ctx.stroke();
+
+    /**
+     * 实现虚线
+     * ctx.setLineDash([lineWidth, gapWidth，lineWidth, gapWidth, ...])
+     * lineWidth：虚线的宽度
+     * gapWidth：虚线的间隔宽度
+     * 
+    */
+    // 5px宽的线，虚线间隔为20px
+    ctx.beginPath();
+    ctx.moveTo(100, 800);
+    ctx.lineTo(300, 800);
+    ctx.lineWidth = 5;
+    ctx.setLineDash([10, 20]);
+    ctx.stroke();
+    
+    // 5px宽的线，虚线间隔为40px
+    ctx.beginPath();
+    ctx.moveTo(100, 900);
+    ctx.lineTo(300, 900);
+    ctx.lineWidth = 5;
+    ctx.setLineDash([20, 40]);
+    ctx.stroke();
+
+    //5px宽的线，实虚为20px、10px、10px、10px
+    ctx.beginPath();
+    ctx.moveTo(100, 1000);
+    ctx.lineTo(500, 1000);
+    ctx.lineWidth = 5;
+    ctx.setLineDash([20, 10, 10, 10]);
+    ctx.stroke();
+  </script>
+</body>
+</html>
