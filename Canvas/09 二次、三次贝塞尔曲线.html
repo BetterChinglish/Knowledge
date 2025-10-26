@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+        #canvas1 {
+            border: 1px dashed #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas1" width="1680" height="1680"></canvas>
+    <script>
+        /**
+         * 二次贝塞尔曲线
+         * 在数学的直角坐标系中取三个互不重合的点：p1、p2、p3
+         * 连接p1p2与p1p3
+         * 在p1p2与p1p3上取两个点，q1（p1p2）、q2（p1p3）
+         * 使得p2q1 / p2p1 = p1q2 / p1p3 = t
+         * 连接q1q2
+         * 在q1q2上取一个点q3，使得q1q3 / q1q2 = t
+         * 使t的取值为[0, 1]
+         * 则q3形成的曲线即为二次贝塞尔曲线，具体推导可以使用平面向量
+         * 其中可以当作p1为控制点，p2为起始点，p3为结束点
+         * 对应到canvas中的api则为ctx.quadraticCurveTo(ctrlX, ctrlY, endX, endY)
+         * 其中ctrlX, ctrlY为控制点的坐标，endX, endY为结束点的坐标
+         * 起始点需要使用ctx.moveTo(x, y)等来设置
+        */
+        const canvas1 = document.getElementById('canvas1');
+        const ctx1 = canvas1.getContext('2d');
+        // ctx1.beginPath();
+        // ctx1.moveTo(100, 100);
+        // ctx1.quadraticCurveTo(160, 10, 300, 100);
+        // ctx1.stroke();
+
+
+        /**
+         * 三次贝塞尔曲线类似
+         * 在数学的直角坐标系中取四个互不重合的点：p1、p2、p3、p4
+         * 连接p1p2、p2p3、p3p4
+         * 在p1p2与p1p3与p2p4上取三个点，q1（p1p2）、q2（p1p3）、q3（p2p4）
+         * 使得p1q1/p1p2 = p2q2/p2p3 = p3q3/p3p4 = t
+         * 连接q1q2与q2q3
+         * 在q1q2与q2q3上取两个点，r1（q1q2）、r2（q2q3）
+         * 使得q1r1 / q1q2 = q2r2 / q2q3 = t
+         * 连接r1r2
+         * 在r1r2上取一个点m，使得r1m / r1r2 = t
+         * 使t的取值为[0, 1]
+         * 则m形成的曲线即为三次贝塞尔曲线，具体推导可以使用平面向量
+         * 其中可以当作p1为控制点，p2为起始点，p3为结束点
+         * 对应到canvas中的api则为ctx.bezierCurveTo(ctrlX1, ctrlY1, ctrlX2, ctrlY2, endX, endY)
+        */
+        ctx1.beginPath();
+        ctx1.moveTo(100, 100);
+        ctx1.bezierCurveTo(160, 10, 160, 100, 300, 100);
+        ctx1.stroke();
+
+        
+    </script>
+
+
+    
+</body>
+</html>
