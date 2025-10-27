@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number} leftTime 剩余时间，单位毫秒
+         * 
+        */
+        function timer(leftTime) {
+            // 如果剩余时间小于等于0，直接返回
+            if (leftTime <= 0) {
+                return;
+            }
+
+            console.log('-----------------');
+            let waitTime = leftTime % 1000 || 1000;
+            console.log('waitTime', waitTime);
+            
+            const start = Date.now();
+
+            // requestAnimationFrame，浏览器下一帧重绘前调用，一秒后再次调用timer，并在一秒后的下一帧执行出发下一次的settimeout
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    // 执行前可能因为各种原因延迟，导致实际执行时间大于1秒
+                    const end = Date.now();
+                    const passedTime = end - start;
+                    console.log('passedTime', passedTime);
+
+                    leftTime -= passedTime;
+                    console.log('leftTime', leftTime);
+
+
+                    const startCount = Math.ceil((leftTime + passedTime) / 1000);
+                    const countTimes = passedTime > 1000 ? Math.floor(passedTime / 1000) : 1;
+                    console.log('startCount', startCount);
+                    console.log('countTimes', countTimes);
+
+                    for(let i = startCount - 1; i >= startCount - countTimes; i--) {
+                        console.log(i);
+                    }
+
+                    // 如果各种原因延迟后，实际执行时间已经超过了剩余倒计时时间，则无需再执行, 只需要依次输出即可
+                    // 相反，如果剩余时间大于0，说明还有时间未到，还需要递归调用
+                    if(leftTime > 0) {
+                        timer(leftTime);
+                    }
+
+                    
+
+                }, waitTime);
+            })
+        }
+
+        
+
+        timer(20 * 1000)
+    </script>
+</body>
+</html>
