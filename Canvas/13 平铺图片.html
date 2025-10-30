@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+      width: 1000px;
+      height: 1000px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+  </div>
+  原始图片:
+  <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" alt="">
+  <script>
+
+    /**
+     * 平铺图片
+     * 
+     * createPattern(image, pattern) 方法创建一个重复的图片模式，该模式可以在 fillStyle 或 strokeStyle 中使用。
+     * @param {*} image 要重复的图片
+     * @param {*} pattern 重复模式，可选值为 'repeat'、'repeat-x'、'repeat-y'、'no-repeat'
+     * @returns 一个重复的图片模式
+     * 
+     * fillRect(x, y, width, height) 方法绘制一个矩形，该矩形将被填充为当前的填充样式。
+     * @param {*} x 矩形左上角的 x 坐标
+     * @param {*} y 矩形左上角的 y 坐标
+     * @param {*} width 矩形的宽度
+     * @param {*} height 矩形的高度
+     */ 
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    window.onload = function () {
+      const img = document.querySelector('img');
+      // 创建一个重复的图片模式
+      const pattern = ctx.createPattern(img, 'repeat');
+      const patternX = ctx.createPattern(img, 'repeat-x');
+      const patternY = ctx.createPattern(img, 'repeat-y');
+      const patternNoRepeat = ctx.createPattern(img, 'no-repeat');
+      // 设置填充样式为重复的图片模式
+      // ctx.fillStyle = pattern;
+      // ctx.fillStyle = patternX;
+      ctx.fillStyle = patternY;
+      // ctx.fillStyle = patternNoRepeat;
+      // 绘制一个矩形，该矩形将被填充为重复的图片模式
+      ctx.fillRect(0, 0, canvas.width, canvas.height);  // 整个 canvas 都被填充为重复的图片模式
+    }
+
+  </script>
+</body>
+</html>

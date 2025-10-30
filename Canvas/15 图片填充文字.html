@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+      width: 1000px;
+      height: 1000px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+  </div>
+  原始图片:
+  <img src="./pic.png" alt="">
+  <script>
+
+    
+    window.onload = function() {
+      const cnv = document.getElementById('canvas');
+      const ctx = cnv.getContext('2d');
+      const img = document.querySelector('img');
+
+      ctx.font = 'bold 50px 微软雅黑'
+      const pattern = ctx.createPattern(img, 'no-repeat');
+      ctx.fillStyle = pattern;
+      try {
+        ctx.fillText('hello world', 100, 100);
+      } catch (error) {
+        console.log(error);
+      } 
+    }
+
+  </script>
+</body>
+</html>
