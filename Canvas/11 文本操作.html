@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    canvas {
+      /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+      width: 1000px;
+      height: 1000px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+  <script>
+    /**
+     * 文本操作方法
+     * 
+     * fillText(text, x, y, maxWidth)
+     * text：要绘制的文本内容
+     * x：文本的起始横坐标
+     * y：文本的起始纵坐标
+     * maxWidth：可选参数，指定文本的最大宽度，超过该宽度会自动压缩到maxWidth
+     * 
+     * strokeText(text, x, y, maxWidth)
+     * text：要绘制的文本内容
+     * x：文本的起始横坐标，文字的最左边
+     * y：文本的起始纵坐标，文字的最下边
+     * maxWidth：可选参数，指定文本的最大宽度，超过该宽度会自动压缩到maxWidth
+     * 
+     * measureText(text)
+     * text：要测量的文本内容
+     * 返回一个对象，包含文本的宽度、高度、字体等信息
+     */
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = 'bold 24px 微软雅黑';
+
+
+    ctx.fillText('Hello World', 100, 100, 100);
+    ctx.strokeText('Hello World', 100, 200, 100);
+
+    // 测量文本宽度
+    const textWidth = ctx.measureText('Hello World').width;
+    console.log(textWidth);
+
+
+    /**
+     * 文本操作属性
+     * 
+     * font：指定文本的字体、大小和样式等
+     * ctx.font = 'font-style font-weight font-size/line-height font-family';
+     * font-style是字体的样式，可选值有normal、italic、oblique
+     * 
+     * textAlign：指定文本的对齐方式
+     * 可选值：start、end、left、right、center
+     * 
+     * textBaseline：指定文本的基线位置
+     * 可选值：top、hanging、middle、alphabetic、ideographic、bottom
+     * 
+     * fillStyle：指定文本的填充颜色
+     * 可以是颜色值（如#RRGGBB、rgba()等）或颜色名称
+     * 
+     * strokeStyle：指定文本的描边颜色
+     * 可以是颜色值（如#RRGGBB、rgba()等）或颜色名称
+     * 
+     */  
+
+
+    ctx.textAlign = 'center';
+    ctx.moveTo(500, 300);
+    ctx.lineTo(500, 400);
+    ctx.stroke();
+
+    // 文本对齐方式
+    ctx.fillText('Hello World', 500, 300);
+    ctx.strokeText('Hello World', 500, 400);
+
+    ctx.moveTo(400, 500);
+    ctx.lineTo(700, 500);
+    ctx.stroke();
+
+    // 文本基线位置
+    ctx.textAlign = 'start';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Hello World', 500, 500, 100);
+    ctx.strokeText('Hello World', 500, 600, 100);
+
+    // 文本填充颜色
+    ctx.fillStyle = 'red';
+    ctx.strokeStyle = 'blue';
+    ctx.fillText('Hello World', 500, 700, 100);
+
+    // 文本描边颜色
+    ctx.strokeText('Hello World', 500, 800, 100);
+
+  </script>
+</body>
+</html>
