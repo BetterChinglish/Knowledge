@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+    #canvas1 {
+      border: 1px dashed #000;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas1" width="1680" height="1680"></canvas>
+
+  <script>
+    // 使用arc方法画圆形
+    const canvas1 = document.getElementById('canvas1');
+    const ctx = canvas1.getContext('2d');
+
+    // 开始一条新路径使用beginPath()方法，一般配合closePath()方法使用，画完关闭路径
+    ctx.beginPath();
+    ctx.arc(500, 300, 200, 0, 2 * Math.PI);
+    ctx.closePath();
+
+    // ctx.arc(x,y, radius, startAngle, endAngle, anticlockwise)
+    // x,y  圆心的坐标
+    // radius  半径
+    // startAngle  开始角度，单位是弧度, 从x轴正方向开始计算，顺时针为正角度，逆时针为负角度
+    // endAngle  结束角度，单位是弧度
+    // anticlockwise  是否逆时针画圆，默认是顺时针
+
+    // 先定义路径，再填充或描边，填充与描边总是作用于当前已定义的路径
+
+    // 填充
+    ctx.fillStyle = 'pink';
+    ctx.fill();
+    // 描边
+    ctx.strokeStyle = 'red';
+    ctx.stroke();
+
+
+    // 使用arc方法画一个弧度
+    // ctx.beginPath();
+    // ctx.arc(800, 300, 200, Math.PI / 180 * 105, Math.PI / 180 * 145);
+    // ctx.strokeStyle = 'red';
+    // ctx.stroke();
+
+
+    /** 使用arcTo方法画一个圆弧
+     * 
+     * ctx.arcTo(cx, cy, x2, y2, radius)
+     * 一般先moveTo到x1、y1（起始点），x2、y2称为结束点，cx、cy称为控制点，radius为半径
+     * 相当于有一个圆弧，圆的半径为radius，控制点到起始点确定的直线和控制点到结束点确定的直线相切
+     * 
+     * */
+    // ctx.beginPath();
+    // ctx.moveTo(20,20);
+    // ctx.lineTo(70, 20);
+    // ctx.arcTo(120, 20, 120, 70, 50);
+    // ctx.lineTo(120, 120);
+    // ctx.strokeStyle = 'red';
+    // ctx.stroke();
+
+    // 将上述代码的ctx.lineTo(70, 20);注释掉, 可以看到图像没有发生变化
+    ctx.beginPath();
+    ctx.moveTo(20,20);
+    // ctx.lineTo(70, 20);
+    ctx.arcTo(120, 20, 120, 70, 50);
+    ctx.lineTo(120, 120);
+    ctx.strokeStyle = 'red';
+    ctx.stroke();
+    // 这是因为如果三个控制点加上半径无法形成一个圆弧，会添加一段直线距离以形成一个圆弧
+
+
+    // 圆角矩形
+    ctx.beginPath();
+    ctx.moveTo(300, 40);
+    ctx.lineTo(500, 40);
+    ctx.arcTo(510, 40, 510, 50, 10);
+    ctx.lineTo(510, 300);
+    ctx.arcTo(510, 310, 500, 310, 10);
+    ctx.lineTo(300, 310);
+    ctx.arcTo(290, 310, 290, 300, 10);
+    ctx.lineTo(290, 50);
+    ctx.arcTo(290, 40, 300, 40, 10);
+    ctx.closePath();
+    ctx.strokeStyle = 'red';
+    ctx.stroke();
+
+    // 可以封装为一个方法
+    function radiusRect(ctx, x, y, width, height, radius) {
+      const leftTopX = x;
+      const leftTopY = y;
+
+      const topLineStartX = leftTopX + radius;
+      const topLineStartY = leftTopY;
+
+      const topLineEndX = topLineStartX + width;
+      const topLineEndY = topLineStartY;
+
+      const rightTopX = topLineEndX + radius;
+      const rightTopY = topLineEndY;
+
+      const rightLineStartX = rightTopX;
+      const rightLineStartY = rightTopY + radius;
+
+      const rightLineEndX = rightLineStartX;
+      const rightLineEndY = rightLineStartY + height;
+
+      const rightBottomX = rightLineEndX;
+      const rightBottomY = rightLineEndY + radius;
+
+      const bottomLineStartX = rightBottomX - radius;
+      const bottomLineStartY = rightBottomY;
+
+      const bottomLineEndX = bottomLineStartX - width;
+      const bottomLineEndY = bottomLineStartY;
+
+      const leftBottomX = bottomLineEndX - radius;
+      const leftBottomY = bottomLineEndY;
+
+      const leftLineStartX = leftBottomX;
+      const leftLineStartY = leftBottomY - radius;
+
+      const leftLineEndX = leftLineStartX;
+      const leftLineEndY = leftLineStartY - height;
+      console.log('leftTopX, leftTopY:', leftTopX, leftTopY);
+      console.log('topLineStartX, topLineStartY:', topLineStartX, topLineStartY);
+      console.log('topLineEndX, topLineEndY:', topLineEndX, topLineEndY);
+      console.log('rightTopX, rightTopY:', rightTopX, rightTopY);
+      console.log('rightLineStartX, rightLineStartY:', rightLineStartX, rightLineStartY);
+      console.log('rightLineEndX, rightLineEndY:', rightLineEndX, rightLineEndY);
+      console.log('rightBottomX, rightBottomY:', rightBottomX, rightBottomY);
+      console.log('bottomLineStartX, bottomLineStartY:', bottomLineStartX, bottomLineStartY);
+      console.log('bottomLineEndX, bottomLineEndY:', bottomLineEndX, bottomLineEndY);
+      console.log('leftBottomX, leftBottomY:', leftBottomX, leftBottomY);
+      console.log('leftLineStartX, leftLineStartY:', leftLineStartX, leftLineStartY);
+      console.log('leftLineEndX, leftLineEndY:', leftLineEndX, leftLineEndY);
+      
+      
+
+      ctx.beginPath();
+      // 从左上角开始画，先画顶部的线
+      ctx.moveTo(topLineStartX, topLineStartY);
+      ctx.lineTo(topLineEndX, topLineEndY);
+
+      //右上角圆弧
+      ctx.arcTo(rightTopX, rightTopY, rightLineStartX, rightLineStartY, radius);
+
+      // 画右侧的线
+      ctx.lineTo(rightLineEndX, rightLineEndY);
+
+      // 右下角圆弧
+      ctx.arcTo(rightBottomX, rightBottomY, bottomLineStartX, bottomLineStartY, radius);
+      
+      // 画底部的线
+      ctx.lineTo(bottomLineEndX, bottomLineEndY);
+
+      // 左下角圆弧
+      ctx.arcTo(leftBottomX, leftBottomY, leftLineStartX, leftLineStartY, radius);
+
+      // 画左侧的线
+      ctx.lineTo(leftLineEndX, leftLineEndY);
+      ctx.arcTo(leftTopX, leftTopY, topLineStartX, topLineStartY, radius);
+      
+      ctx.closePath();
+      ctx.strokeStyle = 'red';
+      ctx.stroke();
+
+    }
+
+    // 调用radiusRect函数
+    radiusRect(ctx, 1000, 500, 200, 200, 20);
+
+
+  </script>
+</body>
+</html>
