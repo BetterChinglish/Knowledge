@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+      width: 1000px;
+      height: 1000px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <h3>图形平移属于变形操作, 其他变形操作包括缩放, 旋转, 变换矩阵</h3>
+  <h4>要点概括</h4>
+  <ul>
+    <li>平移：translate(x, y)</li>
+    <li>缩放: scale(x, y)</li>
+    <li>旋转: rotate(angle)</li>
+    <li>变换矩阵: transform(), setTransform()</li>
+  </ul>
+  <div style="margin: 20px 0 0 0;">这里展示了平移操作的效果</div>
+  <div>
+
+  </div>
+  <div>
+    <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+  </div>
+  <button id="btn">点击平移</button>
+  <script>
+    /**
+     * 平移: translate(x, y)
+     * 
+     * x: 水平方向平移距离
+     * 
+     * y: 垂直方向平移距离
+     * 
+     * 参考坐标系: w3c坐标系
+     * 
+     * */ 
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = 'red';
+    ctx.fillRect(100, 100, 100, 100);
+
+    ctx.translate(200, 200);
+
+    ctx.fillStyle = 'skyblue';
+    // 可以看到我们这里其实还是原先的位置,但其实translate是将坐标系原点发生了改变
+    ctx.fillRect(100, 100, 100, 100);
+
+    // 可以看到页面上出现了两个正方形，一个是红色的，一个是天蓝色的
+    // 天蓝色的正方形是红色的正方形平移了 200px 到右侧下方
+
+    const btn = document.getElementById('btn');
+
+    btn.addEventListener('click', () => {
+      ctx.translate(200, 200);
+      ctx.fillStyle = 'pink';
+      ctx.fillRect(100, 100, 100, 100);
+    })
+
+    // 点击按钮后，天蓝色的正方形再次平移了 200px 到右侧下方
+    // 可以看到，每次点击按钮，天蓝色的正方形都平移了 200px 到右侧下方
+  </script>
+</body>
+</html>

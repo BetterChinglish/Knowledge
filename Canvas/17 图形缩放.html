@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+      width: 1000px;
+      height: 1000px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <h3>图形平移属于变形操作, 其他变形操作包括缩放, 旋转, 变换矩阵</h3>
+  <h4>要点概括</h4>
+  <ul>
+    <li>平移：translate(x, y)</li>
+    <li>缩放: scale(x, y)</li>
+    <li>旋转: rotate(angle)</li>
+    <li>变换矩阵: transform(), setTransform()</li>
+  </ul>
+  <div style="margin: 20px 0 0 0;">这里展示了缩放操作的效果</div>
+  <div>
+
+  </div>
+  <div>
+    <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+  </div>
+  <script>
+    /**
+     * 缩放: scale(x, y)
+     * 
+     * x: 水平方向缩放比例
+     * 
+     * y: 垂直方向缩放比例
+     * 
+     * 参考坐标系: w3c坐标系
+     * 
+     * */ 
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = 'red';
+    ctx.fillRect(100, 100, 100, 100);
+
+    // 缩放两倍, 现在的1px将在画布上体现为2px
+    ctx.scale(2, 2);
+    ctx.fillStyle = 'skyblue';
+    // 仍用原先的坐标与尺寸绘制矩形
+    // 可以看到虽然设置的是(100, 100),其实走了200px
+    ctx.fillRect(100, 100, 100, 100);
+
+    // 缩小一倍, 但刚刚放大了一倍现在缩小一倍,其实是回到了原来的状态
+    ctx.scale(0.5, 0.5);
+    ctx.fillStyle = 'green';
+    // 可以看到绿色矩形覆盖掉了红色矩形
+    ctx.fillRect(100, 100, 100, 100);
+
+    // 再缩小一倍
+    ctx.scale(0.5, 0.5);
+    ctx.fillStyle = 'orange';
+    ctx.fillRect(100, 100, 100, 100);
+
+    // 基于scale的缩放原理, 其实可以预见到:
+    // 缩放是将原坐标系的像素与当前绘制坐标系的像素进行一个比例映射
+    // 这还会导致线条的宽度等属性也会被缩放
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = 'purple';
+    ctx.strokeRect(500, 500, 100, 100);
+    ctx.scale(5,5)
+    ctx.strokeRect(120, 120, 100, 100);
+
+
+  </script>
+</body>
+</html>
