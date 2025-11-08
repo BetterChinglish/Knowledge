@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+      width: 1000px;
+      height: 1000px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+  </div>
+  <script>
+    /**
+     * 
+     * 线性渐变
+     * 
+     * const gnt = createLinearGradient(x1, y1, x2, y2);
+     * // 表示从x1，y1开始，向x2，y2方向渐变
+     * gnt.addColorStop(stop, color);
+     * // stop： 一个介于 0 和 1 之间的数字，指定颜色停止的位置。
+     * // color： 一个表示颜色的字符串，例如 "red"、"#FF0000" 或 "rgba(255, 0, 0, 0.5)"。
+     * ctx.fillStyle = gnt;
+     * ctx.fillRect(0, 0, 1000, 1000);
+     * 
+    */
+
+    const cnv = document.getElementById('canvas');
+    const ctx = cnv.getContext('2d');
+
+    // 创建一个新的线性渐变对象
+    const gnt = ctx.createLinearGradient(0, 0, 1000, 0);
+
+    gnt.addColorStop(0, 'red');
+    gnt.addColorStop(0.5, 'green');
+    gnt.addColorStop(1, 'blue');
+
+    // ctx.fillStyle = gnt;
+    // ctx.fillRect(0, 0, 1000, 1000);
+
+    // 文字渐变
+    ctx.font = '100px serif';
+    ctx.fillStyle = gnt;
+    ctx.fillText('Hello World', 0, 100);
+
+  </script>
+</body>
+</html>
