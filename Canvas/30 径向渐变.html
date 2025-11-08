@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+      width: 1000px;
+      height: 1000px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+  </div>
+  <script>
+    /**
+     * 
+     * 径向渐变
+     * 
+     * 语法：
+     * const gnt = ctx.createRadialGradient(x1, y1, r1, x2, y2, r2);
+     * 
+     * // 表示从(x1, y1)开始，半径为r1的圆，向(x2, y2)开始，半径为r2的圆渐变
+     * gnt.addColorStop(stop, color);
+     * // stop： 一个介于 0 和 1 之间的数字，指定颜色停止的位置。
+     * // color： 一个表示颜色的字符串，例如 "red"、"#FF0000" 或 "rgba(255, 0, 0, 0.5)"。
+     * 
+     * // 可以多次调用 addColorStop() 方法，添加多个颜色停止点。
+     * // gnt.addColorStop(0.2, 'red');
+     * // gnt.addColorStop(0.5, 'green');
+     * // gnt.addColorStop(0.8, 'blue');
+     * 
+     * ctx.fillStyle = gnt;
+     * ctx.fillRect(0, 0, 1000, 1000);
+     * 
+    */
+
+    const cnv = document.getElementById('canvas');
+    const ctx = cnv.getContext('2d');
+
+    ctx.beginPath();
+    ctx.arc(500, 500, 500, 0, 2 * Math.PI, true);
+    ctx.closePath();
+    
+    // 圆心相同
+    // const gnt = ctx.createRadialGradient(100, 100, 0, 100, 100, 100);
+
+    // 修改渐变参数以匹配圆形路径，使渐变覆盖整个圆
+    const gnt = ctx.createRadialGradient(300, 300, 100, 500, 500, 700);
+    // 可以看到从（300, 300）开始，半径为100的圆，向（500, 500）开始，半径为700的圆渐变
+    // 从开始圆的边缘开始，到结束圆的边缘结束
+    // 而开始圆的圆内区域，则以第一个颜色停止点的颜色填充
+    // 而结束圆的圆外区域，则以最后一个颜色停止点的颜色填充
+    
+    gnt.addColorStop(0, 'pink');
+    gnt.addColorStop(0.5, 'skyblue');
+    gnt.addColorStop(1, 'purple');
+    
+    // ctx.fillStyle = gnt;
+    ctx.fillStyle = gnt;
+
+    ctx.fill();
+     
+  
+
+  </script>
+</body>
+</html>
