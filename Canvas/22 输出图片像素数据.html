@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+      width: 1000px;
+      height: 1000px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+  </div>
+  <script>
+
+    /**
+     * 将图片二进制数据输出绘制到canvas上，起始点为(x, y)
+     * ctx.putImageData(imageData, x, y)
+     * */
+
+    const cnv = document.getElementById('canvas');
+    const ctx = cnv.getContext('2d');
+
+    const img = new Image();
+    img.src = './pic.png';
+    img.onload = function() {
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.drawImage(img, 0, 0);
+
+      // 获取图片像素数据
+      const imageData = ctx.getImageData(0, 0, cnv.width, cnv.height);
+      console.log(imageData); // canvasPixelArray对象
+      // srgb是颜色空间，每个像素由4个通道组成，分别是红、绿、蓝、透明度
+      // imageData.data是一个一维数组，每四个元素代表一个像素的颜色值
+      console.log(imageData.data);
+      // length / 4 是像素的数量
+      console.log(imageData.data.length);
+
+
+      // 2s后清除画布
+      setTimeout(() => {
+        ctx.clearRect(0, 0, cnv.width, cnv.height);
+
+        // 2s后重新绘制图片
+        setTimeout(() => {
+          ctx.putImageData(imageData, 0, 0);
+        }, 2000);
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

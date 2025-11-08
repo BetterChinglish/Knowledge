@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+      width: 1000px;
+      height: 1000px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+    原始图片
+  <div style="margin: 0 0 20px 0;">
+    <img src="./pic.png">
+  </div>
+  <div>
+    <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+  </div>
+  <script>
+
+    /** 创建像素操作区域
+     * createImageData() 方法有以下 2 种语法格式
+     * createImageData(width, height)： 创建一个新的 ImageData 对象，宽度为 width，高度为 height。
+     * createImageData(imagedata)： 创建一个新的 newImageData 对象，宽度和高度与 imagedata 相同
+     * */
+
+    const cnv = document.getElementById('canvas');
+    const ctx = cnv.getContext('2d');
+
+    // 创建一个新的 ImageData 对象，宽度为 100，高度为 100
+    const imageData = ctx.createImageData(100, 100);
+    console.log(imageData);
+    console.log(imageData.data);
+    console.log(imageData.data.length);
+
+    const data = imageData.data;
+    // 遍历像素数据，将每个像素的透明度设置为 0.5
+    for (let i = 0; i < data.length; i += 4) {
+      data[i+0] = 0;
+      data[i+1] = 0;
+      data[i+2] = 255;
+      data[i+3] = 255;
+    }
+
+    ctx.putImageData(imageData, 0, 0);
+
+    const newImageData = ctx.createImageData(imageData);
+    
+    // 啥也没有，只是创建了一个新的 ImageData 对象，像素数据为空
+    console.log(newImageData);
+    console.log(newImageData.data);
+    console.log(newImageData.data.length);
+    ctx.putImageData(newImageData, 300, 300);
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+      width: 1000px;
+      height: 1000px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+    原始图片
+  <div style="margin: 0 0 20px 0;">
+    <img src="./pic.png">
+  </div>
+  <div>
+    <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+  </div>
+  <script>
+
+    /**
+     * 红色蒙版：指的是让图片呈现一种偏红的效果。
+     * 计算方式是：将红通道（R）赋值为红、绿、蓝 3 个通道的平均值，并且将绿通道、蓝通道都赋值为 0。
+     * 
+     * 透明度无需反转
+     * */
+
+    const cnv = document.getElementById('canvas');
+    const ctx = cnv.getContext('2d');
+
+    const img = new Image();
+    img.src = './pic.png';
+    img.onload = function() {
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.drawImage(img, 0, 0);
+
+      // 获取图片像素数据
+      const imageData = ctx.getImageData(0, 0, cnv.width, cnv.height);
+      console.log(imageData); // canvasPixelArray对象
+      // srgb是颜色空间，每个像素由4个通道组成，分别是红、绿、蓝、透明度
+      // imageData.data是一个一维数组，每四个元素代表一个像素的颜色值
+      console.log(imageData.data);
+      // length / 4 是像素的数量
+      console.log(imageData.data.length);
+
+
+      // 2s后清除画布
+      setTimeout(() => {
+        ctx.clearRect(0, 0, cnv.width, cnv.height);
+
+        // 2s后重新绘制图片
+        setTimeout(() => {
+          const pixels = imageData.data;
+          console.log(pixels);
+          for(let i = 0; i < pixels.length ; i+=4) {
+            const r = pixels[i];
+            const g = pixels[i + 1];
+            const b = pixels[i + 2];
+            const avg = (r + g + b) / 3;
+            pixels[i] = avg;
+            pixels[i + 1] = 0;
+            pixels[i + 2] = 0;
+          }
+          console.log(imageData.data);
+          
+          // 绘制反转后的图片
+          ctx.putImageData(imageData, 0, 0);
+        }, 2000);
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
