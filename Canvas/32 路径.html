@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+      width: 1000px;
+      height: 1000px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+  </div>
+  <script>
+
+    // canvas中操作路径的方法
+    // 1. beginPath()：开始一个新路径
+    // 2. closePath()：关闭当前路径, 并非路径结束，而是将当前路径的起始点与结束点连接起来。路径结束只有重新调用beginPath()方法开始新路径。
+    // 这两个只运用于canvas基本图形
+
+    // 3. isPointInPath(x, y)：判断点(x, y)是否在当前路径内
+
+    /**
+     * beginPath()：开始一个新路径，可用作结束路径
+     * 语法：
+     *  ctx.beginPath();
+    */
+
+    const cnv = document.getElementById('canvas');
+    const ctx = cnv.getContext('2d');
+
+    // 可以看到下面这三条直线都是蓝色
+    //第1条直线
+    ctx.moveTo(50, 40);
+    ctx.lineTo(150, 40);
+    ctx.strokeStyle = "red";
+    ctx.stroke();
+
+    //第2条直线
+    ctx.moveTo(50, 80);
+    ctx.lineTo(150, 80);
+    ctx.strokeStyle = "green";
+    ctx.stroke();
+
+    //第3条直线
+    ctx.moveTo(50, 120);
+    ctx.lineTo(150, 120);
+    ctx.strokeStyle = "blue";
+    ctx.stroke();
+
+    /**
+     * 可以理解为一个路径只能有一个strokeStyle，类似于css样式，strokeStyle也会后来者覆盖前者
+     * canvas基于“状态”进行绘制图形，每次绘制（stroke()或fill()）canvas斗魂检测整个程序定义的所有状态
+     * 状态包括strokeStyle、fillStyle、lineWidth等
+     * 当一个状态值没有被改变时，canvas就一直使用最初的值
+     * 如果使用beginPath（）开始一个新路径，则不同路径使用不同的值
+     * 如果没用使用beginPath（），则后面的值会覆盖掉前面的值
+     * 所以上述三条直线是第二种情况，没有使用beginPath（）开始新路径，所以strokeStyle会被覆盖
+     * 
+    */
+
+    ctx.beginPath();
+    // 第4条直线
+    ctx.moveTo(50, 160);
+    ctx.lineTo(150, 160);
+    ctx.strokeStyle = "orange";
+    ctx.stroke();
+
+    // 第5条直线
+    ctx.beginPath();
+    ctx.moveTo(50, 200);
+    ctx.lineTo(150, 200);
+    ctx.strokeStyle = "purple";
+    ctx.stroke();
+
+    // 第6条直线
+    ctx.beginPath();
+    ctx.moveTo(50, 240);
+    ctx.lineTo(150, 240);
+    ctx.strokeStyle = "brown";
+    ctx.stroke();
+
+    // 第7条直线为蓝色，发现第一、二条直线并非纯正蓝色，可能是颜色发生了混合
+    ctx.beginPath();
+    ctx.moveTo(50, 280);
+    ctx.lineTo(150, 280);
+    ctx.strokeStyle = "blue";
+    ctx.stroke();
+
+    /**
+     * closePath(): 闭合当前路径, 并非结束当前路径
+     * 
+    */
+    ctx.beginPath();
+    ctx.fillText("closePath()", 50, 300);
+    ctx.moveTo(50, 320);
+    ctx.lineTo(150, 320);
+    ctx.lineTo(50, 350);
+    ctx.strokeStyle = "red";
+    ctx.closePath();
+    ctx.stroke();
+
+    // 用lineTo画一个300*200的矩形
+    ctx.beginPath();
+    ctx.lineWidth = 15;
+    ctx.strokeStyle = "red";
+    ctx.moveTo(50, 420);
+    ctx.lineTo(350, 420);
+    ctx.lineTo(350, 620);
+    ctx.lineTo(50, 620);
+    ctx.lineTo(50, 420);
+
+    // 发现没有closePath(),矩形左上角会出现缺口
+    ctx.stroke();
+
+
+
+  </script>
+</body>
+</html>
