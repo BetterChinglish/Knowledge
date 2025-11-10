@@ -56,13 +56,13 @@
 
     // 画一条直线
     ctx.beginPath();
-    ctx.moveTo(100, 300);
-    ctx.lineTo(300, 300);
+    ctx.moveTo(100, 500);
+    ctx.lineTo(300, 500);
     ctx.strokeStyle = "green";
     ctx.stroke();
 
-    // 判断点(200, 300)是否在直线内
-    console.log(ctx.isPointInPath(200, 300)); // false 无法用于判断是否在线段上
+    // 判断点(200, 500)是否在直线内
+    console.log(ctx.isPointInPath(200, 500)); // false 无法用于判断是否在线段上
 
 
   </script>
