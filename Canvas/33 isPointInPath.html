@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+      width: 1000px;
+      height: 1000px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+  </div>
+  <script>
+
+    // isPointInPath(x, y)：判断点(x, y)是否在当前路径内
+    // 注意: 
+    // 1 该方法不支持strokeRect与fillRect
+    // 2 该方法判断的是点是否在图形之中, 而非线段之上, 无法判断是否在线段上
+
+    const cnv = document.getElementById("canvas");
+    const ctx = cnv.getContext("2d");
+
+    // 画一个矩形
+    ctx.beginPath();
+    ctx.strokeStyle = "red";
+    ctx.rect(100, 100, 200, 200);
+    ctx.stroke();
+
+    // 使用strokeRect发现下面输出全为false
+    // ctx.strokeRect(100, 100, 200, 200);
+
+    // 判断点(150, 150)是否在矩形内
+    console.log(ctx.isPointInPath(150, 150)); // true
+
+    // 判断点(300, 300)是否在矩形内
+    console.log(ctx.isPointInPath(300, 300)); // true
+
+    // 判断点(300, 301)是否在矩形内
+    console.log(ctx.isPointInPath(300, 301)); // false
+
+    // 画一条直线
+    ctx.beginPath();
+    ctx.moveTo(100, 300);
+    ctx.lineTo(300, 300);
+    ctx.strokeStyle = "green";
+    ctx.stroke();
+
+    // 判断点(200, 300)是否在直线内
+    console.log(ctx.isPointInPath(200, 300)); // false 无法用于判断是否在线段上
+
+
+  </script>
+</body>
+</html>
