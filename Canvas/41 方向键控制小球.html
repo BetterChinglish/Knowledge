@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+
+    }
+    .example {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    canvas {
+      /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+      width: 1000px;
+      height: 1000px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="example">
+    <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+  </div>
+  <script>
+    const cnv = document.getElementById('canvas');
+    const ctx = cnv.getContext('2d');
+
+    const Directions = {
+      UP: 'up',
+      RIGHT: 'right',
+      DOWN: 'down',
+      LEFT: 'left',
+      STOP: 'stop',
+    }
+
+    const key = {
+      direction: 'stop',
+    };
+    const ballInfo = {
+      x: 500,
+      y: 500,
+      radius: 50,
+      color: 'red',
+    }
+
+    drawBall(ballInfo);
+
+    window.addEventListener('keydown', (e) => {
+      // 38 是上箭头，87 是 W 键
+      if(e.keyCode === 38 || e.keyCode === 87) {
+        key.direction = Directions.UP;
+      }
+      // 39 是右箭头，68 是 D 键
+      else if(e.keyCode === 39 || e.keyCode === 68) {
+        key.direction = Directions.RIGHT;
+      }
+      // 40 是下箭头，83 是 S 键
+      else if(e.keyCode === 40 || e.keyCode === 83) {
+        key.direction = Directions.DOWN;
+      }
+      // 37 是左箭头，65 是 A 键
+      else if(e.keyCode === 37 || e.keyCode === 65) {
+        key.direction = Directions.LEFT;
+      } else {
+        key.direction = Directions.STOP;
+      }
+
+      freshBall();
+    })
+
+    function freshBall() {
+      if(key.direction === Directions.STOP) {
+        return;
+      }
+      ctx.clearRect(0, 0, cnv.width, cnv.height);
+      switch(key.direction) {
+        case Directions.UP:
+          ballInfo.y -= 5;
+          break;
+        case Directions.RIGHT:
+          ballInfo.x += 5;
+          break;
+        case Directions.DOWN:
+          ballInfo.y += 5;
+          break;
+        case Directions.LEFT:
+          ballInfo.x -= 5;
+          break;
+        case Directions.STOP:
+          break;
+      }
+      drawBall(ballInfo);
+    }
+
+    function drawBall(ballInfo) {
+      ctx.beginPath();
+      ctx.arc(ballInfo.x, ballInfo.y, ballInfo.radius, 0, Math.PI * 2);
+      ctx.fillStyle = ballInfo.color;
+      ctx.fill();
+      ctx.closePath();
+    }
+
+
+  </script>
+</body>
+</html>
