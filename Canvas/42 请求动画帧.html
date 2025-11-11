@@ -69,7 +69,8 @@
       }
   )*/
 
-  let x = 0;
+  /* 运动的半圆 */
+  /*let x = 0;
   const degree = Math.PI / 180;
 
   (function frame() {
@@ -88,11 +89,43 @@
     ctx.fill();
 
     x++;
+  })()*/
+
+  // 按圆形轨迹运动
+
+  const r = 300;
+  let angle = 0;
+  const degree = Math.PI / 180;
+  function drawTrail() {
+    // 画一个虚线圆形作为路径
+    ctx.beginPath();
+    ctx.setLineDash([10, 15]);
+    ctx.arc(cnv.width / 2, cnv.height / 2, r, 0, Math.PI * 2);
+    ctx.strokeStyle = 'lightgray';
+    ctx.stroke();
+    ctx.setLineDash([]); // 清除虚线设置
+  }
+
+  (function frame2() {
+    window.requestAnimationFrame(frame2);
+
+    ctx.clearRect(0, 0, cnv.width, cnv.height);
+
+    drawTrail();
+
+    const x = cnv.width / 2 + r * Math.cos(angle * degree);
+    const y = cnv.height / 2 + r * Math.sin(angle * degree);
+
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fillStyle = 'pink';
+    ctx.fill();
+
+    angle += 0.2;
+    if(angle >= 360) {
+      angle = 0;
+    }
   })()
-
-
-
-
 
 </script>
 </body>
