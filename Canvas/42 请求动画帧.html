@@ -70,6 +70,8 @@
   )*/
 
   let x = 0;
+  const degree = Math.PI / 180;
+
   (function frame() {
     if(x > cnv.width) {
       x = 0;
@@ -81,7 +83,7 @@
 
     // 绘制一个圆
     ctx.beginPath();
-    ctx.arc(x, 500, 50, 0, Math.PI, true);
+    ctx.arc(x, 500, 50, 0, degree * 180, true);
     ctx.fillStyle = 'skyblue';
     ctx.fill();
 
