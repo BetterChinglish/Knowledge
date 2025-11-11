@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+    .example {
+      padding: 300px 0 0 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    canvas {
+      /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+      width: 1000px;
+      height: 1000px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+<div class="example">
+  <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+</div>
+<script>
+  // 做动画效果，一般不使用setInterval，其本身存在一些性能问题，且无法准确控制动画帧的频率
+  /*
+  * 使用requestAnimationFrame(): 请求动画帧
+  *
+  * 语法：
+  *   requestAnimationFrame(callback)
+  *
+  * */
+
+
+  const cnv = document.getElementById('canvas');
+  const ctx = cnv.getContext('2d');
+
+  // 常用格式：
+  /*
+  (
+    function frame() {
+      window.requestAnimationFrame(frame);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // ...
+    }
+  ) ()
+  */
+
+  // 兼容性问题处理, 没多大必要, 了解即可, 除特殊行业特殊用途, 用不了的一律建议升级设备
+  /*window.requestAnimationFrame = (
+    window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||  // Firefox
+      window.msRequestAnimationFrame ||   // IE
+      window.oRequestAnimationFrame ||    // Opera
+      function (callback) {
+        return window.setTimeout(callback, 1000 / 60);
+      }
+  )*/
+
+  let x = 0;
+  (function frame() {
+    if(x > cnv.width) {
+      x = 0;
+    }
+
+    window.requestAnimationFrame(frame);
+
+    ctx.clearRect( 0, 0, cnv.width, cnv.height );
+
+    // 绘制一个圆
+    ctx.beginPath();
+    ctx.arc(x, 500, 50, 0, Math.PI, true);
+    ctx.fillStyle = 'skyblue';
+    ctx.fill();
+
+    x++;
+  })()
+
+
+
+
+
+</script>
+</body>
+</html>
