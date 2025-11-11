@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      body {
+          width: 100vw;
+          height: 100vh;
+      }
+      .example {
+          padding: 300px 0 0 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      canvas {
+          /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+          width: 1000px;
+          height: 1000px;
+          margin: 0 auto;
+      }
+  </style>
+</head>
+<body>
+<div class="example">
+  <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+</div>
+<script>
+  const cnv = document.getElementById('canvas');
+  const ctx = cnv.getContext('2d');
+
+  // 按椭圆轨迹运动
+  const r = 300;
+  let angle = 0;
+  const degree = Math.PI / 180;
+
+  /*  画椭圆
+  * ctx.ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise);
+  * 参数说明：
+  *   x,y: 椭圆中心点坐标
+  *   radiusX,radiusY: 椭圆的水平半径和垂直半径, 非焦点长度, 如果两者相等即为圆了
+  *   rotation: 绕椭圆中心旋转度数
+  *   startAngle,endAngle: 起始和结束角度，单位为弧度
+  *   anticlockwise: 可选，布尔值，表示是否逆时针
+  * */
+  function drawTrail() {
+    // 画一个虚线椭圆作为路径
+    ctx.beginPath();
+    ctx.setLineDash([10, 15]);
+    ctx.ellipse(cnv.width / 2, cnv.height / 2, r, r * 0.6, 0, 0, Math.PI * 2);
+    ctx.strokeStyle = 'lightgray';
+    ctx.stroke();
+    ctx.setLineDash([]); // 清除虚线设置
+  }
+
+
+
+  (function frame() {
+    window.requestAnimationFrame(frame);
+    ctx.clearRect(0, 0, cnv.width, cnv.height);
+
+    drawTrail();
+
+    const x = cnv.width / 2 + r * Math.cos(angle * degree);
+    const y = cnv.height / 2 + r * 0.6 * Math.sin(angle * degree);
+
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fillStyle = 'pink';
+    ctx.fill();
+
+    angle += 0.2;
+
+    if(angle >= 360) {
+      angle = 0;
+    }
+
+
+  })()
+
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      body {
+          width: 100vw;
+          height: 100vh;
+      }
+      .example {
+          padding: 300px 0 0 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      canvas {
+          /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+          width: 1000px;
+          height: 1000px;
+          margin: 0 auto;
+      }
+  </style>
+</head>
+<body>
+<div class="example">
+  <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+</div>
+<script src="./tools/Ball.js"></script>
+<script>
+  const cnv = document.getElementById('canvas');
+  const ctx = cnv.getContext('2d');
+
+
+  let angleX = 0;
+  let angleY = 0;
+  let angleScaleXY = 0;
+  let range = 200;
+
+  const scaleRange = 0.5
+
+  const ballX = new Ball(cnv.width / 2, cnv.height / 2);
+  const ballY = new Ball(cnv.width / 2, cnv.height / 2, 12, 'pink');
+  const ballScaleXY = new Ball(cnv.width / 2, cnv.height / 2, 15, 'purple');
+
+  console.log(ballX, ballY, ballScaleXY);
+
+  (function frame() {
+    window.requestAnimationFrame(frame);
+    ctx.clearRect(0, 0, cnv.width, cnv.height);
+
+    // 作用于x轴
+    ballX.x = cnv.width / 2 + Math.sin(angleX) * range;
+    ballX.fill(ctx);
+    angleX += 0.01;
+
+    // 作用于y轴
+    ballY.y = cnv.height / 2 + Math.sin(angleY) * range;
+    ballY.fill(ctx);
+    angleY += 0.01;
+
+    // 作用于scale
+    ballScaleXY.scaleX = 1 + Math.sin(angleScaleXY) * scaleRange;
+    ballScaleXY.scaleY = 1 + Math.sin(angleScaleXY) * scaleRange;
+    ballScaleXY.fill(ctx);
+    angleScaleXY += 0.01;
+
+  })();
+</script>
+</body>
+</html>
