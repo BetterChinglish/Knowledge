@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      body {
+          width: 100vw;
+          height: 100vh;
+      }
+      .example {
+          padding: 300px 0 0 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      canvas {
+          /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+          width: 1000px;
+          height: 1000px;
+          margin: 0 auto;
+      }
+  </style>
+</head>
+<body>
+<div class="example">
+  <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+</div>
+<script src="./tools/Ball.js"></script>
+<script>
+  const cnv = document.getElementById('canvas');
+  const ctx = cnv.getContext('2d');
+
+  // 速度
+  let vx = 0; // x 方向速度
+  // 加速度
+  const ax = 0.1;
+
+  const ball = new Ball(0, 300, 30, 'pink');
+
+  (function frame() {
+    window.requestAnimationFrame(frame);
+    ctx.clearRect(0, 0, cnv.width, cnv.height);
+
+    ball.x += vx;
+    ball.fill(ctx);
+
+    // 速度变化
+    vx += ax;
+
+    if(ball.x > cnv.width) {
+      ball.x = 0;
+      vx = 0;
+    }
+  })();
+  // 同样的加速度也可以分解到x与y轴上，从而实现斜向加速运动，同样利用三角函数，这里不做过多演示
+</script>
+</body>
+</html>
