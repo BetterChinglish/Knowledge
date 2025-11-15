@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      body {
+          width: 100vw;
+          height: 100vh;
+      }
+      .example {
+          padding: 300px 0 0 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      canvas {
+          /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+          width: 1000px;
+          height: 1000px;
+          margin: 0 auto;
+      }
+  </style>
+</head>
+<body>
+<div class="example">
+  <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+</div>
+<script src="./tools/Ball.js"></script>
+<script>
+  const cnv = document.getElementById('canvas');
+  const ctx = cnv.getContext('2d');
+
+  const ballRadius = 30;
+  const ball = new Ball(cnv.width / 2, cnv.height / 2, ballRadius, 'purple');
+
+  // 边界检测
+
+  /*
+  * 外接矩形判定法:
+  * 将物体近似抽象为一个矩形,用一个最小的能够完全罩住物体的矩形来代表物体本身, 然后判断矩形是否碰撞即可.
+  * 问题便被转化为两个矩形碰撞如何检测的问题, 检测方式如下函数
+  * */
+  function checkRect(A, B) {
+    return !(
+      A.x + A.width < B.x ||
+      B.x + B.width < A.x ||
+      A.y + A.height < B.y ||
+      B.y + B.height < A.y
+    )
+  }
+
+
+  /*
+  * 外接圆判定法:
+  * 将物体抽象为一个近似圆, 则问题简化为两个圆碰撞如何检测的问题, 检测方式如下函数
+  * */
+  function checkCircle(A, B) {
+    const dx = A.x - B.x;
+    const dy = A.y - B.y;
+    const distance = dx * dx + dy * dy;
+    return distance < Math.pow(A.radius + B.radius, 2);
+  }
+
+  /*
+  * 多物体时的碰撞检测
+  * 如果有ABCD四个物体则需要两两检测, 即AB AC AD BC BD CD 共6次检测
+  * 如果有n个物体, 则需要检测 n*(n-1)/2 次
+  * 可以使用双重循环来实现
+  * */
+  function checkItems(items) {
+    for(let i = 0; i < items.length; i++) {
+      for(let j = i + 1; j < items.length; j++) {
+        if(check(items[i], items[j])) {
+          // 碰撞处理逻辑
+        }
+      }
+    }
+  }
+
+  function check(a, b) {
+    // 具体检测逻辑
+  }
+
+
+</script>
+</body>
+</html>
