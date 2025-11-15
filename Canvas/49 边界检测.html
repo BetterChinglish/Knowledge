@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      body {
+          width: 100vw;
+          height: 100vh;
+      }
+      .example {
+          padding: 300px 0 0 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      canvas {
+          /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+          width: 1000px;
+          height: 1000px;
+          margin: 0 auto;
+      }
+  </style>
+</head>
+<body>
+<div class="example">
+  <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+</div>
+<script src="./tools/Ball.js"></script>
+<script>
+  const cnv = document.getElementById('canvas');
+  const ctx = cnv.getContext('2d');
+
+  const ballRadius = 30;
+  const ball = new Ball(cnv.width / 2, cnv.height / 2, ballRadius, 'purple');
+
+  // 边界检测
+
+  // 1 碰到边界
+  // 1.1 碰到左边界
+  function isCollideLeft(ball) {
+    return ball.x - ball.radius <= 0;
+  }
+  // 1.2 碰到右边界
+  function isCollideRight(ball, canvas) {
+    return ball.x + ball.radius >= canvas.width;
+  }
+  // 1.3 碰到上边界
+  function isCollideTop(ball) {
+    return ball.y - ball.radius <= 0;
+  }
+  // 1.4 碰到下边界
+  function isCollideBottom(ball, canvas) {
+    return ball.y + ball.radius >= canvas.height;
+  }
+
+  // 2 完全超出边界
+  // 2.1 完全超出左边界
+  function isOutLeft(ball) {// 小球最右侧位置小于0
+    return ball.x + ball.radius < 0;
+  }
+  // 2.2 完全超出右边界
+  function isOutRight(ball, canvas) {// 小球最左侧位置大于画布宽度
+    return ball.x - ball.radius > canvas.width;
+  }
+  // 2.3 完全超出上边界
+  function isOutTop(ball) {// 小球最下侧位置小于0
+    return ball.y + ball.radius < 0;
+  }
+  // 2.4 完全超出下边界
+  function isOutBottom(ball, canvas) {// 小球最上侧位置大于画布高度
+    return ball.y - ball.radius > canvas.height;
+  }
+
+  /* 边界环绕：
+   * 完全超出后，可以将小球位置刷新在对侧，例如完全超出左侧肯定是从右往左走超出左侧，那么可以刷新在右侧
+   * */
+
+  /*
+  * 边界生成
+  * 完全超出边界后,在最开始的位置重新生成, 例如喷泉的粒子特效等, 这使得物体的数量不增多, 避免性能问题
+  * 需要再额外设置两个属性用于记录初始位置
+  * */
+
+  /*
+  * 边界反弹
+  * 碰到左右边界的时候, vx取反, vy不变
+  * 碰到上下边界的时候, vy取反, vx不变
+  * */
+
+
+</script>
+</body>
+</html>
