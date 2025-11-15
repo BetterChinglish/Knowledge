@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      body {
+          width: 100vw;
+          height: 100vh;
+      }
+      .example {
+          padding: 300px 0 0 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      canvas {
+          /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+          width: 1000px;
+          height: 1000px;
+          margin: 0 auto;
+      }
+  </style>
+</head>
+<body>
+<div class="example">
+  <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+</div>
+<script src="./tools/Ball.js"></script>
+<script>
+  const cnv = document.getElementById('canvas');
+  const ctx = cnv.getContext('2d');
+
+  const n = 20;
+  const balls = [];
+
+  const canvasWidth = cnv.width;
+  const canvasHeight = cnv.height;
+
+  function generateBalls() {
+    for(let i = 0; i < n; i++) {
+      const r = 15;
+      const x = Math.random() * canvasWidth;
+      const y = Math.random() * canvasHeight;
+
+      const ball = new Ball( x, y, r, 'purple' );
+      // 随机速度, 随机范围: -3 ~ 3
+      ball.vx = Math.random() * 6 - 3;
+      ball.vy = Math.random() * 6 - 3;
+
+      balls.push(ball);
+    }
+  }
+
+  // 检测小球直接的碰撞
+  function checkDetection(ball, index) {
+    for(let j = index + 1; j < balls.length; j++) {
+      const otherBall = balls[j];
+      const dx = otherBall.x - ball.x;
+      const dy = otherBall.y - ball.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      if(distance < ball.r + otherBall.r) {
+        // 碰撞处理: 交换速度
+        const tempVx = ball.vx;
+        const tempVy = ball.vy;
+        ball.vx = otherBall.vx;
+        ball.vy = otherBall.vy;
+        otherBall.vx = tempVx;
+        otherBall.vy = tempVy;
+
+        // 小球数量一多发现很容易出现重合在一起的小球
+        // 可以为x,y加上偏移量,减少小球重合
+        // 更复杂的可以考虑速度方向增加偏移量, 后续还会有这方面的优化去避免重合
+        if(ball.vx > 0) {
+          ball.x += 5;
+        } else {
+          ball.x -= 5;
+        }
+
+        if(ball.vy > 0) {
+          ball.y += 5;
+        } else {
+          ball.y -= 5;
+        }
+
+        if(otherBall.vx > 0) {
+          otherBall.x += 5;
+        } else {
+          otherBall.x -= 5;
+        }
+        if(otherBall.vy > 0) {
+          otherBall.y += 5;
+        } else {
+          otherBall.y -= 5;
+        }
+
+      }
+
+
+    }
+  }
+
+  // 检测边界碰撞
+  function checkBorder(ball) {
+    // 碰到左边界
+    if(ball.x - ball.r <= 0) {
+      ball.vx = -ball.vx;
+      ball.x = ball.r;
+    }
+
+    // 碰到右边界
+    else if(ball.x + ball.r >= canvasWidth) {
+      ball.vx = -ball.vx;
+      ball.x = canvasWidth - ball.r;
+    }
+
+    // 碰到上边界
+    else if(ball.y - ball.r <= 0) {
+      ball.vy = -ball.vy;
+      ball.y = ball.r;
+    }
+
+    // 碰到下边界
+    else if(ball.y + ball.r >= canvasHeight) {
+      ball.vy = -ball.vy;
+      ball.y = canvasHeight - ball.r;
+    }
+
+  }
+
+  // 绘制
+  function drawBall(ball) {
+    ball.fill(ctx);
+    ball.x += ball.vx;
+    ball.y += ball.vy;
+  }
+
+  generateBalls();
+  balls.forEach(drawBall);
+
+  (
+    function frame() {
+      requestAnimationFrame(frame);
+      ctx.clearRect(0, 0, cnv.width, cnv.height);
+
+      // 碰撞检测
+      balls.forEach(checkDetection);
+
+      // 边界检测
+      balls.forEach(checkBorder);
+
+      // 绘制
+      balls.forEach(drawBall);
+    }
+  )()
+
+
+</script>
+</body>
+</html>
