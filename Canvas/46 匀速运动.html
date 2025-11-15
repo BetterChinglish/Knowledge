@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      body {
+          width: 100vw;
+          height: 100vh;
+      }
+      .example {
+          padding: 300px 0 0 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      canvas {
+          /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+          width: 1000px;
+          height: 1000px;
+          margin: 0 auto;
+      }
+  </style>
+</head>
+<body>
+<div class="example">
+  <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+</div>
+<script src="./tools/Ball.js"></script>
+<script>
+  const cnv = document.getElementById('canvas');
+  const ctx = cnv.getContext('2d');
+
+  // 速度
+  const vx = 2; // x 方向速度
+  const vy = 0.5; // y 方向速度
+
+  const ball = new Ball(0, 300, 30, 'orange');
+
+  // 使用三角函数可以将速度封装为方向夹角与方向速度的形式
+  const speed = 5;
+  const angle = 30;
+  const vx2 = speed * Math.cos(angle * Math.PI / 180);
+  const vy2 = speed * Math.sin(angle * Math.PI / 180);
+
+  const ball2 = new Ball( 0, 500, 30, 'purple' );
+
+  (function frame() {
+
+    window.requestAnimationFrame(frame);
+    ctx.clearRect(0, 0, cnv.width, cnv.height);
+
+    // 更新小球位置
+    ball.x += vx;
+    ball.y += vy;
+    ball.fill(ctx);
+
+    ball2.x += vx2;
+    ball2.y += vy2;
+    ball2.fill(ctx);
+
+
+    if(ball.x > cnv.width || ball.y > cnv.height){
+      ball.x = 0;
+      ball.y = 300;
+    }
+    if(ball2.x > cnv.width || ball2.y > cnv.height){
+      ball2.x = 0;
+      ball2.y = 500;
+    }
+
+  })();
+</script>
+</body>
+</html>
