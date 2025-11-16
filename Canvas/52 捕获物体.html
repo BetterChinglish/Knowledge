@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      body {
+          width: 100vw;
+          height: 100vh;
+      }
+      .example {
+          padding: 300px 0 0 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      canvas {
+          /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+          width: 1000px;
+          height: 1000px;
+          margin: 0 auto;
+      }
+  </style>
+</head>
+<body>
+<div class="example">
+  <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+</div>
+<script src="./tools/Ball.js"></script>
+<script src="./tools/GetMouse.js"></script>
+<script>
+  const cnv = document.getElementById('canvas');
+  const ctx = cnv.getContext('2d');
+
+  const mousePosition = getMouse(cnv);
+  const ball = new Ball(500, 500, 50);
+  ball.fill(ctx);
+
+  cnv.addEventListener('mousedown', (e) => {
+    if (ball.checkPosition(mousePosition.x, mousePosition.y)) {
+      console.log('clicked ball');
+    }
+    if(ball2.checkPosition(mousePosition.x, mousePosition.y)) {
+      console.log('clicked ball2');
+    }
+  })
+
+
+  const ball2 = new Ball(200, 200, 50, 'red');
+  ball2.fill(ctx);
+  const vx = 1;
+
+  (
+    function frame() {
+      requestAnimationFrame(frame);
+      ctx.clearRect(0, 0, cnv.width, cnv.height);
+      ball2.x += vx;
+      ball2.fill(ctx);
+      ball.fill(ctx);
+      if(ball2.x>cnv.width) {
+        ball2.x = 0;
+      }
+    }
+  )()
+
+
+</script>
+</body>
+</html>

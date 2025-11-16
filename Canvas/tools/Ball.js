@@ -1,10 +1,12 @@
 class Ball {
-  constructor(x, y = 0, r = 12, color = 'skyblue') {
+  constructor(x, y, r, color) {
     this.x = x;
     this.y = y;
-    this.r = r;
-    this.color = color;
+    this.r = r || 12;
+    this.color = color || 'skyblue';
     
+    this.vx = 0;
+    this.vy = 0;
     this.scaleX = 1;
     this.scaleY = 1;
   }
@@ -30,5 +32,10 @@ class Ball {
     ctx.fill();
     ctx.restore();
   }
+
+  checkPosition(x, y) {
+    return (x - this.x) ** 2 + (y - this.y) ** 2 <= this.r ** 2;
+  }
+
 }
 
