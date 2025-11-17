@@ -65,6 +65,20 @@
       const moveFunc = (e) => {
         ball.x = mousePosition.x + dx;
         ball.y = mousePosition.y + dy;
+
+        // 移动时也增加边界限制
+        if(ball.x < ball.r) {
+          ball.x = ball.r;
+        }
+        if(ball.x + ball.r >= cnv.width) {
+          ball.x = cnv.width - ball.r;
+        }
+        if(ball.y < ball.r) {
+          ball.y = ball.r;
+        }
+        if(ball.y + ball.r >= cnv.height) {
+          ball.y = cnv.height - ball.r;
+        }
       }
       
       const upFunc = (e) => {
