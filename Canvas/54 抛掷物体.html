@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      body {
+          width: 100vw;
+          height: 100vh;
+      }
+      .example {
+          padding: 150px 0 0 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      canvas {
+          /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+          width: 1000px;
+          height: 1000px;
+          margin: 0 auto;
+      }
+  </style>
+</head>
+<body>
+<div class="example">
+  <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+</div>
+<script src="./tools/Ball.js"></script>
+<script src="./tools/GetMouse.js"></script>
+<script>
+
+  const cnv = document.getElementById('canvas');
+  const ctx = cnv.getContext('2d');
+
+  const ball = new Ball(500, 500, 50);
+  const mousePosition = getMouse(cnv);
+  ball.fill(ctx);
+
+  let isMouseDown = false;
+  let oldX, oldY;
+
+  cnv.addEventListener('mousedown', (e) => {
+    if (ball.checkPosition(mousePosition.x, mousePosition.y)) {
+      console.log('clicked ball');
+
+      oldX = ball.x;
+      oldY = ball.y;
+      isMouseDown = true;
+      
+      // 创建AbortController实例来管理事件监听器
+      const controller = new AbortController();
+      const { signal } = controller;
+
+      // 计算鼠标点击时与球的偏移量, 避免球在点击位置直接移动
+      const dx = ball.x - mousePosition.x;
+      const dy = ball.y - mousePosition.y;
+      
+      const moveFunc = (e) => {
+        ball.x = mousePosition.x + dx;
+        ball.y = mousePosition.y + dy;
+      }
+      
+      const upFunc = (e) => {
+        isMouseDown = false;
+        // 调用abort()一次性移除所有使用该signal的事件监听器
+        controller.abort();
+      }
+      
+      // 在添加事件监听器时传入signal参数
+      cnv.addEventListener('mousemove', moveFunc, { signal });
+      cnv.addEventListener('mouseup', upFunc, { signal });
+    }
+  });
+
+  let vx = 0, vy = 0;
+
+  (function frame() {
+    requestAnimationFrame(frame);
+    ctx.clearRect(0, 0, cnv.width, cnv.height);
+    
+    if(isMouseDown) {
+      vx = ball.x - oldX;
+      vy = ball.y - oldY;
+
+      oldX = ball.x;
+      oldY = ball.y;
+    } else {
+      ball.x += vx;
+      ball.y += vy;
+    }
+
+    // 碰撞到边界时反弹
+    if(ball.x + ball.r >= cnv.width || ball.x - ball.r <= 0) {
+      vx = -vx;
+    }
+    if(ball.y + ball.r >= cnv.height || ball.y - ball.r <= 0) {
+      vy = -vy;
+    }
+
+    ball.fill(ctx);
+  })()
+
+
+
+
+
+</script>
+</body>
+</html>
