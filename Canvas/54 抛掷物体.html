@@ -94,6 +94,16 @@
     } else {
       ball.x += vx;
       ball.y += vy;
+
+      vx *= 0.99;
+      vy *= 0.99;
+
+      if(Math.abs(vx) < 0.01) {
+        vx = 0;
+      }
+      if(Math.abs(vy) < 0.01) {
+        vy = 0;
+      }
     }
 
     // 碰撞到边界时反弹
