@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      body {
+          width: 100vw;
+          height: 100vh;
+      }
+      .example {
+          padding: 150px 0 0 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      canvas {
+          /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+          width: 1000px;
+          height: 1000px;
+          margin: 0 auto;
+      }
+  </style>
+</head>
+<body>
+<div class="example">
+  <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+</div>
+<script src="./tools/Ball.js"></script>
+<script src="./tools/GetMouse.js"></script>
+<script>
+
+  const cnv = document.getElementById('canvas');
+  const ctx = cnv.getContext('2d');
+
+  /*
+  * 缓动动画不止是运用在物体移动上，还可以运用在其他属性的变化上，例如颜色、透明度、大小等
+  *
+  * 语法：
+  * 1 当前速度 =（最终值 - 当前值）× 缓动系数
+  * 2 新的值 = 当前值 + 当前速度
+  * */
+
+  const ball = new Ball(cnv.width / 2, cnv.height / 2, 30, 'pink');
+  const finalRadius = 100; // 最终半径
+  const easing = 0.05; // 缓动系数
+
+  (function frame() {
+    requestAnimationFrame(frame);
+    ctx.clearRect(0, 0, cnv.width, cnv.height);
+
+    const distanceR = finalRadius - ball.r; // 计算需要缓动的距离
+    const dR = distanceR * easing; // 计算当前速度
+    ball.r += dR; // 更新半径
+    ball.fill(ctx);
+
+  })()
+
+
+
+
+
+</script>
+</body>
+</html>
