@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      body {
+          width: 100vw;
+          height: 100vh;
+      }
+      .example {
+          padding: 150px 0 0 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      canvas {
+          /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+          width: 1000px;
+          height: 1000px;
+          margin: 0 auto;
+      }
+  </style>
+</head>
+<body>
+<div class="example">
+  <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+</div>
+<script src="./tools/Ball.js"></script>
+<script src="./tools/GetMouse.js"></script>
+<script>
+
+  const cnv = document.getElementById('canvas');
+  const ctx = cnv.getContext('2d');
+
+  /*
+  * 缓动动画
+  *
+  * 分为： 缓出动画 与 缓入动画
+  *
+  * 简单的说就是一个过度效果，例如飞机起飞需要慢慢加速，随后平稳飞行，降落时也需要慢慢减速，这个过程就可以使用缓动动画来实现
+  *
+  * 语法：
+  * 1 定义一个缓动系数easing，取值范围0~1
+  * 2 计算物体到终点的距离（需要缓动的距离）
+  * 3 计算当前速度 = 需要缓动的距离 * easing
+  * 4 更新物体位置： 物体当前位置 += 当前速度
+  * 5 重复以上2~4的步骤，直到物体到达终点位置
+  *
+  * */
+
+  // 此案例为一个水平缓动动画案例, 任意方向的类似，只需多一个y方向的计算与累加即可
+  const ball = new Ball(0, cnv.height / 2, 30, 'pink');
+  // 设置目标位置, 从x=0 到 x = canvas宽度四分之三处
+  const targetX = cnv.width / 4 * 3;
+  // 设置缓动系数
+  const easing  = 0.02;
+
+  (function frame() {
+    requestAnimationFrame(frame);
+    ctx.clearRect(0, 0, cnv.width, cnv.height);
+
+    // 计算需要缓动的距离
+    const distance = targetX - ball.x;
+    // 计算当前速度
+    const vx = distance * easing;
+    // 更新物体位置
+    ball.x += vx;
+    ball.fill(ctx);
+
+
+  })()
+
+
+
+
+
+</script>
+</body>
+</html>
