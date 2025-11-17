@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      body {
+          width: 100vw;
+          height: 100vh;
+      }
+      .example {
+          padding: 150px 0 0 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      canvas {
+          /* 关键：强制 canvas 元素本身宽度与属性 width 一致，避免被 CSS 缩放 */
+          width: 1000px;
+          height: 1000px;
+          margin: 0 auto;
+      }
+  </style>
+</head>
+<body>
+<div class="example">
+  <canvas id="canvas" width="1000" height="1000" style="border: 1px solid #000;"></canvas>
+</div>
+<script src="./tools/Ball.js"></script>
+<script src="./tools/GetMouse.js"></script>
+<script>
+
+  const cnv = document.getElementById('canvas');
+  const ctx = cnv.getContext('2d');
+
+  /*
+  * 弹性动画
+  *
+  * 缓动动画中，离目标越近，速度越小
+  * 弹性动画中，离目标越近，加速度越小
+  *
+  * 而抵达目标时，虽然加速度已经很小或许还是负的但是速度仍大于0，这就能够达到超过目标
+  * 而随后由于加速度的作用，速度会逐渐减小，最终在目标位置来回震荡，直到速度和加速度都趋近于0，物体才会静止在目标位置
+  *
+  * 语法：
+  * ax = (targetX - object.x) * spring;
+  * ay = (targetY - object.y) * spring;
+  * vx += ax;
+  * vy += ay;
+  * // 摩擦系数，保证最终能停下来
+  * vx *= friction;
+  * vy *=friction;
+  * object.x += vx;
+  * object.y += vy;
+  * */
+  const ball = new Ball(0, cnv.height / 2);
+  const targetX = cnv.width / 2;
+  const spring = 0.02;
+  let vx = 0;
+  const friction = 0.98;
+
+  (function frame() {
+    if(Math.abs(vx) < 0.1 && Math.abs(targetX - ball.x) < 0.1) {
+      // 当速度与位置足够接近目标时，直接设置为目标位置，停止动画
+      ball.x = targetX;
+      ball.fill(ctx);
+      console.log('end')
+      return;
+    }
+    requestAnimationFrame(frame);
+    ctx.clearRect(0, 0, cnv.width, cnv.height);
+
+    const ax = (targetX - ball.x) * spring;
+    vx += ax;
+    vx *= friction;
+    ball.x += vx;
+
+    ball.fill(ctx);
+
+  })()
+
+
+
+
+
+</script>
+</body>
+</html>
