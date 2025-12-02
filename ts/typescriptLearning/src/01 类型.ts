@@ -5,5 +5,5 @@ let age: number = 18;
 let fullName = '张三';
 
 
-// const类型推导的缩窄
+// const声明中类型推导的缩窄
 const schoolName = '清华大学';
